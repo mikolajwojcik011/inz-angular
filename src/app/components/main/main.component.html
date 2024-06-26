@@ -1,0 +1,23 @@
+<section class="flex justify-center h-screen bg-gray-50 p-24">
+  <section class="flex flex-col py-16 w-600px bg-gray-300 rounded-2xl shadow-2xl">
+    <h1 class="text-7xl font-bold self-center mb-24">Join test.</h1>
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col self-center">
+      <div class="flex flex-col pb-8">
+        <label for="public_key" class="pb-2">Public Key</label>
+        <input
+          placeholder="key-here"
+          id="public_key" type="text"
+          name="public_key"
+          formControlName="public_key"
+          class="w-80 h-10 p-2 mb-2 rounded-lg shadow-inner ring-1 ring-gray-400 hover:ring-blue-400 hover:ring-2 focus:ring-blue-500 focus:ring-2 focus:outline-none">
+          <div
+            class="w-80 px-2 py-1 text-xs bg-gray-100 rounded-md ring-1 ring-gray-300 text-red-600"
+            *ngIf="form.get('public_key')?.invalid && form.get('public_key')?.touched || submitted">
+            <div *ngIf="form.get('public_key')?.errors?.['required']">The "public key" is required.</div>
+            <div *ngIf="form.get('public_key')?.errors?.['invalidKey']">The format of the "public key" is incorrect.</div>
+          </div>
+      </div>
+      <app-button-blue [content]="'Join.'" class="self-center"></app-button-blue>
+    </form>
+  </section>
+</section>

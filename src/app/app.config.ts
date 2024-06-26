@@ -7,10 +7,12 @@ import { provideRouterStore } from '@ngrx/router-store';
 import {provideState, provideStore} from '@ngrx/store';
 import {testReducer} from "./store/test.reducer";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
+import {provideHttpClient} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(),
     provideRouter(routes),
     provideEffects(),
     provideRouterStore(),
