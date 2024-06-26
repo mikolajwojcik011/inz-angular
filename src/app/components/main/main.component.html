@@ -9,10 +9,12 @@
           id="public_key" type="text"
           name="public_key"
           formControlName="public_key"
-          class="w-80 h-10 p-2 mb-2 rounded-lg shadow-inner ring-1 ring-gray-400 hover:ring-blue-400 hover:ring-2 focus:ring-blue-500 focus:ring-2 focus:outline-none">
+          class="w-80 h-10 p-2 bg-gray-50 rounded-t-lg shadow-inner ring-2 ring-gray-300 hover:ring-blue-400 hover:ring-2 focus:ring-blue-500 focus:ring-2 focus:outline-none"
+          [ngClass]="getInputClass()"
+        >
           <div
-            class="w-80 px-2 py-1 text-xs bg-gray-100 rounded-md ring-1 ring-gray-300 text-red-600"
-            *ngIf="form.get('public_key')?.invalid && form.get('public_key')?.touched || submitted">
+            class="w-80 px-2 py-2 text-sm font-light bg-gray-100 rounded-b-lg mt-0.5 ring-2 ring-gray-300 text-red-600"
+            *ngIf="form.get('public_key')?.invalid && form.get('public_key')?.touched">
             <div *ngIf="form.get('public_key')?.errors?.['required']">The "public key" is required.</div>
             <div *ngIf="form.get('public_key')?.errors?.['invalidKey']">The format of the "public key" is incorrect.</div>
           </div>

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
@@ -13,7 +12,8 @@ import {Store} from "@ngrx/store";
 import {TestApiActions} from "../../store/test.actions";
 import {joinTestFormValidator} from "../../validators/join-test-form.validator";
 import {ButtonBlueComponent} from "../shared/button-blue/button-blue.component";
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
+import {Router} from "@angular/router";
 
 interface Form {
   public_key: AbstractControl;
@@ -26,7 +26,8 @@ interface Form {
     ReactiveFormsModule,
     FormsModule,
     ButtonBlueComponent,
-    NgIf
+    NgIf,
+    NgClass
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
@@ -36,15 +37,14 @@ export class MainComponent implements OnInit{
   constructor(
     private getTestService: TestService,
     private store: Store,
+    private router: Router
   ) {}
 
   form!: FormGroup<Form>;
   submitted = false;
 
-  ngOnInit() {
-    this.form = new FormGroup<Form>({
-      public_key: new FormControl<string>('', [Validators.required, joinTestFormValidator()]),
-    });
+  getInputClass() {
+    return (this.form.get('public_key')?.invalid && (this.form.get('public_key')?.touched || this.submitted)) ? 'rounded-b-none' : 'rounded-b-lg';
   }
 
   submitForm(){
@@ -55,9 +55,16 @@ export class MainComponent implements OnInit{
         .getTest(this.form.value.public_key)
         .subscribe(response => {
           this.store.dispatch(TestApiActions.fetchTestSchema({test: response}));
+          this.router.navigate(['/test', this.form.value.public_key]);
         }
       );
     }
+  }
+
+  ngOnInit() {
+    this.form = new FormGroup<Form>({
+      public_key: new FormControl<string>('', [Validators.required, joinTestFormValidator()]),
+    });
   }
 
 }
