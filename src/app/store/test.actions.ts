@@ -1,9 +1,10 @@
 import {createActionGroup, props} from "@ngrx/store";
-import {GetTestApiResponse} from "../models/get-test-api-response";
+import {TestState} from "../models/test-state";
 
 export const TestApiActions = createActionGroup({
   source: 'Test API',
   events: {
-    'Fetch Test Schema': props<{ test: GetTestApiResponse }>(),
+    'Fetch Test Schema': props<{ publicKey: string }>(),
+    'Fetch Test Schema Success': props<TestState>(),
   }
 });

@@ -2,10 +2,11 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test.selectors";
 import {GetTestApiResponse} from "../../models/get-test-api-response";
-import {JsonPipe} from "@angular/common";
+import {JsonPipe, NgForOf} from "@angular/common";
 import {InputRadioComponent} from "../shared/input-radio/input-radio.component";
-import {Subject, takeUntil} from "rxjs";
+import {map, Subject, takeUntil} from "rxjs";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {TestState} from "../../models/test-state";
 
 @Component({
   selector: 'app-test',
@@ -13,7 +14,8 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
   imports: [
     JsonPipe,
     InputRadioComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgForOf
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
@@ -26,15 +28,19 @@ export class TestComponent implements OnInit, OnDestroy{
     private store: Store,
   ) {}
 
-  test: GetTestApiResponse | null = null;
+  test: TestState = {
+      question_arr: [],
+      id_question_arr: []
+  };
   form!: FormGroup<any>;
 
   ngOnInit() {
     this.store.select(selectTest)
       .pipe(takeUntil(this.destroy$))
       .subscribe(test => {
-        this.test = test;
-    });
+          this.test = test;
+        }
+      );
 
     this.form = new FormGroup<any>({
       test: new FormControl<any>('empty', [Validators.required]),
@@ -47,6 +53,5 @@ export class TestComponent implements OnInit, OnDestroy{
   }
 
   submitForm() {
-    console.log(this.form.value.test);
   }
 }

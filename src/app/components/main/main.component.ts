@@ -54,7 +54,7 @@ export class MainComponent implements OnInit, OnDestroy{
         .getTest(this.form.value.public_key)
         .pipe(takeUntil(this.destroy$))
         .subscribe(response => {
-          this.store.dispatch(TestApiActions.fetchTestSchema({test: response}));
+          this.store.dispatch(TestApiActions.fetchTestSchema({ publicKey: this.form.value.public_key }));
           this.router.navigate(['/test', this.form.value.public_key]);
         }
       );

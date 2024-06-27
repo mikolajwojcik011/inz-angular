@@ -3,10 +3,11 @@ import {TestApiActions} from "./test.actions";
 import {TestState} from "../models/test-state";
 
 export const initialState:TestState = {
-  test: null
+  question_arr: [],
+  id_question_arr: []
 }
 
 export const testReducer = createReducer(
   initialState,
-  on(TestApiActions.fetchTestSchema, (_state, {test }) => ({test}))
+  on(TestApiActions.fetchTestSchemaSuccess, (_state, action) => (action))
 )

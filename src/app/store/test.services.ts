@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 import {GetTestApiResponse} from "../models/get-test-api-response";
 
 @Injectable({providedIn: 'root'})
