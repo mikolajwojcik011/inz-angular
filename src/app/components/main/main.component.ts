@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -6,13 +6,14 @@ import {
   ReactiveFormsModule,
   Validators
 } from "@angular/forms";
-import {TestService} from "../../store/test.services";
+import {NgClass, NgIf} from "@angular/common";
+import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
+import {Subject, takeUntil} from "rxjs";
+import {TestService} from "../../store/test.services";
 import {TestApiActions} from "../../store/test.actions";
 import {joinTestFormValidator} from "../../validators/join-test-form.validator";
 import {ButtonBlueComponent} from "../shared/button-blue/button-blue.component";
-import {NgClass, NgIf} from "@angular/common";
-import {Router} from "@angular/router";
 import {FormMain} from "../../models/main-form";
 
 @Component({
@@ -28,12 +29,14 @@ import {FormMain} from "../../models/main-form";
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
-export class MainComponent implements OnInit{
+export class MainComponent implements OnInit, OnDestroy{
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private getTestService: TestService,
     private store: Store,
-    private router: Router
+    private router: Router,
   ) {}
 
   form!: FormGroup<FormMain>;
@@ -49,6 +52,7 @@ export class MainComponent implements OnInit{
       console.log('sent')
       this.getTestService
         .getTest(this.form.value.public_key)
+        .pipe(takeUntil(this.destroy$))
         .subscribe(response => {
           this.store.dispatch(TestApiActions.fetchTestSchema({test: response}));
           this.router.navigate(['/test', this.form.value.public_key]);
@@ -63,4 +67,9 @@ export class MainComponent implements OnInit{
     });
   }
 
+  ngOnDestroy() {
+    this.form.reset();
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
