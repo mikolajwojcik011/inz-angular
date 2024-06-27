@@ -1,6 +1,6 @@
-import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {TestState} from "./test.reducer";
+import {createFeatureSelector} from '@ngrx/store';
 import {GetTestApiResponse} from "../models/get-test-api-response";
+import {TestState} from "../models/test-state";
 
 interface AppState {
   test: TestState;

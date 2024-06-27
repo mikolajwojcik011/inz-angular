@@ -1,10 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
 import {TestApiActions} from "./test.actions";
-import {GetTestApiResponse} from "../models/get-test-api-response";
-
-export interface TestState {
-  test: GetTestApiResponse | null;
-}
+import {TestState} from "../models/test-state";
 
 export const initialState:TestState = {
   test: null

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   FormsModule,
@@ -14,10 +13,7 @@ import {joinTestFormValidator} from "../../validators/join-test-form.validator";
 import {ButtonBlueComponent} from "../shared/button-blue/button-blue.component";
 import {NgClass, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
-
-interface Form {
-  public_key: AbstractControl;
-}
+import {FormMain} from "../../models/main-form";
 
 @Component({
   selector: 'app-main',
@@ -40,7 +36,7 @@ export class MainComponent implements OnInit{
     private router: Router
   ) {}
 
-  form!: FormGroup<Form>;
+  form!: FormGroup<FormMain>;
   submitted = false;
 
   getInputClass() {
@@ -62,7 +58,7 @@ export class MainComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.form = new FormGroup<Form>({
+    this.form = new FormGroup<FormMain>({
       public_key: new FormControl<string>('', [Validators.required, joinTestFormValidator()]),
     });
   }
