@@ -1,5 +1,6 @@
 import {Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-input-radio',
@@ -12,6 +13,9 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
     }
   ],
   templateUrl: './input-radio.component.html',
+  imports: [
+    NgClass
+  ],
   styleUrl: './input-radio.component.css'
 })
 export class InputRadioComponent implements ControlValueAccessor {
@@ -26,7 +30,6 @@ export class InputRadioComponent implements ControlValueAccessor {
     this.value = target.value;
     this.onChange(this.value);
     this.onTouched();
-    console.log('updateValue called with:', this.value);
   }
 
   writeValue(value: any): void {
