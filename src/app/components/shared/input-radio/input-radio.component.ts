@@ -1,12 +1,43 @@
-import { Component } from '@angular/core';
+import {Component, forwardRef, Input} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'app-input-radio',
   standalone: true,
-  imports: [],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputRadioComponent),
+      multi: true
+    }
+  ],
   templateUrl: './input-radio.component.html',
   styleUrl: './input-radio.component.css'
 })
-export class InputRadioComponent {
+export class InputRadioComponent implements ControlValueAccessor {
+  @Input() value: any;
+  @Input() radioValue: any;
 
+  private onChange = (value: any) => {};
+  private onTouched = () => {};
+
+  updateValue(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.value = target.value;
+    this.onChange(this.value);
+    this.onTouched();
+    console.log('updateValue called with:', this.value);
+  }
+
+  writeValue(value: any): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
 }

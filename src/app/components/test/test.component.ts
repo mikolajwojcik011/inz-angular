@@ -5,13 +5,15 @@ import {GetTestApiResponse} from "../../models/get-test-api-response";
 import {JsonPipe} from "@angular/common";
 import {InputRadioComponent} from "../shared/input-radio/input-radio.component";
 import {Subject, takeUntil} from "rxjs";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-test',
   standalone: true,
   imports: [
     JsonPipe,
-    InputRadioComponent
+    InputRadioComponent,
+    ReactiveFormsModule
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
@@ -25,18 +27,26 @@ export class TestComponent implements OnInit, OnDestroy{
   ) {}
 
   test: GetTestApiResponse | null = null;
+  form!: FormGroup<any>;
 
   ngOnInit() {
     this.store.select(selectTest)
       .pipe(takeUntil(this.destroy$))
       .subscribe(test => {
-        console.log(this.test);
         this.test = test;
     });
+
+    this.form = new FormGroup<any>({
+      test: new FormControl<any>('empty', [Validators.required]),
+    })
   }
 
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  submitForm() {
+    console.log(this.form.value.test);
   }
 }

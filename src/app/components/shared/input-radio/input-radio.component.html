@@ -1,4 +1,4 @@
 <div>
-  <label for="test">test</label>
-  <input type="radio" name="test" id="test">
+  <label>test</label>
+  <input type="radio" name="test" [value]="radioValue" (change)="updateValue($event)">
 </div>
