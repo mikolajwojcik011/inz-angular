@@ -1,14 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {JsonPipe, NgForOf} from "@angular/common";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import { Subject, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test.selectors";
-import {JsonPipe, NgForOf} from "@angular/common";
-import {InputRadioComponent} from "../shared/input-radio/input-radio.component";
-import { Subject, takeUntil} from "rxjs";
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {TestState} from "../../models/test-state";
-import {QuestionComponent} from "./question/question.component";
-import {ButtonGreenComponent} from "../shared/button-green/button-green.component";
 import {InputRadioChangeEvent} from "../../models/input-radio-change-event";
+import {ButtonGreenComponent} from "../shared/button-green/button-green.component";
+import {InputRadioComponent} from "../shared/input-radio/input-radio.component";
+import {QuestionComponent} from "./question/question.component";
 
 @Component({
   selector: 'app-test',
@@ -30,7 +30,9 @@ export class TestComponent implements OnInit, OnDestroy{
 
   constructor(
     private store: Store,
-  ) {}
+  ) {
+    this.form = new FormGroup<any>({});
+  }
 
   test: TestState = {
       question_arr: [],
@@ -39,9 +41,13 @@ export class TestComponent implements OnInit, OnDestroy{
   form!: FormGroup<any>;
 
   initForm() {
-    this.test.question_arr.forEach(question => {
+    const group: any = {};
 
+    this.test.question_arr.forEach(question => {
+      group[question.id] = new FormControl<any>(null, [Validators.required]);
     })
+
+    this.form = new FormGroup<any>(group);
   }
 
   onQuestionValueChange(event: InputRadioChangeEvent) {
@@ -49,7 +55,7 @@ export class TestComponent implements OnInit, OnDestroy{
   }
 
   submitForm() {
-    console.log('submitForm', this.form.value.test)
+    console.log('submitForm', this.form.value)
   }
 
   ngOnInit() {
@@ -57,13 +63,9 @@ export class TestComponent implements OnInit, OnDestroy{
       .pipe(takeUntil(this.destroy$))
       .subscribe(test => {
           this.test = test;
+          if (this.test.question_arr.length > 0) this.initForm();
         }
       );
-
-    this.form = new FormGroup<any>({
-      sdf: new FormControl<any>('empty', [Validators.required]),
-      sadfasdf: new FormControl<any>('empty', [Validators.required]),
-    })
   }
 
   ngOnDestroy() {
