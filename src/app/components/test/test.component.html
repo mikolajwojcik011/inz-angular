@@ -1,6 +1,8 @@
 <form [formGroup]="form" (ngSubmit)="submitForm()">
-  <section>
-  </section>
-  {{test | json }}
-<button>sybmit</button>
+  <app-question
+    *ngFor="let question of test.question_arr"
+    [question]="question"
+    (valueChange)="onQuestionValueChange($event)"
+  ></app-question>
+  <app-button-green [content]="'Submit'"></app-button-green>
 </form>

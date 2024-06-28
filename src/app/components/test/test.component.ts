@@ -1,12 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test.selectors";
-import {GetTestApiResponse} from "../../models/get-test-api-response";
 import {JsonPipe, NgForOf} from "@angular/common";
 import {InputRadioComponent} from "../shared/input-radio/input-radio.component";
-import {map, Subject, takeUntil} from "rxjs";
+import { Subject, takeUntil} from "rxjs";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {TestState} from "../../models/test-state";
+import {QuestionComponent} from "./question/question.component";
+import {ButtonGreenComponent} from "../shared/button-green/button-green.component";
+import {InputRadioChangeEvent} from "../../models/input-radio-change-event";
 
 @Component({
   selector: 'app-test',
@@ -15,7 +17,9 @@ import {TestState} from "../../models/test-state";
     JsonPipe,
     InputRadioComponent,
     ReactiveFormsModule,
-    NgForOf
+    NgForOf,
+    QuestionComponent,
+    ButtonGreenComponent
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
@@ -34,6 +38,20 @@ export class TestComponent implements OnInit, OnDestroy{
   };
   form!: FormGroup<any>;
 
+  initForm() {
+    this.test.question_arr.forEach(question => {
+
+    })
+  }
+
+  onQuestionValueChange(event: InputRadioChangeEvent) {
+    this.form.get(event.name)?.setValue(event.value);
+  }
+
+  submitForm() {
+    console.log('submitForm', this.form.value.test)
+  }
+
   ngOnInit() {
     this.store.select(selectTest)
       .pipe(takeUntil(this.destroy$))
@@ -43,7 +61,8 @@ export class TestComponent implements OnInit, OnDestroy{
       );
 
     this.form = new FormGroup<any>({
-      test: new FormControl<any>('empty', [Validators.required]),
+      sdf: new FormControl<any>('empty', [Validators.required]),
+      sadfasdf: new FormControl<any>('empty', [Validators.required]),
     })
   }
 
@@ -52,6 +71,5 @@ export class TestComponent implements OnInit, OnDestroy{
     this.destroy$.complete();
   }
 
-  submitForm() {
-  }
+
 }

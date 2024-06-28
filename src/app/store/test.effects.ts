@@ -19,8 +19,6 @@ export class TestEffects {
               question_arr: response['question-arr'] || [],
               id_question_arr: response['question-id-arr'] || []
             };
-
-
             return TestApiActions.fetchTestSchemaSuccess(transformedResponse );
           }),
         )

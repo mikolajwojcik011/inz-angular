@@ -6,5 +6,6 @@ export const TestApiActions = createActionGroup({
   events: {
     'Fetch Test Schema': props<{ publicKey: string }>(),
     'Fetch Test Schema Success': props<TestState>(),
+    'Fetch Test Schema Failure': props<{ error: string }>()
   }
 });

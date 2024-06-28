@@ -49,7 +49,6 @@ export class MainComponent implements OnInit, OnDestroy{
   submitForm(){
     this.submitted = true;
     if (this.form.valid) {
-      console.log('sent')
       this.getTestService
         .getTest(this.form.value.public_key)
         .pipe(takeUntil(this.destroy$))
