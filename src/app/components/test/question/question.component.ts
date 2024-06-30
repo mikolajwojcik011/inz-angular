@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Question} from "../../../models/question";
 import {InputRadioComponent} from "../../shared/input-radio/input-radio.component";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {InputRadioChangeEvent} from "../../../models/input-radio-change-event";
 
 @Component({
@@ -9,7 +9,8 @@ import {InputRadioChangeEvent} from "../../../models/input-radio-change-event";
   standalone: true,
   imports: [
     InputRadioComponent,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './question.component.html',
   styleUrl: './question.component.css'
