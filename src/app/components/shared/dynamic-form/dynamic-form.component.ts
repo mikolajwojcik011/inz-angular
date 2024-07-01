@@ -2,12 +2,14 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {QuestionControlService} from "./question-control.service";
 import {TestState} from "../../../models/test-state";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-dynamic-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    NgForOf,
   ],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.css'
@@ -23,28 +25,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   constructor(
     private qcs: QuestionControlService
   ) {}
-
-  getQuestionHead(questionKey: string){
-    return this.questions.question_arr.find(q => q.id === questionKey)?.head
-  }
-
-  getAnswerLabel(questionKey: string, inx: number){
-    return this.questions.question_arr.find(q => q.id === questionKey)?.answers[inx].content
-  }
-
-  getControls(questionId: string): AbstractControl[] {
-    return (this.form.get(questionId) as FormArray).controls;
-  }
-
-  toggleCheckbox(questionKey: string, inx: number) {
-    console.log(inx)
-    const control = (this.form.get(questionKey) as FormArray).at(inx);
-    if (control.value) {
-      control.setValue(null);
-    } else {
-      control.setValue(inx);
-    }
-  }
 
   ngOnInit() {
     this.form = new FormGroup({});

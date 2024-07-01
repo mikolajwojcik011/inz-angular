@@ -1,10 +1,10 @@
 <form [formGroup]="form">
-  @for (questionKey of Object.keys(form.controls); track questionKey){
-    <h1>{{getQuestionHead(questionKey)}}</h1><br>
-    <div [formArrayName]="questionKey">
-      @for (answerKey of getControls(questionKey); track answerKey; let inx = $index){
-        <input type="radio" [formControlName]="String(inx)">
-        <label>{{getAnswerLabel(questionKey, inx)}}</label><br>
+  @for (question of questions.question_arr; track question.id){
+    <h1>{{question.head}}</h1><br>
+    <div [formArrayName]="question.id">
+      @for (answer of question.answers; track answer.id){
+        <input [id]="answer.id" type="checkbox" [formControlName]="answer.id">
+        <label [for]="answer.id">{{ answer.content }}</label><br>
       }
     </div>
   }

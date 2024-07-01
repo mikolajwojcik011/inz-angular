@@ -16,14 +16,12 @@ export class QuestionControlService {
     let group: any = {};
 
     questions.question_arr.forEach((question: Question) => {
-      let answerArr = new FormArray<FormControl<string | null>>([]);
+      let answerGroup: { [key: string]: FormControl } = {};
       question.answers.forEach((answer: Answer) => {
-        answerArr.push(new FormControl<string | null>(answer.id));
+        answerGroup[answer.id] = new FormControl(false);
       });
-      group[question.id] = answerArr;
+      group[question.id] = new FormGroup(answerGroup);
     });
-
     return this.formBuilder.group(group);
   }
-
 }
