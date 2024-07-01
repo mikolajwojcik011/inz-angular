@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  @for (questionKey of Object.keys(form.controls); track questionKey){
+    <h1>{{getQuestionHead(questionKey)}}</h1><br>
+    <div [formArrayName]="questionKey">
+      @for (answerKey of getControls(questionKey); track answerKey; let inx = $index){
+        <input type="radio" [formControlName]="String(inx)">
+        <label>{{getAnswerLabel(questionKey, inx)}}</label><br>
+      }
+    </div>
+  }
+</form>
+<button (click)="onSubmit()">sub</button>
