@@ -1,25 +1,24 @@
-// src/app/store/test.effects.ts
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TestApiActions } from './test.actions';
-import { map, mergeMap } from 'rxjs/operators';
-import {TestService} from "./test.services";
-import {tap} from "rxjs";
+import {catchError, map, mergeMap} from 'rxjs/operators';
+import {TestService} from "./test.service";
+import {of} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Injectable()
 export class TestEffects {
   fetchTestSchema$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(TestApiActions.fetchTestSchema),
+      ofType(TestApiActions.getTestSchema),
       mergeMap(action =>
         this.testService.getTest(action.publicKey).pipe(
           map(response => {
-            // Transform the response into an object of objects
             const transformedResponse = {
               question_arr: response['question-arr'] || [],
               id_question_arr: response['question-id-arr'] || []
             };
-            return TestApiActions.fetchTestSchemaSuccess(transformedResponse );
+            return TestApiActions.getTestSchemaSuccess(transformedResponse );
           }),
         )
       )

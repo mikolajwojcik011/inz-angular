@@ -1,14 +1,14 @@
 import {ApplicationConfig, isDevMode, provideZoneChangeDetection} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
+import { routes } from './router/app.routes';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';
 import {provideState, provideStore} from '@ngrx/store';
-import {testReducer} from "./store/test.reducer";
+import {testReducer} from "./store/test/test.reducer";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {provideHttpClient} from "@angular/common/http";
-import {TestEffects} from "./store/test.effects";
+import {TestEffects} from "./store/test/test.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [

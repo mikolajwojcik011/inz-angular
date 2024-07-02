@@ -1,9 +1,9 @@
 import {createReducer, on} from "@ngrx/store";
 import {TestApiActions} from "./test.actions";
-import {TestState} from "../models/test-state";
+import {TestState} from "../../models/test-state";
 import {HttpErrorResponse} from "@angular/common/http";
 
-interface AppState {
+export interface AppState {
   test: TestState;
   submitTestStart: boolean;
   submitTestSuccess: boolean;
@@ -28,13 +28,13 @@ export const initialState:AppState = {
 
 export const testReducer = createReducer(
   initialState,
-  on(TestApiActions.fetchTestSchema, (state: AppState) => {
+  on(TestApiActions.getTestSchema, (state: AppState) => {
     return {
       ...state,
       getTestStart: true,
     }
   }),
-  on(TestApiActions.fetchTestSchemaSuccess, (state: AppState, action) => {
+  on(TestApiActions.getTestSchemaSuccess, (state: AppState, action) => {
     return {
       ...state,
       test: action,
@@ -42,27 +42,27 @@ export const testReducer = createReducer(
       getTestSuccess: true,
     }
   }),
-  on(TestApiActions.fetchTestSchemaFailure, (state: AppState, action) => {
+  on(TestApiActions.getTestSchemaFailure, (state: AppState, action) => {
     return {
       ...state,
       getTestStart: false,
       getTestErrorMessage: action.error,
     }
   }),
-  on(TestApiActions.submitTest, (state: AppState) => {
+  on(TestApiActions.postTest, (state: AppState) => {
     return {
       ...state,
       submitTestStart: true,
     }
   }),
-  on(TestApiActions.submitTestSuccess, (state: AppState) => {
+  on(TestApiActions.postTestSuccess, (state: AppState) => {
     return {
       ...state,
       submitTestStart: false,
       submitTestSuccess: true,
     }
   }),
-  on(TestApiActions.submitTestFailure, (state: AppState, action) => {
+  on(TestApiActions.postTestFailure, (state: AppState, action) => {
     return {
       ...state,
       submitTestStart: false,

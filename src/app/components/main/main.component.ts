@@ -9,12 +9,14 @@ import {
 import {NgClass, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
-import {Subject, takeUntil} from "rxjs";
-import {TestService} from "../../store/test.services";
-import {TestApiActions} from "../../store/test.actions";
+import {of, Subject, takeUntil} from "rxjs";
+import {TestService} from "../../store/test/test.service";
+import {TestApiActions} from "../../store/test/test.actions";
 import {joinTestFormValidator} from "../../validators/join-test-form.validator";
 import {ButtonBlueComponent} from "../shared/button-blue/button-blue.component";
 import {FormMain} from "../../models/main-form";
+import {catchError} from "rxjs/operators";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-main',
@@ -51,9 +53,14 @@ export class MainComponent implements OnInit, OnDestroy{
     if (this.form.valid) {
       this.getTestService
         .getTest(this.form.value.public_key)
-        .pipe(takeUntil(this.destroy$))
+        .pipe(
+          takeUntil(this.destroy$),
+          catchError((error: HttpErrorResponse) => {
+            return of(TestApiActions.getTestSchemaFailure({ error }));
+          })
+        )
         .subscribe(response => {
-          this.store.dispatch(TestApiActions.fetchTestSchema({ publicKey: this.form.value.public_key }));
+          this.store.dispatch(TestApiActions.getTestSchema({ publicKey: this.form.value.public_key }));
           this.router.navigate(['/test', this.form.value.public_key]);
         }
       );

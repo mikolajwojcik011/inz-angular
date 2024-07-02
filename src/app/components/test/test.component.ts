@@ -1,12 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import { ReactiveFormsModule} from "@angular/forms";
-import {Observable, of, Subject, takeUntil} from "rxjs";
+import {Observable, Subject, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
-import {selectTest} from "../../store/test.selectors";
+import {selectTest} from "../../store/test/test.selectors";
 import {TestState} from "../../models/test-state";
-import {InputRadioComponent} from "../shared/input-radio/input-radio.component";
-import {QuestionComponent} from "./question/question.component";
 import {DynamicFormComponent} from "../shared/dynamic-form/dynamic-form.component";
 
 @Component({
@@ -14,10 +12,8 @@ import {DynamicFormComponent} from "../shared/dynamic-form/dynamic-form.componen
   standalone: true,
   imports: [
     JsonPipe,
-    InputRadioComponent,
     ReactiveFormsModule,
     NgForOf,
-    QuestionComponent,
     DynamicFormComponent,
     AsyncPipe,
     NgIf
