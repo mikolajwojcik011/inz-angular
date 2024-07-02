@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {QuestionControlService} from "./question-control.service";
 import {TestState} from "../../../models/test-state";
 import {NgForOf} from "@angular/common";
@@ -39,8 +39,10 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.value);
     console.log(this.form.value)
+    for (let key in this.form.value) {
+      for (let answer in this.form.value[key]) {
+        console.log('Question:', key, 'Answer:', answer);
+      }
+    }
   }
-
-  protected readonly Object = Object;
-  protected readonly String = String;
 }
