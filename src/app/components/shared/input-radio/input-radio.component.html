@@ -1,5 +1,12 @@
 <div *ngIf="answer" class="m-20 w-80">
-  <input type="checkbox" [name]="name" [id]="answer.id" [value]="answer.id" (change)="updateValue($event)">
+  <input
+    type="checkbox"
+    [name]="name"
+    [id]="answer.id"
+    [value]="answer.id"
+    (change)="updateValue($event)"
+    [formControlName]="index"
+  >
   <label
     [for]="answer.id"
     class="block w-full ring-2 ring-inset rounded-md border-0 py-1.5 px-5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6"

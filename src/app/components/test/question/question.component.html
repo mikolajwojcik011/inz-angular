@@ -4,7 +4,8 @@
   </div>
   <div *ngIf="question">
     <app-input-radio
-      *ngFor="let answer of question?.answers"
+      *ngFor="let answer of question?.answers; let i = index"
+      [index]="i"
       [answer]="answer"
       [name]="question.id"
       (valueChange)="onValueChange($event)"

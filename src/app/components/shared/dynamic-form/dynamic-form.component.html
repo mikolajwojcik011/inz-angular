@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  @for (question of questions.question_arr; track question.id){
+    <h1>{{question.head}}</h1><br>
+    <div [formArrayName]="question.id">
+      @for (answer of question.answers; track answer.id){
+        <input [id]="answer.id" type="checkbox" [formControlName]="answer.id">
+        <label [for]="answer.id">{{ answer.content }}</label><br>
+      }
+    </div>
+  }
+</form>
+<button (click)="onSubmit()">sub</button>
