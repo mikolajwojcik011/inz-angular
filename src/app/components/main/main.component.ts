@@ -10,7 +10,7 @@ import {NgClass, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {of, Subject, takeUntil} from "rxjs";
-import {TestService} from "../../store/test/test.service";
+import {GetTestService} from "../../store/test/services/get-test.service";
 import {TestApiActions} from "../../store/test/test.actions";
 import {joinTestFormValidator} from "../../validators/join-test-form.validator";
 import {ButtonBlueComponent} from "../shared/button-blue/button-blue.component";
@@ -36,7 +36,7 @@ export class MainComponent implements OnInit, OnDestroy{
   private destroy$ = new Subject<void>();
 
   constructor(
-    private getTestService: TestService,
+    private getTestService: GetTestService,
     private store: Store,
     private router: Router,
   ) {}

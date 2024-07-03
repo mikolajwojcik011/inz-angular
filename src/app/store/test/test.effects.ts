@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TestApiActions } from './test.actions';
-import {catchError, map, mergeMap} from 'rxjs/operators';
-import {TestService} from "./test.service";
-import {of} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
+import { map, mergeMap} from 'rxjs/operators';
+import {GetTestService} from "./services/get-test.service";
 
 @Injectable()
 export class TestEffects {
@@ -27,6 +25,6 @@ export class TestEffects {
 
   constructor(
     private actions$: Actions,
-    private testService: TestService
+    private testService: GetTestService
   ) {}
 }

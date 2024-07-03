@@ -3,6 +3,8 @@ import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {QuestionControlService} from "./question-control.service";
 import {TestState} from "../../../models/test-state";
 import {NgForOf} from "@angular/common";
+import {FormValueToProperPayloadService} from "../../../store/test/services/form-value-to-proper-payload.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-dynamic-form',
@@ -21,13 +23,20 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   };
   form!: FormGroup;
   payLoad = '';
+  publicKey: string | null = null;
 
   constructor(
-    private qcs: QuestionControlService
+    private qcs: QuestionControlService,
+    private fvtp: FormValueToProperPayloadService,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
     this.form = new FormGroup({});
+
+    this.route.paramMap.subscribe(params => {
+      this.publicKey = params.get('public_key');
+    })
   }
 
   ngOnChanges() {
@@ -37,12 +46,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   }
 
   onSubmit() {
-    this.payLoad = JSON.stringify(this.form.value);
-    console.log(this.form.value)
-    for (let key in this.form.value) {
-      for (let answer in this.form.value[key]) {
-        console.log('Question:', key, 'Answer:', answer);
-      }
-    }
+    console.log('Payload:', this.fvtp.formValueToProperPayload(this.form.value, this.publicKey));
   }
 }
