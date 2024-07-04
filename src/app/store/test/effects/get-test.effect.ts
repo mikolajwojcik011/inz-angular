@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { TestApiActions } from './test.actions';
-import { map, mergeMap} from 'rxjs/operators';
-import {GetTestService} from "./services/get-test.service";
+import { TestApiActions } from '../test.actions';
+import {catchError, map, mergeMap} from 'rxjs/operators';
+import {GetTestService} from "../services/get-test.service";
+import {HttpErrorResponse} from "@angular/common/http";
+import {of} from "rxjs";
 
 @Injectable()
-export class TestEffects {
+export class GetTestEffect {
+  constructor(
+    private actions$: Actions,
+    private getTestService: GetTestService
+  ) {}
+
   fetchTestSchema$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TestApiActions.getTestSchema),
       mergeMap(action =>
-        this.testService.getTest(action.publicKey).pipe(
+        this.getTestService.getTest(action.publicKey).pipe(
           map(response => {
             const transformedResponse = {
               question_arr: response['question-arr'] || [],
@@ -18,13 +25,11 @@ export class TestEffects {
             };
             return TestApiActions.getTestSchemaSuccess(transformedResponse );
           }),
+          catchError((error: HttpErrorResponse) => {
+            return of(TestApiActions.getTestSchemaFailure({ error }));
+          }
         )
       )
     )
-  );
-
-  constructor(
-    private actions$: Actions,
-    private testService: GetTestService
-  ) {}
+  ));
 }

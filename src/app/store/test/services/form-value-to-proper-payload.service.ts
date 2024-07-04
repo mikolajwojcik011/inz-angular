@@ -8,7 +8,7 @@ export class FormValueToProperPayloadService {
 
   constructor() { }
 
-  formValueToProperPayload(formValue: any, publicKey: string | null): any {
+  formValueToProperPayload(formValue: any, publicKey: string | null): SubmitTestApiPayload {
     let payload: SubmitTestApiPayload = {
       public_key: publicKey,
       answer_arr: {},

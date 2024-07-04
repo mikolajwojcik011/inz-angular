@@ -8,14 +8,15 @@ import {provideState, provideStore} from '@ngrx/store';
 import {testReducer} from "./store/test/test.reducer";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {provideHttpClient} from "@angular/common/http";
-import {TestEffects} from "./store/test/test.effects";
+import {GetTestEffect} from "./store/test/effects/get-test.effect";
+import {PostTestEffect} from "./store/test/effects/post-test.effect";
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(),
     provideRouter(routes),
-    provideEffects([TestEffects]),
+    provideEffects([GetTestEffect, PostTestEffect]),
     provideRouterStore(),
     provideStore(),
     provideState({name: 'test', reducer: testReducer}),

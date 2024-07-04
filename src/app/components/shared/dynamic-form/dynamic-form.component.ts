@@ -5,6 +5,9 @@ import {TestState} from "../../../models/test-state";
 import {NgForOf} from "@angular/common";
 import {FormValueToProperPayloadService} from "../../../store/test/services/form-value-to-proper-payload.service";
 import {ActivatedRoute} from "@angular/router";
+import {Store} from "@ngrx/store";
+import {TestApiActions} from "../../../store/test/test.actions";
+import {SubmitTestApiPayload} from "../../../models/submit-test-api-payload";
 
 @Component({
   selector: 'app-dynamic-form',
@@ -22,13 +25,17 @@ export class DynamicFormComponent implements OnChanges, OnInit {
       id_question_arr: []
   };
   form!: FormGroup;
-  payLoad = '';
+  payLoad: SubmitTestApiPayload = {
+    public_key: '',
+    answer_arr: {}
+  };
   publicKey: string | null = null;
 
   constructor(
     private qcs: QuestionControlService,
     private fvtp: FormValueToProperPayloadService,
     private route: ActivatedRoute,
+    private store: Store,
   ) {}
 
   ngOnInit() {
@@ -46,6 +53,8 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   }
 
   onSubmit() {
-    console.log('Payload:', this.fvtp.formValueToProperPayload(this.form.value, this.publicKey));
+    console.log(this.form.value);
+    this.payLoad = this.fvtp.formValueToProperPayload(this.form.value, this.publicKey);
+    this.store.dispatch(TestApiActions.postTest({ payload: this.payLoad }));
   }
 }
