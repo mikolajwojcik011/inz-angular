@@ -33,7 +33,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
   constructor(
     private qcs: QuestionControlService,
-    private fvtp: FormValueToProperPayloadService,
+    private fvtpp: FormValueToProperPayloadService,
     private route: ActivatedRoute,
     private store: Store,
   ) {}
@@ -54,7 +54,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-    this.payLoad = this.fvtp.formValueToProperPayload(this.form.value, this.publicKey);
+    this.payLoad = this.fvtpp.formValueToProperPayload(this.form.value, this.publicKey);
     this.store.dispatch(TestApiActions.postTest({ payload: this.payLoad }));
   }
 }
