@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { TestApiActions } from '../test.actions';
+import { TestApiActions } from '../actions/test.actions';
 import {catchError, map, mergeMap} from 'rxjs/operators';
 import {GetTestService} from "../services/get-test.service";
 import {HttpErrorResponse} from "@angular/common/http";

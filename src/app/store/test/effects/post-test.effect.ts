@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {PostTestService} from "../services/post-test.service";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {TestApiActions} from "../test.actions";
+import {TestApiActions} from "../actions/test.actions";
 import {catchError, map, mergeMap} from "rxjs/operators";
 import {HttpErrorResponse} from "@angular/common/http";
 import {of} from "rxjs";

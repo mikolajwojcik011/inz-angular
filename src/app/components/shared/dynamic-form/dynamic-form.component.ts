@@ -6,7 +6,7 @@ import {NgForOf} from "@angular/common";
 import {FormValueToProperPayloadService} from "../../../store/test/services/form-value-to-proper-payload.service";
 import {ActivatedRoute} from "@angular/router";
 import {Store} from "@ngrx/store";
-import {TestApiActions} from "../../../store/test/test.actions";
+import {TestApiActions} from "../../../store/test/actions/test.actions";
 import {SubmitTestApiPayload} from "../../../models/submit-test-api-payload";
 
 @Component({

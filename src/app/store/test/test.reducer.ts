@@ -1,7 +1,8 @@
 import {createReducer, on} from "@ngrx/store";
-import {TestApiActions} from "./test.actions";
+import {TestApiActions} from "./actions/test.actions";
 import {TestState} from "../../models/test-state";
 import {HttpErrorResponse} from "@angular/common/http";
+import {clearStateAction} from "./actions/clear-state.actions";
 
 export interface AppState {
   test: TestState;
@@ -67,6 +68,21 @@ export const testReducer = createReducer(
       ...state,
       submitTestStart: false,
       submitTestErrorMessage: action.error,
+    }
+  }),
+  on(clearStateAction.clearState, (state: AppState) => {
+    return {
+      ...state,
+      test: {
+        question_arr: [],
+        id_question_arr: []
+      },
+      submitTestStart: false,
+      submitTestSuccess: false,
+      submitTestErrorMessage: null,
+      getTestStart: false,
+      getTestSuccess: false,
+      getTestErrorMessage: null
     }
   }),
 )

@@ -10,7 +10,7 @@ import {NgClass, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import { Subject} from "rxjs";
-import {TestApiActions} from "../../store/test/test.actions";
+import {TestApiActions} from "../../store/test/actions/test.actions";
 import {joinTestFormValidator} from "../../validators/join-test-form.validator";
 import {ButtonBlueComponent} from "../shared/button-blue/button-blue.component";
 import {FormMain} from "../../models/main-form";

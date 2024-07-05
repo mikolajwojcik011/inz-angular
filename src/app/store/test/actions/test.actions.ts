@@ -1,7 +1,7 @@
 import {createActionGroup, emptyProps, props} from "@ngrx/store";
-import {TestState} from "../../models/test-state";
+import {TestState} from "../../../models/test-state";
 import {HttpErrorResponse} from "@angular/common/http";
-import {SubmitTestApiPayload} from "../../models/submit-test-api-payload";
+import {SubmitTestApiPayload} from "../../../models/submit-test-api-payload";
 
 export const TestApiActions = createActionGroup({
   source: 'Test API',
