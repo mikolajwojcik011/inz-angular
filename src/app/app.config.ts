@@ -1,6 +1,5 @@
 import {ApplicationConfig, isDevMode, provideZoneChangeDetection} from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './router/app.routes';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore } from '@ngrx/router-store';

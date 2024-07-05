@@ -41,7 +41,7 @@ export class MainComponent implements OnInit, OnDestroy{
   submitted = false;
 
   getInputClass() {
-    return (this.form.get('public_key')?.invalid && (this.form.get('public_key')?.touched || this.submitted)) ? 'rounded-b-none' : 'rounded-b-lg';
+    return (this.form.get('public_key')?.invalid && (this.form.get('public_key')?.touched || this.submitted)) ? 'rounded-b-none' : 'rounded-b-md';
   }
 
   submitForm(){

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import { ReactiveFormsModule} from "@angular/forms";
-import {Observable, Subject, takeUntil} from "rxjs";
+import {filter, Observable, Subject, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test/test.selectors";
 import {TestState} from "../../models/test-state";
@@ -24,12 +24,13 @@ import {DynamicFormComponent} from "../shared/dynamic-form/dynamic-form.componen
 export class TestComponent implements OnInit, OnDestroy{
 
   private destroy$ = new Subject<void>();
+  test$: Observable<TestState> = new Observable();
+
 
   constructor(
     private store: Store,
   ) {}
 
-  test$: Observable<TestState> = new Observable();
 
   ngOnInit() {
     this.test$ = this.store.select(selectTest)
