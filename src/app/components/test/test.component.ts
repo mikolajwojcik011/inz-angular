@@ -6,7 +6,7 @@ import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test/test.selectors";
 import {TestState} from "../../models/test-state";
 import {DynamicFormComponent} from "../shared/dynamic-form/dynamic-form.component";
-import {NavigationEnd, Router} from "@angular/router";
+import {NavigationStart, Router} from "@angular/router";
 import {clearStateAction} from "../../store/test/actions/clear-state.actions";
 
 @Component({
@@ -40,7 +40,8 @@ export class TestComponent implements OnInit, OnDestroy{
       .pipe(takeUntil(this.destroy$))
 
     this.router.events.pipe(
-      takeUntil(this.destroy$)
+      takeUntil(this.destroy$),
+      filter((e) => e instanceof NavigationStart),
     )
     .subscribe(() => {
       this.store.dispatch(clearStateAction.clearState());

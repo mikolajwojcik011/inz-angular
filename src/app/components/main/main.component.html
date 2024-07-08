@@ -1,20 +1,21 @@
 <section class="flex justify-center h-screen bg-gray-100 p-24">
   <section class="flex flex-col self-center w-500px h-840px rounded-2xl shadow-md ring-4 ring-gray-50 bg-gray-50">
-    <div class="w-full h-64 bg-gradient-to-t from-10% from-gray-50 to-blue-100 rounded-2xl">
+    <div class="w-full h-80 bg-gradient-to-t from-gray-50 to-sky-100 rounded-2xl">
       <h1 class="text-7xl font-bold text-center py-24">Join test.</h1>
     </div>
     <form [formGroup]="form" (ngSubmit)="submitForm()" class="flex flex-col self-center h-40 relative">
         <label for="public_key" class="pb-2">Public Key</label>
         <input
           placeholder="key-here"
-          id="public_key" type="text"
+          id="public_key"
+          type="text"
           name="public_key"
           formControlName="public_key"
-          class="w-80 h-10 p-2 bg-gray-50 z-10 rounded-md shadow-inner ring-1 ring-gray-300 ring-inset hover:ring-blue-500 hover:ring-2 focus:ring-blue-500 focus:ring-2 focus:outline-none focus:bg-blue-50"
+          class="w-80 h-10 p-2 bg-gray-50 z-10 rounded-md shadow-inner ring-1 ring-gray-300 ring-inset hover:ring-sky-500 hover:ring-2 focus:ring-sky-500 focus:ring-2 focus:outline-none focus:bg-sky-50"
           [ngClass]="getInputClass()"
         >
           <div
-            class="w-80 py-0.5 px-2 text-sm font-light bg-gray-100 rounded-b-md border-x border-b border-gray-300 text-red-600"
+            class="w-80 py-0.5 px-2 text-sm font-light bg-gray-100 rounded-b-md border-x border-b border-gray-300 text-red-500"
             *ngIf="form.get('public_key')?.invalid && form.get('public_key')?.touched">
             <div *ngIf="form.get('public_key')?.errors?.['required']">The "public key" is required.</div>
             <div *ngIf="form.get('public_key')?.errors?.['invalidKey']">The format of the "public key" is incorrect.</div>
