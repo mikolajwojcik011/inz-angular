@@ -3,8 +3,14 @@
     <h1>{{question.head}}</h1><br>
     <div [formArrayName]="question.id">
       @for (answer of question.answers; track answer.id){
-        <input [id]="answer.id" type="checkbox" [formControlName]="answer.id">
-        <label [for]="answer.id">{{ answer.content }}</label><br>
+        <app-input-checkbox
+          [label]="answer.content"
+          [for]="answer.id"
+          [isChecked]="getInputClass(question.id, answer.id)"
+          class="m-20 block w-80"
+        >
+          <input [id]="answer.id" type="checkbox" [formControlName]="answer.id">
+        </app-input-checkbox>
       }
     </div>
   }

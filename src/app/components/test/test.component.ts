@@ -8,6 +8,7 @@ import {TestState} from "../../models/test-state";
 import {DynamicFormComponent} from "../shared/dynamic-form/dynamic-form.component";
 import {NavigationStart, Router} from "@angular/router";
 import {clearStateAction} from "../../store/test/actions/clear-state.actions";
+import {InputCheckboxComponent} from "../shared/input-checkbox/input-checkbox.component";
 
 @Component({
   selector: 'app-test',
@@ -18,7 +19,8 @@ import {clearStateAction} from "../../store/test/actions/clear-state.actions";
     NgForOf,
     DynamicFormComponent,
     AsyncPipe,
-    NgIf
+    NgIf,
+    InputCheckboxComponent
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'

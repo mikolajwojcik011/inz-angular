@@ -8,6 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {TestApiActions} from "../../../store/test/actions/test.actions";
 import {SubmitTestApiPayload} from "../../../models/submit-test-api-payload";
+import {InputCheckboxComponent} from "../input-checkbox/input-checkbox.component";
 
 @Component({
   selector: 'app-dynamic-form',
@@ -15,6 +16,7 @@ import {SubmitTestApiPayload} from "../../../models/submit-test-api-payload";
   imports: [
     ReactiveFormsModule,
     NgForOf,
+    InputCheckboxComponent,
   ],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.css'
@@ -38,7 +40,20 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     private store: Store,
   ) {}
 
+  getInputClass(questionId: string ,answerId: string){
+    let val = this.form.controls[questionId].value[answerId]
+    return !!val;
+
+  }
+
+  onSubmit() {
+    console.log(this.form.value);
+    this.payLoad = this.fvtpp.formValueToProperPayload(this.form.value, this.publicKey);
+    this.store.dispatch(TestApiActions.postTest({ payload: this.payLoad }));
+  }
+
   ngOnInit() {
+    console.log(this.form)
     this.form = new FormGroup({});
 
     this.route.paramMap.subscribe(params => {
@@ -50,11 +65,5 @@ export class DynamicFormComponent implements OnChanges, OnInit {
     if (this.questions.id_question_arr.length > 0) {
       this.form = this.qcs.toFormGroup(this.questions);
     }
-  }
-
-  onSubmit() {
-    console.log(this.form.value);
-    this.payLoad = this.fvtpp.formValueToProperPayload(this.form.value, this.publicKey);
-    this.store.dispatch(TestApiActions.postTest({ payload: this.payLoad }));
   }
 }
