@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {NgClass} from "@angular/common";
+import {NgClass, NgOptimizedImage} from "@angular/common";
 import * as romans from 'romans'
 
 
@@ -9,17 +9,19 @@ import * as romans from 'romans'
   standalone: true,
   imports: [
     FormsModule,
-    NgClass
+    NgClass,
+    NgOptimizedImage
   ],
   templateUrl: './input-template-checkbox.component.html',
   styleUrl: './input-template-checkbox.component.css'
 })
 export class InputTemplateCheckboxComponent {
-  @Input() label: string = '';
+  @Input() label: string | null = null;
   @Input() for: string = '';
   @Input() isChecked: boolean = false;
   @Input() index: number = 1;
   @Input() listStyle: string = 'number';
+  @Input() imgSrc: string | null = null;
 
   getListStyle(index: number) {
     if (this.listStyle === 'number') return index + 1 + '.';
