@@ -9,6 +9,7 @@ import {Store} from "@ngrx/store";
 import {TestApiActions} from "../../../store/test/actions/test.actions";
 import {SubmitTestApiPayload} from "../../../models/submit-test-api-payload";
 import {InputTemplateCheckboxComponent} from "../../shared/input-template-checkbox/input-template-checkbox.component";
+import {QuestionTemplateTestComponent} from "../../shared/question-template-test/question-template-test.component";
 
 @Component({
   selector: 'app-dynamic-form-test',
@@ -17,6 +18,7 @@ import {InputTemplateCheckboxComponent} from "../../shared/input-template-checkb
     ReactiveFormsModule,
     NgForOf,
     InputTemplateCheckboxComponent,
+    QuestionTemplateTestComponent,
   ],
   templateUrl: './dynamic-form-test.component.html',
   styleUrl: './dynamic-form-test.component.css'

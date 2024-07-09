@@ -1,3 +1,12 @@
 <ng-container *ngIf="test$ | async as test">
-    <app-dynamic-form-test [questions]="test"></app-dynamic-form-test>
+  <div class="w-full flex justify-center">
+    <div class="flex w-1920px">
+      <div class="">
+        <app-dynamic-form-test [questions]="test"></app-dynamic-form-test>
+      </div>
+      @if (windowWidth >= 1300){
+        <div class="w-480px shrink-0">a</div>
+      }
+    </div>
+  </div>
 </ng-container>

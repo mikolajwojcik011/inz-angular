@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import { ReactiveFormsModule} from "@angular/forms";
 import {filter, Observable, Subject, takeUntil} from "rxjs";
@@ -26,16 +26,19 @@ import {InputTemplateCheckboxComponent} from "../shared/input-template-checkbox/
   styleUrl: './test.component.css'
 })
 export class TestComponent implements OnInit, OnDestroy{
-
   private destroy$ = new Subject<void>();
   test$: Observable<TestState> = new Observable();
-
+  public windowWidth: number = window.innerWidth;
 
   constructor(
     private store: Store,
     private router: Router,
   ) {}
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.windowWidth = window.innerWidth;
+  }
 
   ngOnInit() {
     this.test$ = this.store.select(selectTest)

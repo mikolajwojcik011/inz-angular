@@ -10,10 +10,12 @@
   </div>
   <label
     [for]="for"
-    class=" w-full text-gray-900 cursor-pointer min-h-12 py-2 px-2 bg-gray-25 rounded-md ring-1 ring-gray-300 ring-inset hover:ring-sky-500 hover:ring-2"
+    class=" w-full text-gray-900 cursor-pointer min-h-12 py-3 px-2 bg-gray-25 rounded-md ring-1 ring-gray-300 ring-inset hover:ring-sky-500 hover:ring-2"
     [ngClass]="{'shadow-ring ring-sky-500 ring-2 bg-sky-50': isChecked}"
     >
-    {{label}}
+    @if (label){
+      {{label}}
+    }
     @if (imgSrc){
       <img
         [src]="imgSrc"
