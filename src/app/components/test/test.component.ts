@@ -5,10 +5,10 @@ import {filter, Observable, Subject, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test/test.selectors";
 import {TestState} from "../../models/test-state";
-import {DynamicFormComponent} from "../shared/dynamic-form/dynamic-form.component";
+import {DynamicFormComponent} from "./dynamic-form-test/dynamic-form.component";
 import {NavigationStart, Router} from "@angular/router";
 import {clearStateAction} from "../../store/test/actions/clear-state.actions";
-import {InputCheckboxComponent} from "../shared/input-checkbox/input-checkbox.component";
+import {InputTemplateCheckboxComponent} from "../shared/input-template-checkbox/input-template-checkbox.component";
 
 @Component({
   selector: 'app-test',
@@ -20,7 +20,7 @@ import {InputCheckboxComponent} from "../shared/input-checkbox/input-checkbox.co
     DynamicFormComponent,
     AsyncPipe,
     NgIf,
-    InputCheckboxComponent
+    InputTemplateCheckboxComponent
   ],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'

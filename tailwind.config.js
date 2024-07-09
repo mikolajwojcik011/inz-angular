@@ -12,7 +12,7 @@ module.exports = {
         '840px': '840px',
       },
       boxShadow: {
-        'ring': '0px 0px 4px 0px rgba(14, 165, 233, 1)',
+        'ring': '0px 0px 3px 0px rgba(14, 165, 233, 1)',
       }
     },
   },

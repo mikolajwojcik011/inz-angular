@@ -8,15 +8,15 @@ import {ActivatedRoute} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {TestApiActions} from "../../../store/test/actions/test.actions";
 import {SubmitTestApiPayload} from "../../../models/submit-test-api-payload";
-import {InputCheckboxComponent} from "../input-checkbox/input-checkbox.component";
+import {InputTemplateCheckboxComponent} from "../../shared/input-template-checkbox/input-template-checkbox.component";
 
 @Component({
-  selector: 'app-dynamic-form',
+  selector: 'app-dynamic-form-test',
   standalone: true,
   imports: [
     ReactiveFormsModule,
     NgForOf,
-    InputCheckboxComponent,
+    InputTemplateCheckboxComponent,
   ],
   templateUrl: './dynamic-form.component.html',
   styleUrl: './dynamic-form.component.css'
