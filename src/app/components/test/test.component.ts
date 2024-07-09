@@ -5,7 +5,7 @@ import {filter, Observable, Subject, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test/test.selectors";
 import {TestState} from "../../models/test-state";
-import {DynamicFormComponent} from "./dynamic-form-test/dynamic-form.component";
+import {DynamicFormTestComponent} from "./dynamic-form-test/dynamic-form-test.component";
 import {NavigationStart, Router} from "@angular/router";
 import {clearStateAction} from "../../store/test/actions/clear-state.actions";
 import {InputTemplateCheckboxComponent} from "../shared/input-template-checkbox/input-template-checkbox.component";
@@ -17,7 +17,7 @@ import {InputTemplateCheckboxComponent} from "../shared/input-template-checkbox/
     JsonPipe,
     ReactiveFormsModule,
     NgForOf,
-    DynamicFormComponent,
+    DynamicFormTestComponent,
     AsyncPipe,
     NgIf,
     InputTemplateCheckboxComponent

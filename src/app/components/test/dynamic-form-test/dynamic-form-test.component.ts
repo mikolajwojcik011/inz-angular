@@ -18,10 +18,10 @@ import {InputTemplateCheckboxComponent} from "../../shared/input-template-checkb
     NgForOf,
     InputTemplateCheckboxComponent,
   ],
-  templateUrl: './dynamic-form.component.html',
-  styleUrl: './dynamic-form.component.css'
+  templateUrl: './dynamic-form-test.component.html',
+  styleUrl: './dynamic-form-test.component.css'
 })
-export class DynamicFormComponent implements OnChanges, OnInit {
+export class DynamicFormTestComponent implements OnChanges, OnInit {
   @Input() questions: TestState = {
       question_arr: [],
       id_question_arr: []
