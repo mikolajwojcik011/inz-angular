@@ -14,4 +14,5 @@ export class QuestionTemplateTestComponent {
   @Input() header: string | null = null;
   @Input() imgSrc: string | null = null;
   @Input() index: number = 1;
+  @Input() isLast: boolean = false;
 }

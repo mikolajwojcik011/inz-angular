@@ -1,9 +1,14 @@
-<form [formGroup]="form" class="px-8">
+<form [formGroup]="form" #questionsContainer class="pb-8 rounded-md ring-1 ring-gray-300 shadow-md">
+  <div class="p-12 px-8 border-b border-gray-300 ">
+    <h1 class="font-bold text-4xl text-gray-950">Lorem Ipsum</h1>
+  </div>
   @for (question of questions.question_arr; track question.id; let inx = $index) {
     <app-question-template-test
       [header]="question.head"
       [imgSrc]="null"
       [index]="inx"
+      [isLast]="inx === questions.question_arr.length - 1"
+      [attr.id]="'q-' + question.id"
     >
       <ng-container [formArrayName]="question.id">
         @for (answer of question.answers; track answer.id; let inx = $index){

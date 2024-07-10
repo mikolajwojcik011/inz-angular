@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {QuestionControlService} from "./question-control.service";
 import {TestState} from "../../../models/test-state";
@@ -24,6 +24,7 @@ import {QuestionTemplateTestComponent} from "../../shared/question-template-test
   styleUrl: './dynamic-form-test.component.css'
 })
 export class DynamicFormTestComponent implements OnChanges, OnInit {
+  @ViewChild('questionsContainer') questionContainer: ElementRef | undefined;
   @Input() questions: TestState = {
       question_arr: [],
       id_question_arr: []
@@ -35,6 +36,7 @@ export class DynamicFormTestComponent implements OnChanges, OnInit {
   };
   publicKey: string | null = null;
 
+
   constructor(
     private qcs: QuestionControlService,
     private fvtpp: FormValueToProperPayloadService,
@@ -42,16 +44,18 @@ export class DynamicFormTestComponent implements OnChanges, OnInit {
     private store: Store,
   ) {}
 
+  navigateToQuestion(id: string) {
+    const selector = `#q-${id}`;
+    const questionElement = this.questionContainer?.nativeElement.querySelector(selector);
+    if (questionElement) {
+      questionElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }
+  }
+
   getInputClass(questionId: string ,answerId: string){
     let val = this.form.controls[questionId].value[answerId]
     return !!val;
 
-  }
-
-  onSubmit() {
-    console.log(this.form.value);
-    this.payLoad = this.fvtpp.formValueToProperPayload(this.form.value, this.publicKey);
-    this.store.dispatch(TestApiActions.postTest({ payload: this.payLoad }));
   }
 
   ngOnInit() {
