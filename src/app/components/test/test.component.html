@@ -3,10 +3,18 @@
     <div class="min-h-screen w-1440px bg-white ">
       <div class="flex mx-4 my-2 gap-4">
         <div class="w-full my-2">
-          <app-dynamic-form-test #dynamicFormComponent [questions]="test"></app-dynamic-form-test>
+          <app-dynamic-form-test
+            #dynamicFormComponent
+            [questions]="test"
+            (formChange)="onFormChange($event)"
+          ></app-dynamic-form-test>
         </div>
         @if (windowWidth >= 1000){
-          <app-side-bar-test (navigateToQuestionEvent)="dynamicFormComponent.navigateToQuestion($event)" [qArr]="test.question_arr"></app-side-bar-test>
+          <app-side-bar-test
+            (navigateToQuestionEvent)="dynamicFormComponent.navigateToQuestion($event)"
+            (submitTestEvent)="onSubmitTestEvent()"
+            [qArr]="test.question_arr">
+          </app-side-bar-test>
         }
       </div>
     </div>

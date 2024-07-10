@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Question} from "../../../models/question";
 import {ButtonBlueComponent} from "../../shared/button-blue/button-blue.component";
 
@@ -14,6 +14,7 @@ import {ButtonBlueComponent} from "../../shared/button-blue/button-blue.componen
 export class SideBarTestComponent{
   @Input() qArr: Question[] = [];
   @Output() navigateToQuestionEvent = new EventEmitter<string>();
+  @Output() submitTestEvent = new EventEmitter<void>();
 
   navigateToQuestion(id: string) {
     this.navigateToQuestionEvent.emit(id);

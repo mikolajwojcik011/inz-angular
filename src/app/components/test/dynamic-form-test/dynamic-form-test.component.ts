@@ -1,13 +1,18 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
-import {FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
+import { FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {QuestionControlService} from "./question-control.service";
 import {TestState} from "../../../models/test-state";
 import {NgForOf} from "@angular/common";
-import {FormValueToProperPayloadService} from "../../../store/test/services/form-value-to-proper-payload.service";
 import {ActivatedRoute} from "@angular/router";
-import {Store} from "@ngrx/store";
-import {TestApiActions} from "../../../store/test/actions/test.actions";
-import {SubmitTestApiPayload} from "../../../models/submit-test-api-payload";
 import {InputTemplateCheckboxComponent} from "../../shared/input-template-checkbox/input-template-checkbox.component";
 import {QuestionTemplateTestComponent} from "../../shared/question-template-test/question-template-test.component";
 
@@ -29,19 +34,13 @@ export class DynamicFormTestComponent implements OnChanges, OnInit {
       question_arr: [],
       id_question_arr: []
   };
+  @Output() formChange = new EventEmitter<any>();
   form!: FormGroup;
-  payLoad: SubmitTestApiPayload = {
-    public_key: '',
-    answer_arr: {}
-  };
   publicKey: string | null = null;
-
 
   constructor(
     private qcs: QuestionControlService,
-    private fvtpp: FormValueToProperPayloadService,
     private route: ActivatedRoute,
-    private store: Store,
   ) {}
 
   navigateToQuestion(id: string) {
@@ -52,24 +51,41 @@ export class DynamicFormTestComponent implements OnChanges, OnInit {
     }
   }
 
+  private subscribeToFormChanges(form: FormGroup): void {
+    Object.keys(form.controls).forEach(key => {
+      const control = form.get(key);
+      if (control) {
+        if (control instanceof FormGroup) {
+          // Recursively subscribe to changes in nested FormGroup
+          this.subscribeToFormChanges(control);
+        } else {
+          // Subscribe to changes in FormControl
+          control.valueChanges.subscribe(() => {
+            console.log(this.form.value); // For debugging
+            this.formChange.emit(this.form.value); // Emit form value on change
+          });
+        }
+      }
+    });
+  }
+
   getInputClass(questionId: string ,answerId: string){
     let val = this.form.controls[questionId].value[answerId]
     return !!val;
-
   }
 
   ngOnInit() {
-    console.log(this.form)
     this.form = new FormGroup({});
 
     this.route.paramMap.subscribe(params => {
       this.publicKey = params.get('public_key');
-    })
+    });
   }
 
   ngOnChanges() {
     if (this.questions.id_question_arr.length > 0) {
       this.form = this.qcs.toFormGroup(this.questions);
+      this.subscribeToFormChanges(this.form);
     }
   }
 }

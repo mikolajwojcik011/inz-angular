@@ -1,6 +1,6 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
-import { ReactiveFormsModule} from "@angular/forms";
+import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {filter, Observable, Subject, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test/test.selectors";
@@ -29,8 +29,10 @@ import {SideBarTestComponent} from "./side-bar-test/side-bar-test.component";
 })
 export class TestComponent implements OnInit, OnDestroy{
   private destroy$ = new Subject<void>();
-  test$: Observable<TestState> = new Observable();
+  private form: any;
   public windowWidth: number = window.innerWidth;
+  test$: Observable<TestState> = new Observable();
+
 
   constructor(
     private store: Store,
@@ -40,6 +42,14 @@ export class TestComponent implements OnInit, OnDestroy{
   @HostListener('window:resize', ['$event'])
   onResize() {
     this.windowWidth = window.innerWidth;
+  }
+
+  onFormChange(formValue: any) {
+    this.form = formValue;
+  }
+
+  onSubmitTestEvent() {
+    console.log(this.form)
   }
 
   ngOnInit() {
