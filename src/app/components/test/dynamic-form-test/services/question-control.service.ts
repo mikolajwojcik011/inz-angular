@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {TestState} from "../../../models/test-state";
-import {Question} from "../../../models/question";
+import {TestState} from "../../../../models/test-state";
+import {Question} from "../../../../models/question";
 import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {Answer} from "../../../models/answer";
+import {Answer} from "../../../../models/answer";
 
 @Injectable({
   providedIn: 'root'
