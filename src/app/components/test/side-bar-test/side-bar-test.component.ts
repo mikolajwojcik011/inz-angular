@@ -13,6 +13,7 @@ import {ButtonBlueComponent} from "../../shared/button-blue/button-blue.componen
 })
 export class SideBarTestComponent{
   @Input() qArr: Question[] = [];
+  @Input() timerValue: string = '00:00:00';
   @Output() navigateToQuestionEvent = new EventEmitter<string>();
   @Output() submitTestEvent = new EventEmitter<void>();
 

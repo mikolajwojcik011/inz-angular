@@ -13,7 +13,9 @@
           <app-side-bar-test
             (navigateToQuestionEvent)="dynamicFormComponent.navigateToQuestion($event)"
             (submitTestEvent)="onSubmitTestEvent()"
-            [qArr]="test.question_arr">
+            [qArr]="test.question_arr"
+            [timerValue]="timerValue"
+          >
           </app-side-bar-test>
         }
       </div>

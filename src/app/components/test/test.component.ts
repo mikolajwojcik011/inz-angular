@@ -1,7 +1,7 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {filter, Observable, Subject, takeUntil} from "rxjs";
+import {filter, Observable, Subject, Subscription, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test/test.selectors";
 import {TestState} from "../../models/test-state";
@@ -10,6 +10,8 @@ import {NavigationStart, Router} from "@angular/router";
 import {clearStateAction} from "../../store/test/actions/clear-state.actions";
 import {InputTemplateCheckboxComponent} from "../shared/input-template-checkbox/input-template-checkbox.component";
 import {SideBarTestComponent} from "./side-bar-test/side-bar-test.component";
+import {TestApiActions} from "../../store/test/actions/test.actions";
+import {CountdownService} from "../../services/countdown.service";
 
 @Component({
   selector: 'app-test',
@@ -28,15 +30,18 @@ import {SideBarTestComponent} from "./side-bar-test/side-bar-test.component";
   styleUrl: './test.component.css'
 })
 export class TestComponent implements OnInit, OnDestroy{
+  public windowWidth: number = window.innerWidth;
   private destroy$ = new Subject<void>();
   private form: any;
-  public windowWidth: number = window.innerWidth;
+  private countdownSubscription: Subscription = new Subscription();
+  timerValue: string = '00:00:00';
   test$: Observable<TestState> = new Observable();
 
 
   constructor(
     private store: Store,
     private router: Router,
+    private countdownService: CountdownService
   ) {}
 
   @HostListener('window:resize', ['$event'])
@@ -49,7 +54,12 @@ export class TestComponent implements OnInit, OnDestroy{
   }
 
   onSubmitTestEvent() {
-    console.log(this.form)
+    this.submitForm();
+  }
+
+  submitForm(){
+    console.log('submitForm: ', this.form);
+    this.store.dispatch(TestApiActions.postTest(this.form));
   }
 
   ngOnInit() {
@@ -62,6 +72,19 @@ export class TestComponent implements OnInit, OnDestroy{
     )
     .subscribe(() => {
       this.store.dispatch(clearStateAction.clearState());
+    });
+
+    this.countdownService.startCountdown(10); // Start countdown from 10 seconds
+    this.countdownSubscription = this.countdownService.timerValue$.subscribe(value => {
+      this.timerValue = value;
+    });
+
+    const countdownEndSubscription = this.countdownService.countdownEnd$.subscribe(() => {
+      this.submitForm();
+    });
+
+    this.destroy$.subscribe(() => {
+      countdownEndSubscription.unsubscribe();
     });
   }
 
