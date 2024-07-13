@@ -1,6 +1,6 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
-import {FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import {filter, Observable, Subject, Subscription, takeUntil} from "rxjs";
 import {Store} from "@ngrx/store";
 import {selectTest} from "../../store/test/test.selectors";
@@ -8,7 +8,7 @@ import {TestState} from "../../models/test-state";
 import {DynamicFormTestComponent} from "./dynamic-form-test/dynamic-form-test.component";
 import {NavigationStart, Router} from "@angular/router";
 import {clearStateAction} from "../../store/test/actions/clear-state.actions";
-import {InputTemplateCheckboxComponent} from "../shared/input-template-checkbox/input-template-checkbox.component";
+import {InputTemplateCheckboxComponent} from "../shared/inputs/input-template-checkbox/input-template-checkbox.component";
 import {SideBarTestComponent} from "./side-bar-test/side-bar-test.component";
 import {TestApiActions} from "../../store/test/actions/test.actions";
 import {CountdownService} from "../../services/countdown.service";
@@ -74,7 +74,7 @@ export class TestComponent implements OnInit, OnDestroy{
       this.store.dispatch(clearStateAction.clearState());
     });
 
-    this.countdownService.startCountdown(10); // Start countdown from 10 seconds
+    this.countdownService.startCountdown(10);
     this.countdownSubscription = this.countdownService.timerValue$.subscribe(value => {
       this.timerValue = value;
     });

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Question} from "../../../models/question";
-import {ButtonBlueComponent} from "../../shared/button-blue/button-blue.component";
+import {ButtonBlueComponent} from "../../shared/buttons/button-blue/button-blue.component";
 
 @Component({
   selector: 'app-side-bar-test',

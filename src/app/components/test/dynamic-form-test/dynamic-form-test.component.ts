@@ -13,8 +13,8 @@ import {QuestionControlService} from "../../../services/question-control.service
 import {TestState} from "../../../models/test-state";
 import {NgForOf} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
-import {InputTemplateCheckboxComponent} from "../../shared/input-template-checkbox/input-template-checkbox.component";
-import {QuestionTemplateTestComponent} from "../../shared/question-template-test/question-template-test.component";
+import {InputTemplateCheckboxComponent} from "../../shared/inputs/input-template-checkbox/input-template-checkbox.component";
+import {QuestionTemplateTestComponent} from "../../shared/questions/question-template-test/question-template-test.component";
 import {FormSubscriptionService} from "../../../services/form-subscription.service";
 import {Subject, Subscription} from "rxjs";
 
