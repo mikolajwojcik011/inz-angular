@@ -64,11 +64,6 @@ export class DynamicFormTestComponent implements OnChanges, OnInit, OnDestroy {
     }
   }
 
-  getInputClass(questionId: string ,answerId: string){
-    let val = this.form.controls[questionId].value[answerId]
-    return !!val;
-  }
-
   ngOnInit() {
     this.form = new FormGroup({});
 
@@ -79,8 +74,9 @@ export class DynamicFormTestComponent implements OnChanges, OnInit, OnDestroy {
 
   ngOnChanges() {
     if (this.questions.id_question_arr.length > 0) {
-      this.form = this.qcs.toFormGroup(this.questions);
+      this.form = this.qcs.toFormGroupWithMap(this.questions).formGroup;
       this.formChangeSubscription = this.formSubscriptionService.subscribeToFormChanges(this.form, this.formChange, this.destroy$);
+      console.log(this.form)
     }
   }
 

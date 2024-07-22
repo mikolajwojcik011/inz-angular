@@ -1,3 +1,18 @@
-<div class="flex flex-col items-center justify-center gap-2">
-  <ng-content></ng-content>
+<div [formGroup]="qformGroup" class="flex flex-col items-center justify-center gap-2">
+  @for (answer of answers; track answer.id; let inx = $index){
+    <app-input-template-checkbox
+      [label]="answer.content"
+      [for]="answer.id"
+      [index]="inx"
+      [listStyle]="'capital'"
+      [imgSrc]="null"
+      [isChecked]="getInputClass('question_'+questionId+'_answer_'+answer.id)"
+      class="w-5/6"
+    >
+      <input hidden="hidden" [id]="answer.id" type="checkbox" [formControlName]="'question_'+questionId+'_answer_'+answer.id">
+    </app-input-template-checkbox>
+  } @empty {
+    <p>no answers</p>
+  }
 </div>
+<!--`question_${question.id}_answer_${answer.id}`-->
