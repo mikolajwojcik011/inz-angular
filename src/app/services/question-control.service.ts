@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
-import {TestState} from "../models/test-state";
-import {Question} from "../models/question";
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {Answer} from "../models/answer";
+import { FormGroup, FormControl } from '@angular/forms';
+import { TestState } from "../models/test-state";
+import { Question } from "../models/question";
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionControlService {
-  constructor(
-    private formBuilder: FormBuilder
-  ) {}
 
-  toFormGroup(questions: TestState): FormGroup {
-    let group: any = {};
+  toFormGroupWithMap(questions: TestState): { formGroup: FormGroup, questionMap: Map<string, number> } {
+    const formGroup = new FormGroup({});
+    const questionMap = new Map<string, number>();
 
-    questions.question_arr.forEach((question: Question) => {
-      let answerGroup: { [key: string]: FormControl } = {};
-      question.answers.forEach((answer: Answer) => {
-        answerGroup[answer.id] = new FormControl(false);
+    questions.question_arr.forEach((question: Question, index: number) => {
+      question.answers.forEach((answer) => {
+        const controlName = `question_${question.id}_answer_${answer.id}`;
+        formGroup.addControl(controlName, new FormControl(false)); // Assuming boolean for simplicity
       });
-      group[question.id] = new FormGroup(answerGroup);
+      questionMap.set(question.id, index);
     });
-    return this.formBuilder.group(group);
+
+    return {
+      formGroup: formGroup,
+      questionMap: questionMap
+    };
   }
 }

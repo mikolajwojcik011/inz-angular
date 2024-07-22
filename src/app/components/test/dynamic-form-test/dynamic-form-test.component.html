@@ -1,4 +1,4 @@
-<form [formGroup]="form" #questionsContainer class="pb-8 rounded-md ring-1 ring-gray-300 shadow-md">
+<form #questionsContainer class="pb-8 rounded-md ring-1 ring-gray-300 shadow-md">
   <div class="p-12 px-8 border-b border-gray-300 ">
     <h1 class="font-bold text-4xl text-gray-950">Lorem Ipsum</h1>
   </div>
@@ -11,17 +11,15 @@
       [isLast]="inx === questions.question_arr.length - 1"
       [attr.id]="'q-' + question.id"
     >
-      <ng-container [formArrayName]="question.id">
 <!--        -->
 <!--        MATCH THE ANSWERS-->
 <!--        -->
-        @if (true){
+        @if (false) {
           <app-match>
             <app-input-template-checkbox
               class="w-1/4"
               [label]="'True'"
               [for]="question.answers[0].id"
-              [isChecked]="getInputClass(question.id, question.answers[0].id)"
               [index]="inx"
               [listStyle]="'capital'"
               [imgSrc]="null"
@@ -32,7 +30,6 @@
               class="w-1/4"
               [label]="'False'"
               [for]="question.answers[1].id"
-              [isChecked]="getInputClass(question.id, question.answers[1].id)"
               [index]="inx"
               [listStyle]="'capital'"
               [imgSrc]="null"
@@ -52,26 +49,14 @@
 <!--        -->
 <!--        MULTIPLE CHOICE-->
 <!--        -->
-        @if (false) {
-          <app-multiple-choice>
-            @for (answer of question.answers; track answer.id; let inx = $index){
-              <app-input-template-checkbox
-                [label]="answer.content"
-                [for]="answer.id"
-                [isChecked]="getInputClass(question.id, answer.id)"
-                [index]="inx"
-                [listStyle]="'capital'"
-                [imgSrc]="null"
-                class="w-5/6"
-                >
-                  <input hidden="hidden" [id]="answer.id" type="checkbox" [formControlName]="answer.id">
-                </app-input-template-checkbox>
-            } @empty {
-              <p>no answers</p>
-            }
+        @if (true) {
+          <app-multiple-choice
+            [answers]="question.answers"
+            [questionId]="question.id"
+            [qformGroup]="form"
+          >
           </app-multiple-choice>
         }
-      </ng-container>
     </app-question-template-test>
   }
 </form>
