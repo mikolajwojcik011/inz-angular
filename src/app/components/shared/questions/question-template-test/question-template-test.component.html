@@ -1,24 +1,37 @@
 <div
-  class="flex flex-col px-12 mx-8 border-b border-gray-300 mt-16 pb-16 transition-all"
+  class="flex flex-col px-12 mx-8 border-b border-gray-300 mt-12 pb-12 transition-all"
   [ngClass]="{'border-b-0 pb-0': isLast}"
 >
   <div class="flex flex-col justify-center items-center">
     <h2 class="font-semibold text-md text-sky-600 mb-2">Question: {{index + 1}}</h2>
     @if (header){
       <h3
-        class="text-center font-bold text-gray-950 text-lg mb-4"
-        [ngClass]="{'mb-12': !imgSrc}"
+        class="text-center font-bold text-gray-950 text-lg"
+        [ngClass]="{
+        'mb-6': additionalText || imgSrc,
+        'mb-12': !additionalText && !imgSrc
+        }"
       >
         {{header}}
       </h3>
     }
+    @if(additionalText) {
+      <div
+        class="px-12"
+        [ngClass]="{
+        'mb-6': imgSrc,
+        'mb-12': !imgSrc
+        }"
+      >
+        <p class="text-gray-900 text-justify">{{additionalText}}</p>
+      </div>
+    }
     @if (imgSrc){
-      <div class="max-w-1/2 mb-12">
+      <div class="mb-12">
         <img [src]="imgSrc" alt="imgSrc" class="ring-1 ring-gray-300 rounded-lg shadow-md">
       </div>
     }
+
   </div>
-  <div class="flex flex-col items-center justify-center gap-6">
     <ng-content></ng-content>
-  </div>
 </div>

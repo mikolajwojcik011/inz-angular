@@ -17,6 +17,11 @@ import {InputTemplateCheckboxComponent} from "../../shared/inputs/input-template
 import {QuestionTemplateTestComponent} from "../../shared/questions/question-template-test/question-template-test.component";
 import {FormSubscriptionService} from "../../../services/form-subscription.service";
 import {Subject, Subscription} from "rxjs";
+import {
+  MatchComponent
+} from "../../shared/answer-formats/match/match.component";
+import {MultipleChoiceComponent} from "../../shared/answer-formats/multiple-choice/multiple-choice.component";
+import {SimpleTrueOrFalseComponent} from "../../shared/answer-formats/simple-true-or-false/simple-true-or-false.component";
 
 @Component({
   selector: 'app-dynamic-form-test',
@@ -26,6 +31,9 @@ import {Subject, Subscription} from "rxjs";
     NgForOf,
     InputTemplateCheckboxComponent,
     QuestionTemplateTestComponent,
+    MatchComponent,
+    SimpleTrueOrFalseComponent,
+    MultipleChoiceComponent,
   ],
   templateUrl: './dynamic-form-test.component.html',
   styleUrl: './dynamic-form-test.component.css'

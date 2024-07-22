@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuestionTemplateMatchComponent } from './question-template-match.component';
+import { MatchComponent } from './match.component';
 
 describe('QuestionTemplateMatchComponent', () => {
-  let component: QuestionTemplateMatchComponent;
-  let fixture: ComponentFixture<QuestionTemplateMatchComponent>;
+  let component: MatchComponent;
+  let fixture: ComponentFixture<MatchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuestionTemplateMatchComponent]
+      imports: [MatchComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(QuestionTemplateMatchComponent);
+    fixture = TestBed.createComponent(MatchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

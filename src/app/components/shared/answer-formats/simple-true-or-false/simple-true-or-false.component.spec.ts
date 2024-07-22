@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { QuestionTemplateTrueOrFalseComponent } from './question-template-true-or-false.component';
+import { SimpleTrueOrFalseComponent } from './simple-true-or-false.component';
 
 describe('QuestionTemplateTrueOrFalseComponent', () => {
-  let component: QuestionTemplateTrueOrFalseComponent;
-  let fixture: ComponentFixture<QuestionTemplateTrueOrFalseComponent>;
+  let component: SimpleTrueOrFalseComponent;
+  let fixture: ComponentFixture<SimpleTrueOrFalseComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuestionTemplateTrueOrFalseComponent]
+      imports: [SimpleTrueOrFalseComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(QuestionTemplateTrueOrFalseComponent);
+    fixture = TestBed.createComponent(SimpleTrueOrFalseComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
