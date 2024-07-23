@@ -1,3 +1,10 @@
+//todo: Add fill the gaps inside paragraph component
+//todo: Add fill the gaps inside list of sentences component
+//todo: Add logic to handle multimedia such as music and videos
+//todo: Add logic to save the test progress inside localstorage
+//todo: Add logic to restore the progress
+//todo: Add logic to display telemetry questions
+
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {AsyncPipe, JsonPipe, NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";

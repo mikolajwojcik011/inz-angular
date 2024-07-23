@@ -1,3 +1,5 @@
+//todo: Finish complex true or false component
+
 import {Component, Input} from '@angular/core';
 import {Answer} from "../../../../models/answer";
 import {getVisibleIndexService} from "../../../../services/get-visible-index.service";

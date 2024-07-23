@@ -1,3 +1,9 @@
+//todo: refactor ui
+//todo: add option to create test
+//todo: add option to join test
+//todo: add option to view results
+//todo: add option to modify test
+
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {
   FormControl,
