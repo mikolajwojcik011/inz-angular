@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Answer} from "../../../../models/answer";
 
 @Component({
   selector: 'app-match',
@@ -8,4 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './match.component.css'
 })
 export class MatchComponent {
+  @Input() answers: Answer[] = [];
+  @Input() questionId: string = '';
+  @Input() qformGroup: any;
 }

@@ -1,21 +1,22 @@
 import {Component, Input} from '@angular/core';
 import {Answer} from "../../../../models/answer";
-import {InputTemplateCheckboxComponent} from "../../inputs/input-template-checkbox/input-template-checkbox.component";
-import {ReactiveFormsModule} from "@angular/forms";
 import {getVisibleIndexService} from "../../../../services/get-visible-index.service";
 import {GetInputClassService} from "../../../../services/get-input-class.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {InputTemplateCheckboxComponent} from "../../inputs/input-template-checkbox/input-template-checkbox.component";
 
 @Component({
-  selector: 'app-multiple-choice',
+  selector: 'app-complex-true-or-false',
   standalone: true,
   imports: [
+    FormsModule,
     InputTemplateCheckboxComponent,
     ReactiveFormsModule
   ],
-  templateUrl: './multiple-choice.component.html',
-  styleUrl: './multiple-choice.component.css'
+  templateUrl: './complex-true-or-false.component.html',
+  styleUrl: './complex-true-or-false.component.css'
 })
-export class MultipleChoiceComponent {
+export class ComplexTrueOrFalseComponent {
   @Input() answers: Answer[] = [];
   @Input() questionId: string = '';
   @Input() qformGroup: any;
@@ -30,4 +31,3 @@ export class MultipleChoiceComponent {
     this.gvi = gvi;
   }
 }
-

@@ -11,45 +11,39 @@
       [isLast]="inx === questions.question_arr.length - 1"
       [attr.id]="'q-' + question.id"
     >
-<!--        -->
-<!--        MATCH THE ANSWERS-->
-<!--        -->
+<!------------------------>
+<!--  MATCH THE ANSWERS -->
+<!------------------------>
         @if (false) {
           <app-match>
-            <app-input-template-checkbox
-              class="w-1/4"
-              [label]="'True'"
-              [for]="question.answers[0].id"
-              [index]="inx"
-              [listStyle]="'capital'"
-              [imgSrc]="null"
-            >
-              <input hidden="hidden" [id]="question.answers[0].id" type="checkbox" [formControlName]="question.answers[0].id">
-            </app-input-template-checkbox>
-            <app-input-template-checkbox
-              class="w-1/4"
-              [label]="'False'"
-              [for]="question.answers[1].id"
-              [index]="inx"
-              [listStyle]="'capital'"
-              [imgSrc]="null"
-            >
-              <input hidden="hidden" [id]="question.answers[1].id" type="checkbox" [formControlName]="question.answers[1].id">
-            </app-input-template-checkbox>
           </app-match>
         }
-<!--        -->
-<!--        SIMPLE TURE OF  FALSE-->
-<!--        -->
+<!---------------------------->
+<!--  SIMPLE TURE OF  FALSE -->
+<!---------------------------->
         @if (false) {
-          <app-simple-true-or-false>
-
+          <app-simple-true-or-false
+            [answers]="question.answers"
+            [questionId]="question.id"
+            [qformGroup]="form"
+          >
           </app-simple-true-or-false>
         }
-<!--        -->
-<!--        MULTIPLE CHOICE-->
-<!--        -->
+<!---------------------------->
+<!--  COMPLEX TRUE OR FALSE -->
+<!---------------------------->
         @if (true) {
+          <app-complex-true-or-false
+            [answers]="question.answers"
+            [questionId]="question.id"
+            [qformGroup]="form"
+          >
+          </app-complex-true-or-false>
+        }
+<!---------------------->
+<!--  MULTIPLE CHOICE -->
+<!---------------------->
+        @if (false) {
           <app-multiple-choice
             [answers]="question.answers"
             [questionId]="question.id"

@@ -22,6 +22,9 @@ import {
 } from "../../shared/answer-formats/match/match.component";
 import {MultipleChoiceComponent} from "../../shared/answer-formats/multiple-choice/multiple-choice.component";
 import {SimpleTrueOrFalseComponent} from "../../shared/answer-formats/simple-true-or-false/simple-true-or-false.component";
+import {
+  ComplexTrueOrFalseComponent
+} from "../../shared/answer-formats/complex-true-or-false/complex-true-or-false.component";
 
 @Component({
   selector: 'app-dynamic-form-test',
@@ -34,6 +37,7 @@ import {SimpleTrueOrFalseComponent} from "../../shared/answer-formats/simple-tru
     MatchComponent,
     SimpleTrueOrFalseComponent,
     MultipleChoiceComponent,
+    ComplexTrueOrFalseComponent,
   ],
   templateUrl: './dynamic-form-test.component.html',
   styleUrl: './dynamic-form-test.component.css'

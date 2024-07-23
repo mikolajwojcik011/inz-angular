@@ -3,10 +3,9 @@
     <app-input-template-checkbox
       [label]="answer.content"
       [for]="answer.id"
-      [index]="inx"
-      [listStyle]="'capital'"
       [imgSrc]="null"
-      [isChecked]="getInputClass('question_'+questionId+'_answer_'+answer.id)"
+      [visibleIndex]="gvi.getVisibleIndex(inx, 'roman')"
+      [isChecked]="gic.getInputClass('question_'+questionId+'_answer_'+answer.id, qformGroup)"
       class="w-5/6"
     >
       <input hidden="hidden" [id]="answer.id" type="checkbox" [formControlName]="'question_'+questionId+'_answer_'+answer.id">
@@ -15,4 +14,3 @@
     <p>no answers</p>
   }
 </div>
-<!--`question_${question.id}_answer_${answer.id}`-->
