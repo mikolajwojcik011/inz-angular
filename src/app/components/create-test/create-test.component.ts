@@ -11,11 +11,18 @@
 // todo: Add complex true or false question type
 
 import { Component } from '@angular/core';
+import {TopBarComponent} from "./top-bar/top-bar.component";
+import {ConspectComponent} from "./conspect/conspect.component";
+import {QuestionEditorComponent} from "./question-editor/question-editor.component";
 
 @Component({
   selector: 'app-create-test',
   standalone: true,
-  imports: [],
+  imports: [
+    TopBarComponent,
+    ConspectComponent,
+    QuestionEditorComponent
+  ],
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'
 })
