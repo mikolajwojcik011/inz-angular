@@ -13,10 +13,18 @@ import {QuestionControlService} from "../../../services/question-control.service
 import {TestState} from "../../../models/test-state";
 import {NgForOf} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
-import {InputTemplateCheckboxComponent} from "../../shared/input-template-checkbox/input-template-checkbox.component";
-import {QuestionTemplateTestComponent} from "../../shared/question-template-test/question-template-test.component";
+import {InputTemplateCheckboxComponent} from "../../shared/inputs/input-template-checkbox/input-template-checkbox.component";
+import {QuestionTemplateTestComponent} from "../../shared/questions/question-template-test/question-template-test.component";
 import {FormSubscriptionService} from "../../../services/form-subscription.service";
 import {Subject, Subscription} from "rxjs";
+import {
+  MatchComponent
+} from "../../shared/answer-formats/match/match.component";
+import {MultipleChoiceComponent} from "../../shared/answer-formats/multiple-choice/multiple-choice.component";
+import {SimpleTrueOrFalseComponent} from "../../shared/answer-formats/simple-true-or-false/simple-true-or-false.component";
+import {
+  ComplexTrueOrFalseComponent
+} from "../../shared/answer-formats/complex-true-or-false/complex-true-or-false.component";
 
 @Component({
   selector: 'app-dynamic-form-test',
@@ -26,6 +34,10 @@ import {Subject, Subscription} from "rxjs";
     NgForOf,
     InputTemplateCheckboxComponent,
     QuestionTemplateTestComponent,
+    MatchComponent,
+    SimpleTrueOrFalseComponent,
+    MultipleChoiceComponent,
+    ComplexTrueOrFalseComponent,
   ],
   templateUrl: './dynamic-form-test.component.html',
   styleUrl: './dynamic-form-test.component.css'
@@ -56,11 +68,6 @@ export class DynamicFormTestComponent implements OnChanges, OnInit, OnDestroy {
     }
   }
 
-  getInputClass(questionId: string ,answerId: string){
-    let val = this.form.controls[questionId].value[answerId]
-    return !!val;
-  }
-
   ngOnInit() {
     this.form = new FormGroup({});
 
@@ -71,8 +78,9 @@ export class DynamicFormTestComponent implements OnChanges, OnInit, OnDestroy {
 
   ngOnChanges() {
     if (this.questions.id_question_arr.length > 0) {
-      this.form = this.qcs.toFormGroup(this.questions);
+      this.form = this.qcs.toFormGroupWithMap(this.questions).formGroup;
       this.formChangeSubscription = this.formSubscriptionService.subscribeToFormChanges(this.form, this.formChange, this.destroy$);
+      console.log(this.form)
     }
   }
 

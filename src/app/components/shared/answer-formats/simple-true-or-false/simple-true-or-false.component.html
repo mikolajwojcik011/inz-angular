@@ -1,0 +1,18 @@
+<div [formGroup]="qformGroup" class="flex justify-center gap-6 w-full">
+  <app-input-template-checkbox
+    class="w-1/4"
+    [label]="'True'"
+    [for]="answers[0].id"
+    [imgSrc]="null"
+  >
+    <input hidden="hidden" [id]="answers[0].id" type="checkbox" [formControlName]="'question_'+questionId+'_answer_'+answers[0].id">
+  </app-input-template-checkbox>
+  <app-input-template-checkbox
+    class="w-1/4"
+    [label]="'False'"
+    [for]="answers[1].id"
+    [imgSrc]="null"
+  >
+    <input hidden="hidden" [id]="answers[1].id" type="checkbox" [formControlName]="'question_'+questionId+'_answer_'+answers[1].id">
+  </app-input-template-checkbox>
+</div>

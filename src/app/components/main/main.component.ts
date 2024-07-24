@@ -1,3 +1,9 @@
+//todo: refactor ui
+//todo: add option to create test
+//todo: add option to join test
+//todo: add option to view results
+//todo: add option to modify test
+
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {
   FormControl,
@@ -12,7 +18,7 @@ import {Store} from "@ngrx/store";
 import { Subject} from "rxjs";
 import {TestApiActions} from "../../store/test/actions/test.actions";
 import {joinTestFormValidator} from "../../validators/join-test-form.validator";
-import {ButtonBlueComponent} from "../shared/button-blue/button-blue.component";
+import {ButtonBlueComponent} from "../shared/buttons/button-blue/button-blue.component";
 import {FormMain} from "../../models/main-form";
 
 @Component({
