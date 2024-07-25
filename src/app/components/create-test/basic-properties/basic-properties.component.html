@@ -1,9 +1,8 @@
-<section class="ml-2 flex justify-center w-full ring-gray-300 ring-1 py-10 rounded-lg px-12">
+<section class="flex justify-center w-full ring-gray-300 ring-1 py-10 rounded-lg px-12 shadow-sm">
   <div class="flex flex-col gap-4 w-3/5 text-gray-700">
     <div class="flex gap-4 w-full">
       <app-input-template-text class="w-full">Public Key</app-input-template-text>
       <app-input-template-text class="w-full">Private Key</app-input-template-text>
-
     </div>
     <app-input-template-text>Title</app-input-template-text>
     <app-text-area-template><p>Description <i class="text-gray-500 font-medium">(optional)</i></p></app-text-area-template>
@@ -11,15 +10,15 @@
       <div>
         <app-input-template-time><p>Duration <i class="text-gray-500 font-medium">(optional)</i></p></app-input-template-time>
         <div class="flex mt-2 gap-1">
-          <input type="checkbox">
-          <label class="text-xs">The test duration is unlimited</label>
+          <input id="duration" name="duration" type="checkbox" class="cursor-pointer">
+          <label for="duration" class="text-xs cursor-pointer">The test duration is unlimited</label>
         </div>
       </div>
       <div>
         <app-input-template-date><p>Opens on <i class="text-gray-500 font-medium">(optional)</i></p></app-input-template-date>
         <div class="flex mt-2 gap-1">
-          <input type="checkbox">
-          <label class="text-xs">The test can be taken at any timen</label>
+          <input id="opens-on" name="opens-on" type="checkbox" class="cursor-pointer">
+          <label for="opens-on" class="text-xs cursor-pointer">The test can be taken at any time</label>
         </div>
       </div>
       <div>

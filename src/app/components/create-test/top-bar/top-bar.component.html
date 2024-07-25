@@ -15,9 +15,9 @@
     <div class="w-full flex items-center justify-between mt-10">
       <nav>
         <ul class="flex gap-6 items-center text-sm">
-          <app-nav-element [isFinished]="true">basic properties</app-nav-element>
-          <app-nav-element [isFinished]="false">Examinee Identification</app-nav-element>
-          <app-nav-element [isFinished]="false">Question Editor</app-nav-element>
+          <app-nav-element [isFinished]="true" (click)="changeShow('bp')">basic properties</app-nav-element>
+          <app-nav-element [isFinished]="false" (click)="changeShow('ei')">Examinee Identification</app-nav-element>
+          <app-nav-element [isFinished]="false" (click)="changeShow('qe')">Question Editor</app-nav-element>
         </ul>
       </nav>
       <app-progression [done]="3" [total]="5"></app-progression>

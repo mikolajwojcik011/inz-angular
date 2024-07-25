@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {NavElementComponent} from "./nav-element/nav-element.component";
 import {ButtonBlueComponent} from "../../shared/buttons/button-blue/button-blue.component";
 import {ProgressionComponent} from "./progression/progression.component";
@@ -15,5 +15,9 @@ import {ProgressionComponent} from "./progression/progression.component";
   styleUrl: './top-bar.component.css'
 })
 export class TopBarComponent {
+  @Output() showChange = new EventEmitter<string>();
 
+  changeShow(value: string) {
+    this.showChange.emit(value);
+  }
 }

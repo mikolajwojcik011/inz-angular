@@ -1,0 +1,13 @@
+<div
+  class="flex items-center gap-4 cursor-pointer px-4 rounded-xl hover:bg-gray-100 py-2 border-2"
+  [ngClass]="{
+    'bg-sky-50 border-sky-500': isActive,
+    'border-white': !isActive
+  }"
+>
+  <div class="w-full">
+    <p class="text-xs border-l-2 border-sky-500 text-sky-500 pl-1 tracking-wide">{{amount_of_answers}} Answers</p>
+    <h3 class="truncate text-sm tracking-wide font-semibold">{{question_header}}</h3>
+  </div>
+</div>
+

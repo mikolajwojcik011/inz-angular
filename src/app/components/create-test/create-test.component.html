@@ -1,10 +1,20 @@
 <ng-container>
   <div class="flex w-full flex-col items-center relative">
-    <app-top-bar class="sticky top-0 w-full"></app-top-bar>
+    <app-top-bar (showChange)="handleShowChange($event)" class="sticky top-0 w-full"></app-top-bar>
     <div class="w-1440px">
       <div class="flex w-full flex-auto px-8 py-6">
-        <app-conspect></app-conspect>
-        <app-basic-properties class="w-full"></app-basic-properties>
+        @if (showConspect){
+          <app-conspect></app-conspect>
+        }
+        @if (show === 'bp'){
+          <app-basic-properties class="w-full"></app-basic-properties>
+        }
+        @if (show === 'ei'){
+          <app-examinee-identification></app-examinee-identification>
+        }
+        @if (show === 'qe'){
+          <app-question-editor></app-question-editor>
+        }
       </div>
     </div>
   </div>

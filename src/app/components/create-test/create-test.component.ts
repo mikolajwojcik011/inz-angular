@@ -15,6 +15,7 @@ import {TopBarComponent} from "./top-bar/top-bar.component";
 import {ConspectComponent} from "./conspect/conspect.component";
 import {QuestionEditorComponent} from "./question-editor/question-editor.component";
 import {BasicPropertiesComponent} from "./basic-properties/basic-properties.component";
+import {ExamineeIdentificationComponent} from "./examinee-identification/examinee-identification.component";
 
 @Component({
   selector: 'app-create-test',
@@ -23,11 +24,23 @@ import {BasicPropertiesComponent} from "./basic-properties/basic-properties.comp
     TopBarComponent,
     ConspectComponent,
     QuestionEditorComponent,
-    BasicPropertiesComponent
+    BasicPropertiesComponent,
+    ExamineeIdentificationComponent
   ],
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'
 })
 export class CreateTestComponent {
+  showConspect: boolean = false;
+  show: string = 'bp';
 
+  handleShowChange(newShowValue: string) {
+    this.show = newShowValue;
+    if (newShowValue === 'bp' || newShowValue === 'ei') {
+      this.showConspect = false;
+    }
+    if (newShowValue === 'qe') {
+      this.showConspect = true;
+    }
+  }
 }
