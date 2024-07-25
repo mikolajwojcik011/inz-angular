@@ -1,7 +1,5 @@
 // todo: Add section to create telemetry questions
 // todo: Add logic to save test creation progress inside local storage
-// todo: Add option to select test title and description
-// todo: Add option to select test duration
 // todo: Add option to select type of question
 // todo: Add match question type
 // todo: Add multiple choice question type
@@ -31,16 +29,16 @@ import {ExamineeIdentificationComponent} from "./examinee-identification/examine
   styleUrl: './create-test.component.css'
 })
 export class CreateTestComponent {
-  showConspect: boolean = false;
-  show: string = 'bp';
+  showConspect: boolean = true;
+  show: string = 'ei';
 
   handleShowChange(newShowValue: string) {
     this.show = newShowValue;
-    if (newShowValue === 'bp' || newShowValue === 'ei') {
-      this.showConspect = false;
-    }
-    if (newShowValue === 'qe') {
+    if (this.show === 'qe' || this.show === 'ei') {
       this.showConspect = true;
+    }
+    if (this.show === 'bp') {
+      this.showConspect = false;
     }
   }
 }

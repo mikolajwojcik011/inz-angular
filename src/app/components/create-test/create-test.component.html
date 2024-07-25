@@ -1,21 +1,21 @@
 <ng-container>
   <div class="flex w-full flex-col items-center relative">
-    <app-top-bar (showChange)="handleShowChange($event)" class="sticky top-0 w-full"></app-top-bar>
-    <div class="w-1440px">
-      <div class="flex w-full flex-auto px-8 py-6">
+    <app-top-bar (showChange)="handleShowChange($event)" class="fixed top-0 w-full"></app-top-bar>
+      <div class="flex w-1440px min-h-svh max-h-svh pt-[184px] pb-6 px-8">
         @if (showConspect){
           <app-conspect></app-conspect>
         }
-        @if (show === 'bp'){
-          <app-basic-properties class="w-full"></app-basic-properties>
-        }
-        @if (show === 'ei'){
-          <app-examinee-identification></app-examinee-identification>
-        }
-        @if (show === 'qe'){
-          <app-question-editor></app-question-editor>
-        }
+        <section class="flex justify-center w-full ring-gray-300 ring-1 rounded-lg px-6 py-2 shadow-sm">
+          @if (show === 'bp'){
+            <app-basic-properties class="flex-shrink"></app-basic-properties>
+          }
+          @if (show === 'ei'){
+            <app-examinee-identification class="overflow-y-scroll w-full"></app-examinee-identification>
+          }
+          @if (show === 'qe'){
+            <app-question-editor></app-question-editor>
+          }
+        </section>
       </div>
     </div>
-  </div>
 </ng-container>
