@@ -14,6 +14,7 @@ import { Component } from '@angular/core';
 import {TopBarComponent} from "./top-bar/top-bar.component";
 import {ConspectComponent} from "./conspect/conspect.component";
 import {QuestionEditorComponent} from "./question-editor/question-editor.component";
+import {BasicPropertiesComponent} from "./basic-properties/basic-properties.component";
 
 @Component({
   selector: 'app-create-test',
@@ -21,7 +22,8 @@ import {QuestionEditorComponent} from "./question-editor/question-editor.compone
   imports: [
     TopBarComponent,
     ConspectComponent,
-    QuestionEditorComponent
+    QuestionEditorComponent,
+    BasicPropertiesComponent
   ],
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'

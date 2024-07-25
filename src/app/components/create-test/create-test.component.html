@@ -1,10 +1,10 @@
 <ng-container>
-  <div class="flex justify-center w-full relative">
-    <div class="w-1440px bg-white min-h-dvh">
-        <app-top-bar class="sticky top-0"></app-top-bar>
-      <div class="flex w-full">
+  <div class="flex w-full flex-col items-center relative">
+    <app-top-bar class="sticky top-0 w-full"></app-top-bar>
+    <div class="w-1440px">
+      <div class="flex w-full flex-auto px-8 py-6">
         <app-conspect></app-conspect>
-        <app-question-editor></app-question-editor>
+        <app-basic-properties class="w-full"></app-basic-properties>
       </div>
     </div>
   </div>
