@@ -20,7 +20,7 @@
             <div *ngIf="form.get('public_key')?.errors?.['required']">The "public key" is required.</div>
             <div *ngIf="form.get('public_key')?.errors?.['invalidKey']">The format of the "public key" is incorrect.</div>
           </div>
-        <app-button-blue [content]="'Join.'" class="self-center pt-8 absolute bottom-0"></app-button-blue>
+        <app-button-blue class="self-center pt-8 absolute bottom-0">Join</app-button-blue>
     </form>
   </section>
 </section>

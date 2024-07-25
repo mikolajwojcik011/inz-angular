@@ -8,5 +8,4 @@ import {Component, Input} from '@angular/core';
   styleUrl: './button-blue.component.css'
 })
 export class ButtonBlueComponent {
-  @Input() content!: string;
 }

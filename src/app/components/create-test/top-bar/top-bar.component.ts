@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {NavElementComponent} from "./nav-element/nav-element.component";
 import {ButtonBlueComponent} from "../../shared/buttons/button-blue/button-blue.component";
 import {ProgressionComponent} from "./progression/progression.component";
+import {ButtonWhiteComponent} from "../../shared/buttons/button-white/button-white.component";
 
 @Component({
   selector: 'app-top-bar',
@@ -9,7 +10,8 @@ import {ProgressionComponent} from "./progression/progression.component";
   imports: [
     NavElementComponent,
     ButtonBlueComponent,
-    ProgressionComponent
+    ProgressionComponent,
+    ButtonWhiteComponent
   ],
   templateUrl: './top-bar.component.html',
   styleUrl: './top-bar.component.css'
