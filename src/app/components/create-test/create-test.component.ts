@@ -35,7 +35,7 @@ import {NgClass} from "@angular/common";
 export class CreateTestComponent {
   showConspect: boolean = true;
   show: string = 'ei';
-  compact: boolean = false;
+  compact: boolean = true;
   header: string = 'Basic Properties';
   description: string = 'Set the basic properties of the test, such as: public key, private key and title.';
 
