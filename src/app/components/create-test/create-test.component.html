@@ -8,12 +8,12 @@
             <h2 class="text-2xl font-bold tracking-wide mb-1 text-gray-700">{{header}}</h2>
             <p class="text-sm font-medium text-gray-500">{{description}}</p>
           </div>
-          <div class="flex flex-col h-full items-center pt-20 pb-6 pr-1 pl-6 ring-gray-300 ring-1 rounded-lg shadow-sm">
+          <div class="flex pt-20 pb-6 pr-1 pl-6 ring-gray-300 ring-1 rounded-lg shadow-sm mb-6 h-full">
             @if (show === 'bp'){
               <app-basic-properties class="w-3/4 pr-6"></app-basic-properties>
             }
             @if (show === 'ei'){
-              <app-examinee-identification class="w-full h-full overflow-y-scroll relative pt-6 pr-5"></app-examinee-identification>
+              <app-examinee-identification class="w-full overflow-y-scroll pt-6 pr-5"></app-examinee-identification>
             }
             @if (show === 'qe'){
               <app-question-editor class="pr-6"></app-question-editor>
