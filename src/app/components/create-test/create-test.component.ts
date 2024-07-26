@@ -31,14 +31,27 @@ import {ExamineeIdentificationComponent} from "./examinee-identification/examine
 export class CreateTestComponent {
   showConspect: boolean = true;
   show: string = 'ei';
+  header: string = 'Basic Properties';
+  description: string = 'Set the basic properties of the test, such as: public key, private key and title.';
 
   handleShowChange(newShowValue: string) {
     this.show = newShowValue;
-    if (this.show === 'qe' || this.show === 'ei') {
+    if (this.show === 'qe') {
       this.showConspect = true;
+      this.header = 'Question Editor';
+      this.description = 'Create and customize questions.';
     }
+
+    if(this.show === 'ei'){
+      this.showConspect = true;
+      this.header = 'Examinee Identification';
+      this.description = 'Choose the way the examinee will be identified, by creating a new question or by selecting an existing one.';
+    }
+
     if (this.show === 'bp') {
       this.showConspect = false;
+      this.header = 'Basic Properties';
+      this.description = 'Set the basic properties of the test, such as: public key, private key and title.';
     }
   }
 }

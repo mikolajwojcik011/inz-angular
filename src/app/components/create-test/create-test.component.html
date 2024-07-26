@@ -1,20 +1,24 @@
 <ng-container>
   <div class="flex w-full flex-col items-center relative">
     <app-top-bar (showChange)="handleShowChange($event)" class="fixed top-0 w-full"></app-top-bar>
-      <div class="flex w-1440px min-h-svh max-h-svh pt-[184px] pb-6 px-8">
-        @if (showConspect){
-          <app-conspect></app-conspect>
-        }
-        <section class="flex justify-center w-full ring-gray-300 ring-1 rounded-lg px-6 py-6 shadow-sm">
-          @if (show === 'bp'){
-            <app-basic-properties class="flex-shrink"></app-basic-properties>
-          }
-          @if (show === 'ei'){
-            <app-examinee-identification class="overflow-y-scroll w-full"></app-examinee-identification>
-          }
-          @if (show === 'qe'){
-            <app-question-editor></app-question-editor>
-          }
+      <div class="flex w-1440px max-h-svh min-h-svh pt-[184px] pb-6 px-4">
+        <app-conspect></app-conspect>
+        <section class="w-full ring-gray-300 ring-1 ml-4 rounded-lg shadow-sm relative">
+          <div class="w-full border-b border-gray-300 px-6 py-3 absolute top-0 rounded-t-lg z-10">
+            <h2 class="text-2xl font-bold tracking-wide mb-1">{{header}}</h2>
+            <p class="text-sm font-medium text-gray-500">{{description}}</p>
+          </div>
+          <div class="flex h-full flex-col items-center pt-20 pb-6 px-6">
+            @if (show === 'bp'){
+              <app-basic-properties class="w-3/4"></app-basic-properties>
+            }
+            @if (show === 'ei'){
+              <app-examinee-identification class="w-full h-full overflow-y-scroll relative bg-red-600"></app-examinee-identification>
+            }
+            @if (show === 'qe'){
+              <app-question-editor></app-question-editor>
+            }
+          </div>
         </section>
       </div>
     </div>
