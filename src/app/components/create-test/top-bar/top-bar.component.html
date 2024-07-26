@@ -1,21 +1,32 @@
-<section class="flex justify-center bg-green-500 h-40 topography border-b border-gray-300">
-  <div class="w-1440px p-8">
-    <div class="flex items-center justify-between">
-      <div class="flex items-center ">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6 mr-2 mt-0.5 cursor-pointer">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-        </svg>
-        <h1 class="capitalize font-semibold text-4xl mr-4 tracking-wide">create test</h1>
-        <span class="font-bold bg-gray-50 px-2 py-0.5 mt-1 rounded-2xl text-xs text-gray-600">
-          Draft
-        </span>
+<section
+  class="flex justify-center bg-green-500 topography border-b border-gray-300"
+  [ngClass]="{'h-40': !compact, 'h-auto': compact}"
+>
+  <div
+    class="w-1440px"
+    [ngClass]="{'pt-8': !compact, 'py-4': compact}"
+  >
+    @if (!compact){
+      <div class="flex items-center justify-between">
+        <div class="flex items-center ">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-6 mr-2 mt-0.5 cursor-pointer">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+          <h1 class="capitalize font-semibold text-4xl mr-4 tracking-wide">create test</h1>
+          <span class="font-bold bg-gray-50 px-2 py-0.5 mt-1 rounded-2xl text-xs text-gray-600">
+            Draft
+          </span>
+        </div>
+        <div class="flex gap-6">
+          <app-button-white>Save Test</app-button-white>
+          <app-button-blue>Publish Test</app-button-blue>
+        </div>
       </div>
-      <div class="flex gap-6">
-        <app-button-white>Save Test</app-button-white>
-        <app-button-blue>Publish Test</app-button-blue>
-      </div>
-    </div>
-    <div class="w-full flex items-center justify-between mt-10">
+    }
+    <div
+      class="w-full flex items-center justify-between mt-10"
+      [ngClass]="{'mt-10': !compact, 'mt-0 pb-1': compact}"
+    >
       <nav>
         <ul class="flex gap-6 items-center text-sm">
           <app-nav-element [isFinished]="true" (click)="changeShow('bp')">basic properties</app-nav-element>

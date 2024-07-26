@@ -15,24 +15,27 @@ import {QuestionEditorComponent} from "./question-editor/question-editor.compone
 import {BasicPropertiesComponent} from "./basic-properties/basic-properties.component";
 import {ExamineeIdentificationComponent} from "./examinee-identification/examinee-identification.component";
 import {ButtonAddQuestionComponent} from "../shared/buttons/button-add-question/button-add-question.component";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-create-test',
   standalone: true,
-    imports: [
-        TopBarComponent,
-        ConspectComponent,
-        QuestionEditorComponent,
-        BasicPropertiesComponent,
-        ExamineeIdentificationComponent,
-        ButtonAddQuestionComponent
-    ],
+  imports: [
+    TopBarComponent,
+    ConspectComponent,
+    QuestionEditorComponent,
+    BasicPropertiesComponent,
+    ExamineeIdentificationComponent,
+    ButtonAddQuestionComponent,
+    NgClass
+  ],
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'
 })
 export class CreateTestComponent {
   showConspect: boolean = true;
   show: string = 'ei';
+  compact: boolean = false;
   header: string = 'Basic Properties';
   description: string = 'Set the basic properties of the test, such as: public key, private key and title.';
 

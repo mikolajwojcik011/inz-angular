@@ -1,14 +1,22 @@
 <ng-container>
   <div class="flex w-full flex-col items-center relative">
-    <app-top-bar (showChange)="handleShowChange($event)" class="fixed top-0 w-full z-50"></app-top-bar>
-      <div class="flex w-1440px max-h-svh min-h-svh pt-[184px] pb-6 px-4">
+    <app-top-bar (showChange)="handleShowChange($event)" [compact]="compact" class="fixed top-0 w-full z-50"></app-top-bar>
+      <div
+        class="flex w-1440px max-h-svh min-h-svh pt-[184px] pb-6 px-4"
+        [ngClass]="{'pt-[184px]': !compact, 'pt-[88px]': compact}"
+      >
         <app-conspect></app-conspect>
-        <section class="w-full ml-4 relative">
-          <div class="w-full border-b border-gray-300 px-6 py-3 absolute top-0 rounded-t-lg z-10">
+        <section class="w-full ml-4 relative ">
+          <div class="w-full border-b border-gray-300 px-6 py-3 absolute top-0 rounded-t-lg z-10 bg-white">
             <h2 class="text-2xl font-bold tracking-wide mb-1 text-gray-700">{{header}}</h2>
-            <p class="text-sm font-medium text-gray-500">{{description}}</p>
+            @if (!compact){
+              <p class="text-sm font-medium text-gray-500">{{description}}</p>
+            }
           </div>
-          <div class="flex pt-20 pb-6 pr-1 pl-6 ring-gray-300 ring-1 rounded-lg shadow-sm mb-6 h-full">
+          <div
+            class="flex pr-1 pl-6 ring-gray-300 ring-1 rounded-lg shadow-sm h-full"
+            [ngClass]="{'pt-20': !compact, 'pt-16': compact}"
+          >
             @if (show === 'bp'){
               <app-basic-properties class="w-3/4 pr-6"></app-basic-properties>
             }
