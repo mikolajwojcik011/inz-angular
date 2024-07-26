@@ -14,17 +14,19 @@ import {ConspectComponent} from "./conspect/conspect.component";
 import {QuestionEditorComponent} from "./question-editor/question-editor.component";
 import {BasicPropertiesComponent} from "./basic-properties/basic-properties.component";
 import {ExamineeIdentificationComponent} from "./examinee-identification/examinee-identification.component";
+import {ButtonAddQuestionComponent} from "../shared/buttons/button-add-question/button-add-question.component";
 
 @Component({
   selector: 'app-create-test',
   standalone: true,
-  imports: [
-    TopBarComponent,
-    ConspectComponent,
-    QuestionEditorComponent,
-    BasicPropertiesComponent,
-    ExamineeIdentificationComponent
-  ],
+    imports: [
+        TopBarComponent,
+        ConspectComponent,
+        QuestionEditorComponent,
+        BasicPropertiesComponent,
+        ExamineeIdentificationComponent,
+        ButtonAddQuestionComponent
+    ],
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'
 })
