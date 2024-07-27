@@ -1,12 +1,12 @@
 <ng-container>
-  <div class="flex w-full flex-col items-center relative">
+  <div class="flex w-full flex-col items-center">
     <app-top-bar (showChange)="handleShowChange($event)" [compact]="compact" class="fixed top-0 w-full z-50"></app-top-bar>
       <div
-        class="flex w-1440px max-h-svh min-h-svh pt-[184px] pb-6 px-4"
+        class="flex w-1440px pt-[184px] pb-6 px-4"
         [ngClass]="{'pt-[184px]': !compact, 'pt-[88px]': compact}"
       >
-        <app-conspect></app-conspect>
-        <section class="w-full ml-4 relative">
+          <app-conspect class="w-[300px] gap-0.5 h-[700px] flex flex-col px-4 fixed"></app-conspect>
+        <section class="w-full relative ml-[300px]">
           <div class="w-full border-b border-gray-300 px-6 py-3 absolute top-0 rounded-t-lg z-10">
             <h2 class="text-2xl font-bold tracking-wide mb-1 text-gray-700">{{header}}</h2>
             @if (!compact){
@@ -14,14 +14,14 @@
             }
           </div>
           <div
-            class="flex pr-1 pl-6 ring-gray-300 ring-1 rounded-lg shadow-sm h-full"
+            class="flex justify-center pr-1 pl-6 pb-6 ring-gray-300 ring-1 rounded-lg shadow-sm h-full"
             [ngClass]="{'pt-20': !compact, 'pt-16': compact}"
           >
             @if (show === 'bp'){
-              <app-basic-properties class="w-3/4 pr-5"></app-basic-properties>
+              <app-basic-properties class="w-3/4 pr-5 flex py-10 flex-col gap-6 text-gray-700"></app-basic-properties>
             }
             @if (show === 'ei'){
-              <app-examinee-identification class="w-full overflow-y-scroll snap-mandatory snap-y pt-6 pr-5"></app-examinee-identification>
+              <app-examinee-identification class="w-full flex flex-col gap-4 snap-mandatory snap-y pt-6 pr-5"></app-examinee-identification>
             }
             @if (show === 'qe'){
               <app-question-editor class="pr-5"></app-question-editor>
