@@ -35,7 +35,7 @@ import {NgClass} from "@angular/common";
 export class CreateTestComponent {
   showConspect: boolean = true;
   show: string = 'ei';
-  compact: boolean = true
+  compact: boolean = false
   header: string = 'Basic Properties';
   description: string = 'Set the basic properties of the test, such as: public key, private key and title.';
 
@@ -48,7 +48,7 @@ export class CreateTestComponent {
     }
 
     if(this.show === 'ei'){
-      this.showConspect = true;
+      this.showConspect = false;
       this.header = 'Examinee Identification';
       this.description = 'Choose the way the examinee will be identified, by creating a new question or by selecting an existing one.';
     }

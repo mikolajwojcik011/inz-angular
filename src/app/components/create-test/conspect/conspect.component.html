@@ -1,7 +1,29 @@
   <h2 class="font-bold text-gray-800 tracking-wide text-2xl pb-4 sticky top-0 bg-gradient-to-t from-transparent to-white to-25%">Content</h2>
-  <div class="flex flex-col gap-2 pr-2 overflow-y-scroll snap-y w-full">
-    <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [amount_of_answers]="3" [isActive]="true"></app-conspect-element>
-  </div>
-  <div class="bg-gradient-to-b from-transparent to-white to-25% mx-4 mt-6">
-    <app-button-add-question></app-button-add-question>
-  </div>
+  @if (showConspect){
+    <div class="flex flex-col gap-2 pr-2 overflow-y-scroll snap-y w-full">
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="1" [amount_of_answers]="3" [isActive]="true"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+      <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+    </div>
+    <div class="bg-gradient-to-b from-transparent to-white to-25% mx-4 mt-6">
+      <app-button-add-question>add new question</app-button-add-question>
+    </div>
+  } @else {
+    <p class="text-gray-500 tracking-wide text-sm">Once you start adding questions, they will be visible here.</p>
+  }

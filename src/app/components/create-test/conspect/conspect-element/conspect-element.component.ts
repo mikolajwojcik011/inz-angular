@@ -13,5 +13,6 @@ import {NgClass} from "@angular/common";
 export class ConspectElementComponent {
   @Input() question_header: string = 'No header provided';
   @Input() amount_of_answers: number | null = null;
+  @Input() question_index: number | null = null;
   @Input() isActive: boolean = false;
 }

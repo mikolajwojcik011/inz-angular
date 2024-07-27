@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ConspectElementComponent} from "./conspect-element/conspect-element.component";
 import {ButtonAddQuestionComponent} from "../../shared/buttons/button-add-question/button-add-question.component";
 
@@ -13,5 +13,6 @@ import {ButtonAddQuestionComponent} from "../../shared/buttons/button-add-questi
   styleUrl: './conspect.component.css'
 })
 export class ConspectComponent {
+  @Input() showConspect: boolean = true;
 
 }
