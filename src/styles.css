@@ -22,16 +22,16 @@
 }
 
 
-.top-bar-li:hover::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -70%;
-  height: 2px;
-  background-color: #0ea5e9;
-  z-index: 10;
-}
+/*.top-bar-li:hover::after {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  bottom: -80%;*/
+/*  height: 2px;*/
+/*  background-color: #0ea5e9;*/
+/*  z-index: 10;*/
+/*}*/
 
 .fade-bottom {
   position: relative;

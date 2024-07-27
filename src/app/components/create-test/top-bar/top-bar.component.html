@@ -17,7 +17,7 @@
             Draft
           </span>
         </div>
-        <div class="flex gap-6">
+        <div class="flex gap-4">
           <app-button-white>Save Test</app-button-white>
           <app-button-blue>Publish Test</app-button-blue>
         </div>
@@ -25,16 +25,24 @@
     }
     <div
       class="w-full flex items-center justify-between mt-10"
-      [ngClass]="{'mt-10': !compact, 'mt-0 pb-1': compact}"
+      [ngClass]="{'mt-10': !compact, 'mt-0 pb-0': compact}"
     >
       <nav>
-        <ul class="flex gap-6 items-center text-sm">
+        <ul class="flex gap-4 items-center text-sm">
           <app-nav-element [isFinished]="true" (click)="changeShow('bp')">basic properties</app-nav-element>
           <app-nav-element [isFinished]="false" (click)="changeShow('ei')">Examinee Identification</app-nav-element>
           <app-nav-element [isFinished]="false" (click)="changeShow('qe')">Question Editor</app-nav-element>
         </ul>
       </nav>
-      <app-progression [done]="3" [total]="5"></app-progression>
+      <div class="flex gap-16">
+        @if (compact){
+          <div class="flex gap-4 items-center text-sm">
+            <app-button-white>Save Test</app-button-white>
+            <app-button-blue>Publish Test</app-button-blue>
+          </div>
+        }
+        <app-progression [done]="3" [total]="5"></app-progression>
+      </div>
     </div>
   </div>
 </section>

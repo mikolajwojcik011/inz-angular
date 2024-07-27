@@ -2,10 +2,10 @@
   <div class="flex w-full flex-col items-center">
     <app-top-bar (showChange)="handleShowChange($event)" [compact]="compact" class="fixed top-0 w-full z-50"></app-top-bar>
       <div
-        class="flex w-1440px pb-6 px-4"
+        class="flex w-1440px pb-6"
         [ngClass]="{'pt-[184px]': !compact, 'pt-[88px]': compact}"
       >
-        <app-conspect class="w-[300px] gap-0.5 h-[700px] flex flex-col px-4 fixed"></app-conspect>
+        <app-conspect class="w-[300px] gap-0.5 h-[700px] flex flex-col pr-4 fixed"></app-conspect>
         <section class="w-full relative ml-[300px] ring-gray-300 ring-1 rounded-lg shadow-sm">
           <div class=" bg-white border-b border-gray-300 px-6 py-3 rounded-t-lg w-full sticky top-0">
             <h2 class="text-2xl font-bold tracking-wide mb-1 text-gray-700">{{header}}</h2>
@@ -17,7 +17,7 @@
             class="flex justify-center px-6 pb-6 h-full"
           >
             @if (show === 'bp'){
-              <app-basic-properties class="w-3/4  flex py-10 flex-col gap-6 text-gray-700"></app-basic-properties>
+              <app-basic-properties class="w-3/4 flex py-10 flex-col gap-6 text-gray-700"></app-basic-properties>
             }
             @if (show === 'ei'){
               <app-examinee-identification class="w-full flex flex-col gap-6 snap-mandatory snap-y pt-6"></app-examinee-identification>
