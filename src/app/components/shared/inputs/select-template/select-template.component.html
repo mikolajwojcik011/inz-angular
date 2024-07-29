@@ -1,6 +1,36 @@
-<button>Name</button>
-<ul>
-  <li>First Name</li>
-  <li>Last Name</li>
-  <li>E-mail</li>
-</ul>
+<div class="relative ml-4">
+  <div
+    class="flex gap-1 items-center capitalize bg-white py-1 px-2 font-semibold text-xs rounded-t-md cursor-pointer border-t border-r border-l border-gray-300 hover:bg-gray-100"
+    [ngClass]="!isShown ? 'rounded-b-md border-b' : ''"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-sky-500">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+    </svg>
+    <h5 class="align-middle text-gray-700 min-w-32">{{selectedValue}}</h5>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+    </svg>
+  </div>
+  @if (isShown){
+    <ul class="absolute w-full flex flex-col top-6 bg-white left-0 p-1 text-xs border-b border-r border-l border-gray-300 rounded-b-md">
+      <h5 class="tracking-wide text-xs p-1 text-gray-500 my-1">Question Type</h5>
+      <li class="cursor-pointer p-1 flex items-center gap-1 hover:bg-gray-100 rounded-lg font-semibold" (click)="onSelect('complex-true-or-false')">
+        <input id="complex-true-or-false" name="q-1-type" type="radio" value="complex-true-or-false" hidden="hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-sky-500 ">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+        </svg>
+        <label for="complex-true-or-false" class="flex gap-1 capitalize text-gray-700 h-full align-middle pointer-events-none">complex true or false</label>
+      </li>
+      <li class="cursor-pointer p-1 flex items-center gap-1 hover:bg-gray-100 rounded-lg font-semibold" (click)="onSelect('match')">
+        <input id="match" name="q-1-type" type="radio" value="match" hidden="hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-sky-500">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
+        </svg>
+        <label for="match" class="flex gap-1 capitalize text-gray-700 pointer-events-none">match</label>
+      </li>
+    </ul>
+  }
+</div>
