@@ -2,7 +2,7 @@
   <div class="flex w-full flex-col items-center">
     <app-top-bar (showChange)="handleShowChange($event)" [compact]="compact" class="fixed top-0 w-full z-50"></app-top-bar>
       <div
-        class="flex w-[1200px] pb-6"
+        class="flex w-[1200px] pb-6 mr-[300px]"
         [ngClass]="{'pt-[184px]': !compact, 'pt-[88px]': compact}"
       >
         <app-conspect [showConspect]="showConspect" class="w-[300px] gap-0.5 max-h-[600px] flex flex-col pr-4 fixed"></app-conspect>

@@ -12,7 +12,7 @@ import {NgClass} from "@angular/common";
 })
 export class SelectTemplateComponent {
   isShown = false;
-  selectedValue: string = 'complex-true-or-false';
+  selectedValue: string = 'complex true or false';
 
   @HostListener('mouseenter')
   onMouseEnter() {
