@@ -21,21 +21,14 @@
   </div>
   @if (isShown){
     <ul class="absolute w-full flex flex-col top-6 bg-white left-0 p-1 text-xs border-b border-r border-l border-gray-300 rounded-b-md">
-      <h5 class="tracking-wide text-xs p-1 text-gray-500 my-1">Question Type</h5>
-      <li class="cursor-pointer p-1 flex items-center gap-1 hover:bg-gray-100 rounded-lg font-semibold" (click)="onSelect('complex-true-or-false')">
-        <input id="complex-true-or-false" name="q-1-type" type="radio" value="complex-true-or-false" hidden="hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half size-3 text-sky-500" viewBox="0 0 16 16">
-          <path d="M8 15A7 7 0 1 0 8 1zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16"/>
-        </svg>
-        <label for="complex-true-or-false" class="flex gap-1 capitalize text-gray-700 h-full align-middle pointer-events-none">complex true or false</label>
-      </li>
-      <li class="cursor-pointer p-1 flex items-center gap-1 hover:bg-gray-100 rounded-lg font-semibold" (click)="onSelect('match')">
-        <input id="match" name="q-1-type" type="radio" value="match" hidden="hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shuffle size-3 text-sky-500" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.6 9.6 0 0 0 7.556 8a9.6 9.6 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.6 10.6 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.6 9.6 0 0 0 6.444 8a9.6 9.6 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5"/>
-          <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192m0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192"/>
-        </svg>
-        <label for="match" class="flex gap-1 capitalize text-gray-700 pointer-events-none">match</label>
-      </li>
+      <h5 class="tracking-wide text-xs p-1 text-gray-500 my-1"><ng-content></ng-content></h5>
+      @for (option of options; track $index){
+        <app-select-element (click)="onSelect(option)" [option]="option"></app-select-element>
+      }
+<!--      <li class="cursor-pointer p-1 flex items-center gap-1 hover:bg-gray-100 rounded-lg font-semibold" (click)="onSelect('match')">-->
+<!--        <input id="match" name="q-1-type" type="radio" value="match" hidden="hidden">-->
+<!--        <i class="bi bi-shuffle text-sky-500"></i>-->
+<!--        <label for="match" class="flex gap-1 capitalize text-gray-700 pointer-events-none">match</label>-->
+<!--      </li>-->
     </ul>
   }

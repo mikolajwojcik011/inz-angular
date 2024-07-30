@@ -1,18 +1,22 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {NgClass} from "@angular/common";
+import {SelectElementComponent} from "./select-element/select-element.component";
 
 @Component({
   selector: 'app-select-template',
   standalone: true,
   imports: [
-    NgClass
+    NgClass,
+    SelectElementComponent
   ],
   templateUrl: './select-template.component.html',
   styleUrl: './select-template.component.css'
 })
-export class SelectTemplateComponent {
+export class SelectTemplateComponent implements OnInit{
+  @Input() options: string[] = [];
+
   isShown = false;
-  selectedValue: string = 'complex true or false';
+  selectedValue: string = '';
 
   @HostListener('mouseenter')
   onMouseEnter() {
@@ -26,5 +30,9 @@ export class SelectTemplateComponent {
 
   onSelect(value: string) {
     this.selectedValue = value.replace(/-/g, ' ');
+  }
+
+  ngOnInit() {
+    this.onSelect(this.options[0])
   }
 }

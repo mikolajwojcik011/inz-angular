@@ -6,6 +6,7 @@ import {
   ButtonAddQuestionComponent
 } from "../../../../../shared/buttons/button-add-question/button-add-question.component";
 import {ButtonRemoveComponent} from "../../../../../shared/buttons/button-remove/button-remove.component";
+import {TextAreaTemplateComponent} from "../../../../../shared/inputs/text-area-template/text-area-template.component";
 
 @Component({
   selector: 'app-create-multiple-choice-template',
@@ -15,7 +16,8 @@ import {ButtonRemoveComponent} from "../../../../../shared/buttons/button-remove
     CreateAnswerCheckboxComponent,
     ButtonPlusComponent,
     ButtonAddQuestionComponent,
-    ButtonRemoveComponent
+    ButtonRemoveComponent,
+    TextAreaTemplateComponent
   ],
   templateUrl: './create-multiple-choice-template.component.html',
   styleUrl: './create-multiple-choice-template.component.css'
