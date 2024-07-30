@@ -40,15 +40,24 @@
       </div>
     </div>
   </div>
-  <div class="w-full gap-4 flex-col flex border-l border-r border-b border-gray-300 p-6 rounded-b-lg">
-    <app-input-template-text>Question</app-input-template-text>
-    <app-text-area-template>Description<i class="text-gray-500 font-medium">&#160;(optional)</i></app-text-area-template>
-    <div>
-      <div class="flex gap-1">
-        <input id="opens-on" name="opens-on" type="checkbox" class="cursor-pointer w-6 accent-sky-500">
-        <label for="opens-on" class="text-xs cursor-pointer text-gray-900 font-semibold tracking-wide hover:text-sky-500">Add image, video or sound</label>
+  <div class="w-full border-l border-r border-b border-gray-300 p-6 rounded-b-lg">
+    <div class="gap-6 flex-col flex border-b border-gray-300">
+      <app-input-template-text>Question</app-input-template-text>
+      <app-text-area-template>Description<i class="text-gray-500 font-medium">&#160;(optional)</i></app-text-area-template>
+      <div>
+        <div class="flex gap-1 mb-4">
+          <input id="opens-on" name="opens-on" type="checkbox" class="cursor-pointer w-6 accent-sky-500">
+          <label for="opens-on" class="text-xs cursor-pointer text-gray-900 font-semibold tracking-wide hover:text-sky-500" (click)="showUploadFile()">Add image, video or sound</label>
+        </div>
+        @if (showUpload){
+          <app-input-template-file></app-input-template-file>
+        }
       </div>
     </div>
-<!--    <app-input-template-file></app-input-template-file>-->
+    <div class="mt-6 w-full">
+      @if (questionType === 'multiple-choice') {
+        <app-create-multiple-choice-template class="flex flex-col gap-4"></app-create-multiple-choice-template>
+      }
+    </div>
   </div>
 </article>
