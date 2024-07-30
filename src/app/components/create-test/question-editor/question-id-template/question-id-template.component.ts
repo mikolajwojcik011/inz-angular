@@ -7,6 +7,10 @@ import {InputTemplateFileComponent} from "../../../shared/inputs/input-template-
 import {
   CreateMultipleChoiceTemplateComponent
 } from "./questions/create-multiple-choice-template/create-multiple-choice-template.component";
+import {ButtonRemoveComponent} from "../../../shared/buttons/button-remove/button-remove.component";
+import {ButtonCopyComponent} from "../../../shared/buttons/button-copy/button-copy.component";
+import {ButtonUpComponent} from "../../../shared/buttons/button-up/button-up.component";
+import {ButtonDownComponent} from "../../../shared/buttons/button-down/button-down.component";
 
 @Component({
   selector: 'app-question-id-template',
@@ -17,7 +21,11 @@ import {
     SelectTemplateComponent,
     TextAreaTemplateComponent,
     InputTemplateFileComponent,
-    CreateMultipleChoiceTemplateComponent
+    CreateMultipleChoiceTemplateComponent,
+    ButtonRemoveComponent,
+    ButtonCopyComponent,
+    ButtonUpComponent,
+    ButtonDownComponent
   ],
   templateUrl: './question-id-template.component.html',
   styleUrl: './question-id-template.component.css'

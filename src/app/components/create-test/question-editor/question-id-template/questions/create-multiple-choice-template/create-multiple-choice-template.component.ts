@@ -5,6 +5,7 @@ import {ButtonPlusComponent} from "../../../../../shared/buttons/button-plus/but
 import {
   ButtonAddQuestionComponent
 } from "../../../../../shared/buttons/button-add-question/button-add-question.component";
+import {ButtonRemoveComponent} from "../../../../../shared/buttons/button-remove/button-remove.component";
 
 @Component({
   selector: 'app-create-multiple-choice-template',
@@ -13,7 +14,8 @@ import {
     InputTemplateTextComponent,
     CreateAnswerCheckboxComponent,
     ButtonPlusComponent,
-    ButtonAddQuestionComponent
+    ButtonAddQuestionComponent,
+    ButtonRemoveComponent
   ],
   templateUrl: './create-multiple-choice-template.component.html',
   styleUrl: './create-multiple-choice-template.component.css'
