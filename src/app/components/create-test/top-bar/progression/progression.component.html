@@ -1,14 +1,16 @@
 <div>
-  <div class="flex justify-end">
-    <p>{{done}}</p>
-    <p class="text-gray-600">/{{total}}</p>
-  </div>
+  @if (showText){
+    <div class="flex justify-end">
+      <p>{{done}}</p>
+      <p class="text-gray-600">/{{total}}</p>
+    </div>
+  }
   <div class="flex gap-0.5">
     @for (i of [].constructor(total); track $index;){
       @if ($index < done){
-        <span class="w-6 h-1 bg-sky-500 rounded-xl"></span>
+        <span class="w-4 h-1 bg-sky-500 rounded-xl"></span>
       } @else {
-        <span class="w-6 h-1 bg-gray-600 rounded-xl"></span>
+        <span class="w-4 h-1 bg-gray-600 rounded-xl"></span>
       }
     }
   </div>

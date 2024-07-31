@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-text-area-template',
@@ -8,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './text-area-template.component.css'
 })
 export class TextAreaTemplateComponent {
+  @ViewChild('textAreaElement') textAreaElement!: ElementRef;
+  @Input() value:string  = '';
 
+  getTextAreaValue() {
+    return this.textAreaElement.nativeElement.value;
+  }
 }

@@ -37,6 +37,9 @@
       @if (questionType === 'multiple-choice') {
         <app-create-multiple-choice-template class="flex flex-col gap-2 "></app-create-multiple-choice-template>
       }
+      @if (questionType === 'fill-the-gaps'){
+        <app-create-fill-the-gaps-template></app-create-fill-the-gaps-template>
+      }
     </div>
   </div>
 </article>

@@ -10,4 +10,5 @@ import {Component, Input} from '@angular/core';
 export class ProgressionComponent {
   @Input() done: number = 0;
   @Input() total: number = 0;
+  @Input() showText: boolean = true;
 }

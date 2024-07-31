@@ -11,6 +11,7 @@ import {ButtonRemoveComponent} from "../../../shared/buttons/button-remove/butto
 import {ButtonCopyComponent} from "../../../shared/buttons/button-copy/button-copy.component";
 import {ButtonUpComponent} from "../../../shared/buttons/button-up/button-up.component";
 import {ButtonDownComponent} from "../../../shared/buttons/button-down/button-down.component";
+import {CreateFillTheGapsComponent} from "./questions/create-fill-the-gaps-template/create-fill-the-gaps.component";
 
 @Component({
   selector: 'app-question-id-template',
@@ -25,14 +26,15 @@ import {ButtonDownComponent} from "../../../shared/buttons/button-down/button-do
     ButtonRemoveComponent,
     ButtonCopyComponent,
     ButtonUpComponent,
-    ButtonDownComponent
+    ButtonDownComponent,
+    CreateFillTheGapsComponent
   ],
   templateUrl: './question-id-template.component.html',
   styleUrl: './question-id-template.component.css'
 })
 export class QuestionIdTemplateComponent {
   showUpload = false;
-  questionType: string = 'multiple-choice';
+  questionType: string = 'fill-the-gaps';
 
   showUploadFile() {
     this.showUpload = !this.showUpload;
