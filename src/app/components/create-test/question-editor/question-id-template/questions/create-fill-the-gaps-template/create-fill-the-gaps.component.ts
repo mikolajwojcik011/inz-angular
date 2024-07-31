@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import {TextAreaTemplateComponent} from "../../../../../shared/inputs/text-area-template/text-area-template.component";
 import {ProgressionComponent} from "../../../../top-bar/progression/progression.component";
 import {JsonPipe, NgForOf, NgIf} from "@angular/common";
@@ -26,7 +26,7 @@ export class CreateFillTheGapsComponent{
   textareaValue: string = '';
   words: string[] = [];
   gapsAt: number[] = [];
-  punctuation: any = /[\.,?!]/g;
+  punctuation: any = /[,?!]/g;
 
   prev() {
     if(this.show > 0) this.show--;
@@ -46,8 +46,4 @@ export class CreateFillTheGapsComponent{
     }
     console.log(this.gapsAt);
   }
-
-  displayLetterIndex(index: number) {
-  }
-
 }
