@@ -1,39 +1,72 @@
-<div class="border-l border-r border-t border-gray-300 px-4 py-2 text-sm rounded-t-md text-gray-800 bg-gray-50 flex items-center justify-between">
-    <p><b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps.</p>
-    <app-progression [done]="1" [total]="3" [showText]="false"></app-progression>
+<div class="border-l border-r border-t border-gray-300 px-4 py-2 text-sm rounded-t-md text-gray-800 flex items-center justify-between">
+  @if (show === 0){
+    <p class="pr-10"><b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps. <b class="font-semibold">Make sure that the paragraph is correct, if you try to edit it later, You will need to create gaps again.</b></p>
+  }
+  @if (show === 1){
+    <p class="pr-10"><b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps. <b class="font-semibold">Make sure that the paragraph is correct, if you try to edit it later, You will need to create gaps again.</b></p>
+  }
+  @if (show === 2){
+    <p class="pr-10"><b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps. <b class="font-semibold">Make sure that the paragraph is correct, if you try to edit it later, You will need to create gaps again.</b></p>
+  }
+  <app-progression [done]="1" [total]="3" [showText]="false"></app-progression>
 </div>
 <div class="border rounded-b-md px-4 py-3 border-gray-300">
-  <div class="flex gap-2 justify-end font-semibold">
-    <button (click)="prev()" class="text-xs h-full flex items-center gap-2 ring-inset ring-1 ring-gray-300 px-2 hover:ring-2 hover:ring-sky-500 hover:bg-gray-50 rounded-md">
+  <div class="flex justify-end gap-2 font-semibold">
+    <button
+      (click)="prev()"
+      class="text-xs h-full flex items-center gap-2 ring-inset ring-1 ring-gray-300 px-2 hover:ring-2 hover:ring-sky-500 hover:bg-gray-50 rounded-md"
+    >
       <i class="bi bi-box-arrow-left text-lg"></i>
       prev
     </button>
-    <button (click)="next()" class="text-xs h-full flex items-center gap-2 ring-inset ring-1 ring-gray-300 px-2 hover:ring-2 hover:ring-sky-500 hover:bg-gray-50 rounded-md">
+    <button
+      (click)="next()"
+      class="text-xs h-full flex items-center gap-2 ring-inset ring-1 ring-gray-300 px-2 hover:ring-2 hover:ring-sky-500 hover:bg-gray-50 rounded-md"
+    >
       next
       <i class="bi bi-box-arrow-right text-lg"></i>
     </button>
   </div>
   @if (show == 0){
-    <app-text-area-template [value]="textareaValue" #textarea>Paragraph</app-text-area-template>
+    <app-text-area-template [value]="textareaValue" #textarea class="flex flex-col h-40">Paragraph</app-text-area-template>
   }
-  @if(show === 1){
-    <p class=" w-full p-2 mt-4 ring-1 ring-gray-300 ring-inset rounded-md pr-2 ">
-    @for (word of words; track i; let i = $index){
 
-      @if(punctuation.test(word)){
-        <span class="pointer-events-none">{{word}}</span>
-      } @else {
-        <span
-          class="rounded-md bg-gray-100 px-1 py-1 text-sm cursor-pointer hover:bg-sky-100 mr-1"
-          (click)="createGap(i)"
-        >
-          {{word}}
-        </span>
-      }
+  @if(show === 1){
+    <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">Edit paragraph</h5>
+    <p class=" w-full min-h-10 relative pl-1 py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md flex flex-wrap z-10 text-sm">
+    @for (word of words; track i; let i = $index){
+      <app-word (wordUpdated)="updateWord($event)" class="relative" [word]="word"></app-word>
     }
     </p>
   }
   @if(show === 2){
-
+    <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">preview</h5>
+    <p class=" w-full min-h-10 relative pl-1 py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md flex flex-wrap z-10 text-sm">
+      @for (part of finalWords; track $index){
+        @if (part.gaps === 'whole'){
+          <span class="relative mx-1">
+            <span>
+              {{part.word + part.word}}
+            </span>
+            <span class="absolute top-0 left-0 w-full">
+              <input type="text" class="w-full bg-gray-100 ring-1 ring-gray-300 ring-inset rounded-md px-1">
+            </span>
+          </span>
+        }
+        @if(part.gaps !== 'whole'){
+          <span class="relative mx-1">
+            <span>
+              {{part.word}}
+            </span>
+            <span class="absolute top-0 left-0 w-full">
+              <input type="text" class="w-full bg-gray-100 ring-1 ring-gray-300 ring-inset rounded-md px-1">
+            </span>
+          </span>
+        }
+        @if(!part.word){
+          {{part}}
+        }
+      }
+    </p>
   }
 </div>

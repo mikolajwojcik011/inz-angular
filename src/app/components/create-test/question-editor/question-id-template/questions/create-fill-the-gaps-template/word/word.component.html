@@ -1,0 +1,35 @@
+<span
+  class="rounded bg-gray-100 px-1 text-sm cursor-pointer hover:bg-sky-100 ml-1"
+  [ngClass]="{'bg-white pointer-events-none': hasPunctuation}"
+  (click)="showGapCreationInterface()"
+>
+  {{word.word}}
+</span>
+@if(showGapCreation){
+  <span
+    class="bg-gray-100 absolute top-0 shadow-md z-50 text-sm ml-[-24px] p-2 flex gap-1 items-center rounded-md"
+    [ngClass]="positionClass"
+  >
+      @for (letter of word.word; track i; let i = $index){
+        <span
+          class="bg-gray-200 px-2 py-1 h-full rounded shadow font-semibold hover:bg-sky-100 cursor-pointer align-middle"
+          (click)="createGap(i)"
+          [ngClass]="{'blur-sm bg-gray-100 hover:bg-gray-200': word.gaps.includes(i) || word.whole}"
+        >
+          {{letter}}
+        </span>
+      }
+    <button class="ml-1" (click)="gapWholeWord()">
+        <i
+          class="bi bi-app px-2 py-1 h-full rounded shadow hover:bg-sky-100 align-middle cursor-pointer"
+          [ngClass]="{'bg-sky-100': word.whole, 'bg-gray-300': !word.whole}"
+        ></i>
+    </button>
+    <button (click)="hideGapCreationInterface()">
+        <i class="bi bi-x bg-gray-300 px-2 py-1 h-full rounded shadow hover:bg-rose-100 align-middle cursor-pointer"></i>
+    </button>
+  </span>
+}
+
+
+
