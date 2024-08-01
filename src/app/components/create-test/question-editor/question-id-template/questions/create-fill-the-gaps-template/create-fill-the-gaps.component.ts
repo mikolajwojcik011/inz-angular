@@ -99,7 +99,7 @@ export class CreateFillTheGapsComponent {
   }
 
   displayWord(word: any, gaps: any){
-      
+
   }
 
   updateWord(updatedWord: {index: string, word: string, gaps: number[], whole: boolean}) {

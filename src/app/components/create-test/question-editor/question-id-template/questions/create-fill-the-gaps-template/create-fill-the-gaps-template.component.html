@@ -41,30 +41,17 @@
   }
   @if(show === 2){
     <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">preview</h5>
-    <p class=" w-full min-h-10 relative pl-1 py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md flex flex-wrap z-10 text-sm">
+    <p class=" w-full min-h-10 relative pl-1 py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md z-10 text-sm">
       @for (part of finalWords; track $index){
         @if (part.gaps === 'whole'){
-          <span class="relative mx-1">
-            <span>
-              {{part.word + part.word}}
-            </span>
-            <span class="absolute top-0 left-0 w-full">
-              <input type="text" class="w-full bg-gray-100 ring-1 ring-gray-300 ring-inset rounded-md px-1">
-            </span>
-          </span>
-        }
-        @if(part.gaps !== 'whole'){
-          <span class="relative mx-1">
-            <span>
-              {{part.word}}
-            </span>
-            <span class="absolute top-0 left-0 w-full">
-              <input type="text" class="w-full bg-gray-100 ring-1 ring-gray-300 ring-inset rounded-md px-1">
-            </span>
+          <span>
+            <input type="text" class="bg-gray-100 ring-1 ring-gray-300 ring-inset rounded-md px-1">
           </span>
         }
         @if(!part.word){
-          {{part}}
+          <span>
+            {{part}}
+          </span>
         }
       }
     </p>
