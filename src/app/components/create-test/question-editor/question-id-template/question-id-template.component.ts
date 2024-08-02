@@ -15,6 +15,9 @@ import {CreateFillTheGapsComponent} from "./questions/create-fill-the-gaps-templ
 import {
   CreateTrueOrFalseTemplateComponent
 } from "./questions/create-true-or-false-template/create-true-or-false-template.component";
+import {
+  CreateTrueOrFalseComplexTemplateComponent
+} from "./questions/create-true-or-false-complex-template/create-true-or-false-complex-template.component";
 
 @Component({
   selector: 'app-question-id-template',
@@ -31,14 +34,15 @@ import {
     ButtonUpComponent,
     ButtonDownComponent,
     CreateFillTheGapsComponent,
-    CreateTrueOrFalseTemplateComponent
+    CreateTrueOrFalseTemplateComponent,
+    CreateTrueOrFalseComplexTemplateComponent
   ],
   templateUrl: './question-id-template.component.html',
   styleUrl: './question-id-template.component.css'
 })
 export class QuestionIdTemplateComponent {
   showUpload = false;
-  questionType: string = 'true-or-false';
+  questionType: string = 'complex-true-or-false';
 
   showUploadFile() {
     this.showUpload = !this.showUpload;

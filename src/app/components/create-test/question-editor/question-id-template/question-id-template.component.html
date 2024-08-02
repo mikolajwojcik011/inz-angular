@@ -45,6 +45,9 @@
       @if (questionType === 'true-or-false'){
         <app-create-true-or-false-template class="flex w-full justify-center gap-8"></app-create-true-or-false-template>
       }
+      @if (questionType === 'complex-true-or-false'){
+        <app-create-true-or-false-complex-template></app-create-true-or-false-complex-template>
+      }
     </div>
   </div>
 </article>
