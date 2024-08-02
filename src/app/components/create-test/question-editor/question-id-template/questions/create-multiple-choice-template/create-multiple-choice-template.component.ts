@@ -1,3 +1,7 @@
+//Todo: Add multiple gaps inside word support
+//Todo: Add feedback for user
+//Todo: Improve guiding by adding conditions to progress
+
 import { Component } from '@angular/core';
 import {InputTemplateTextComponent} from "../../../../../shared/inputs/input-template-text/input-template-text.component";
 import {CreateAnswerCheckboxComponent} from "../../inputs/create-answer-checkbox/create-answer-checkbox.component";

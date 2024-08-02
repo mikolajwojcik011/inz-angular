@@ -1,12 +1,14 @@
 <article class="w-full">
   <div class="w-full flex bg-gray-50 ring-gray-300 ring-1 ring-inset items-center justify-between rounded-t-lg py-1 px-6">
-    <div class="flex gap-2 items-center ">
-      <i class="bi bi-patch-question-fill text-gray-700"></i>
-      <h3 class="font-bold tracking-wide text-gray-700 align-middle h-full">Question 1</h3>
-    </div>
-    <div class="flex gap-2">
-    <app-select-template [options]="['complex-true-or-false', 'match']" class="relative w-44">Question Type</app-select-template>
-    <app-select-template [options]="['roman', 'number']" class="relative w-24">Index Style</app-select-template>
+    <div class="flex gap-4">
+      <div class="flex gap-2 items-center ">
+        <i class="bi bi-patch-question-fill text-gray-700"></i>
+        <h3 class="font-bold tracking-wide text-gray-700 align-middle h-full">Question 1</h3>
+      </div>
+      <div class="flex gap-2">
+      <app-select-template [options]="['complex-true-or-false', 'match']" class="relative w-44">Question Type</app-select-template>
+      <app-select-template [options]="['roman', 'number']" class="relative w-24">Index Style</app-select-template>
+      </div>
     </div>
     <div class="flex text-gray-600 items-center">
       <div class="flex gap-4 border-r border-gray-300 mr-4 pr-4">
@@ -39,6 +41,9 @@
       }
       @if (questionType === 'fill-the-gaps'){
         <app-create-fill-the-gaps-template></app-create-fill-the-gaps-template>
+      }
+      @if (questionType === 'true-or-false'){
+        <app-create-true-or-false-template></app-create-true-or-false-template>
       }
     </div>
   </div>

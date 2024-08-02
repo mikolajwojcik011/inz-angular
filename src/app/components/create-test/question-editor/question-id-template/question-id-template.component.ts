@@ -12,6 +12,9 @@ import {ButtonCopyComponent} from "../../../shared/buttons/button-copy/button-co
 import {ButtonUpComponent} from "../../../shared/buttons/button-up/button-up.component";
 import {ButtonDownComponent} from "../../../shared/buttons/button-down/button-down.component";
 import {CreateFillTheGapsComponent} from "./questions/create-fill-the-gaps-template/create-fill-the-gaps.component";
+import {
+  CreateTrueOrFalseTemplateComponent
+} from "./questions/create-true-or-false-template/create-true-or-false-template.component";
 
 @Component({
   selector: 'app-question-id-template',
@@ -27,7 +30,8 @@ import {CreateFillTheGapsComponent} from "./questions/create-fill-the-gaps-templ
     ButtonCopyComponent,
     ButtonUpComponent,
     ButtonDownComponent,
-    CreateFillTheGapsComponent
+    CreateFillTheGapsComponent,
+    CreateTrueOrFalseTemplateComponent
   ],
   templateUrl: './question-id-template.component.html',
   styleUrl: './question-id-template.component.css'

@@ -35,12 +35,9 @@ export class CreateFillTheGapsComponent {
   finalWords: any[] = [];
 
   prev() {
-    if(this.show > 0) this.show--;
-    if(this.show === 0) {
+    if (this.show > 0) this.show--;
+    if (this.show === 0) {
       this.words = [];
-    }
-    if(this.show === 1) {
-      this.finalWords = [];
     }
   }
 
@@ -48,48 +45,17 @@ export class CreateFillTheGapsComponent {
     if (this.show < 2) this.show++;
     if (this.textarea) {
       let words: string[] = [];
-      this.textareaValue = this.textarea.getTextAreaValue();
+      this.textareaValue = this.textarea?.getTextAreaValue();
       words = this.textareaValue.split(/(\b|[.,!?;:])/).filter(part => part.trim() !== '');
 
       words.forEach((word: string, index: number) => {
         this.createWord(word, index);
       });
     }
-
-    if(this.show === 2) {
-      let part: string = ''
-      this.words.forEach((word: { index: number, word: string, gaps: number[], whole: boolean }) => {
-        console.log(word)
-        if(word.gaps.length === 0 && !word.whole){
-          part = part + word.word + ' '
-        }
-        if(word.gaps.length !== 0 || word.whole){
-          this.finalWords.push(part)
-          part = ''
-          let gapWord: {} = {}
-            if(word.whole){
-              console.log('whole')
-              gapWord = {
-                word: word.word,
-                gaps: 'whole'
-              }
-            }
-            if (word.gaps.length !== 0) {
-              console.log('gaps')
-              gapWord = {
-                word: word.word,
-                gaps: word.gaps
-              }
-            }
-            this.finalWords.push(gapWord)
-        }
-      });
-      this.finalWords.push(part)
-      console.log(this.finalWords)
-    }
+    console.log(this.finalWords)
   }
 
-  createWord(word: string ,index: number) {
+  createWord(word: string, index: number) {
     this.words.push({
       index: index,
       word: word,
@@ -98,15 +64,46 @@ export class CreateFillTheGapsComponent {
     });
   }
 
-  displayWord(word: any, gaps: any){
+  displayWord(word: any, gaps: any) {
 
   }
 
-  updateWord(updatedWord: {index: string, word: string, gaps: number[], whole: boolean}) {
+  createFinalWords() {
+    this.finalWords = [];
+    let part: string = ''
+    this.words.forEach((word: { index: number, word: string, gaps: number[], whole: boolean }) => {
+      if (word.gaps.length === 0 && !word.whole) {
+        part = part + word.word + ' '
+      }
+      if (word.gaps.length !== 0 || word.whole) {
+        this.finalWords.push(part)
+        part = ''
+        let gapWord: {} = {}
+        if (word.whole) {
+          console.log('whole')
+          gapWord = {
+            word: word.word,
+            gaps: 'whole'
+          }
+        }
+        if (word.gaps.length !== 0) {
+          console.log('gaps')
+          gapWord = {
+            word: word.word,
+            gaps: word.gaps
+          }
+        }
+        this.finalWords.push(gapWord)
+      }
+    });
+    this.finalWords.push(part)
+  }
+
+  updateWord(updatedWord: { index: string, word: string, gaps: number[], whole: boolean }) {
     const wordIndex = this.words.findIndex(word => word.index === updatedWord.index);
     if (wordIndex !== -1) {
       this.words[wordIndex] = updatedWord;
     }
-    console.log(this.words);
+    this.createFinalWords();
   }
 }
