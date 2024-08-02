@@ -38,7 +38,7 @@ import {
 })
 export class QuestionIdTemplateComponent {
   showUpload = false;
-  questionType: string = 'fill-the-gaps';
+  questionType: string = 'true-or-false';
 
   showUploadFile() {
     this.showUpload = !this.showUpload;
