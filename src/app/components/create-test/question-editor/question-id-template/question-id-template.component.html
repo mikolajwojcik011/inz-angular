@@ -1,0 +1,50 @@
+<article class="w-full">
+  <div class="w-full flex bg-gray-50 ring-gray-300 ring-1 ring-inset items-center justify-between rounded-t-lg py-1 px-6">
+    <div class="flex gap-4">
+      <div class="flex gap-2 items-center ">
+        <i class="bi bi-patch-question-fill text-gray-700"></i>
+        <h3 class="font-bold tracking-wide text-gray-700 align-middle h-full">Question 1</h3>
+      </div>
+      <div class="flex gap-2">
+      <app-select-template [options]="['complex-true-or-false', 'match']" class="relative w-44">Question Type</app-select-template>
+      <app-select-template [options]="['roman', 'number']" class="relative w-24">Index Style</app-select-template>
+      </div>
+    </div>
+    <div class="flex text-gray-600 items-center">
+      <div class="flex gap-4 border-r border-gray-300 mr-4 pr-4">
+        <app-button-down class="w-10 h-10"></app-button-down>
+        <app-button-up class="w-10 h-10"></app-button-up>
+      </div>
+      <div class="flex gap-4">
+        <app-button-copy class="w-10 h-10"></app-button-copy>
+        <app-button-remove class="w-10 h-10"></app-button-remove>
+      </div>
+    </div>
+  </div>
+  <div class="w-full border-l border-r border-b border-gray-300 p-6 rounded-b-lg">
+    <div class="gap-6 flex-col flex border-b border-gray-300">
+      <app-input-template-text>Question</app-input-template-text>
+      <app-text-area-template>Description<i class="text-gray-500 font-medium">&#160;(optional)</i></app-text-area-template>
+      <div>
+        <div class="flex gap-1 mb-4">
+          <input id="opens-on" name="opens-on" type="checkbox" class="cursor-pointer w-6 accent-sky-500">
+          <label for="opens-on" class="text-xs cursor-pointer text-gray-900 font-semibold tracking-wide hover:text-sky-500" (click)="showUploadFile()">Add image, video or sound</label>
+        </div>
+        @if (showUpload){
+          <app-input-template-file></app-input-template-file>
+        }
+      </div>
+    </div>
+    <div class="mt-6 w-full ">
+      @if (questionType === 'multiple-choice') {
+        <app-create-multiple-choice-template class="flex flex-col gap-2 "></app-create-multiple-choice-template>
+      }
+      @if (questionType === 'fill-the-gaps'){
+        <app-create-fill-the-gaps-template></app-create-fill-the-gaps-template>
+      }
+      @if (questionType === 'true-or-false'){
+        <app-create-true-or-false-template class="flex w-full justify-center gap-8"></app-create-true-or-false-template>
+      }
+    </div>
+  </div>
+</article>
