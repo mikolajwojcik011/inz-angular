@@ -4,8 +4,8 @@ import {Component, Input} from '@angular/core';
   selector: 'oce-card',
   standalone: true,
   imports: [],
-  templateUrl: './oce-card.component.html',
-  styleUrl: './oce-card.component.css'
+  templateUrl: './card.component.html',
+  styleUrl: './card.component.css'
 })
-export class OceCardComponent {
+export class CardComponent {
 }

@@ -7,10 +7,10 @@ import {ProgressionComponent} from "../../../create-test/top-bar/progression/pro
     imports: [
         ProgressionComponent
     ],
-  templateUrl: './oce-card-header-guide.component.html',
-  styleUrl: './oce-card-header-guide.component.css'
+  templateUrl: './card-header-guide.component.html',
+  styleUrl: './card-header-guide.component.css'
 })
-export class OceCardHeaderGuideComponent {
+export class CardHeaderGuideComponent {
   @Input() done: number = 0;
   @Input() total: number = 0;
   @Input() showText: boolean = true;

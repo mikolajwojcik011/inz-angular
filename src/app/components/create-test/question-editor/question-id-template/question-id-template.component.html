@@ -2,10 +2,14 @@
   <oce-card-header-complex size="md"></oce-card-header-complex>
   <oce-card-content size="md">
     <div class="gap-6 flex-col flex">
-      <app-input-template-text>Question</app-input-template-text>
-      <app-text-area-template>
-        Description<i class="text-gray-500 font-medium">&#160;(optional)</i>
-      </app-text-area-template>
+      <oce-form-field>
+        <oce-label>Question</oce-label>
+        <input type="text" class="h-10" input placeholder="Type here..">
+      </oce-form-field>
+      <oce-form-field>
+        <oce-label>Description<i class="text-gray-500 font-medium">&#160;(optional)</i></oce-label>
+        <textarea input class="h-20"></textarea>
+      </oce-form-field>
       <div>
         <div class="flex gap-1 mb-2">
           <input id="opens-on" name="opens-on" type="checkbox" class="cursor-pointer w-6 accent-sky-500">
@@ -17,17 +21,17 @@
           <app-input-template-file></app-input-template-file>
         }
       </div>
-        @if (questionType === 'multiple-choice') {
-          <app-create-multiple-choice-template class="flex flex-col gap-2 "></app-create-multiple-choice-template>
-        }
-        @if (questionType === 'fill-the-gaps') {
-          <app-create-fill-the-gaps-template class="bg-gray-50"></app-create-fill-the-gaps-template>
-        }
-        @if (questionType === 'true-or-false') {
-          <app-create-true-or-false-template
-            class="flex w-full justify-center gap-8">
-          </app-create-true-or-false-template>
-        }
+      @if (questionType === 'multiple-choice') {
+        <app-create-multiple-choice-template class="flex flex-col gap-2 "></app-create-multiple-choice-template>
+      }
+      @if (questionType === 'fill-the-gaps') {
+        <app-create-fill-the-gaps-template class="bg-gray-50"></app-create-fill-the-gaps-template>
+      }
+      @if (questionType === 'true-or-false') {
+        <app-create-true-or-false-template
+          class="flex w-full justify-center gap-8">
+        </app-create-true-or-false-template>
+      }
     </div>
   </oce-card-content>
 </oce-card>

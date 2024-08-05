@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OceCardComponent } from './oce-card.component';
+import { LabelComponent } from './label.component';
 
-describe('OceCardComponent', () => {
-  let component: OceCardComponent;
-  let fixture: ComponentFixture<OceCardComponent>;
+describe('LabelComponent', () => {
+  let component: LabelComponent;
+  let fixture: ComponentFixture<LabelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OceCardComponent]
+      imports: [LabelComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OceCardComponent);
+    fixture = TestBed.createComponent(LabelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

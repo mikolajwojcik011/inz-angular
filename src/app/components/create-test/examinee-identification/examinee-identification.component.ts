@@ -9,6 +9,9 @@ import {
 import {InputTemplateTileComponent} from "../../shared/inputs/input-template-tile/input-template-tile.component";
 import {InputTemplateTextComponent} from "../../shared/inputs/input-template-text/input-template-text.component";
 import {ButtonPlusComponent} from "../../shared/buttons/button-plus/button-plus.component";
+import {FocusActiveDirective} from "../../../directives/form-field-input.directive";
+import {FormFieldComponent} from "../../shared/form-fields/form-field/form-field.component";
+import {LabelComponent} from "../../shared/form-fields/label/label.component";
 
 @Component({
   selector: 'app-examinee-identification',
@@ -21,7 +24,10 @@ import {ButtonPlusComponent} from "../../shared/buttons/button-plus/button-plus.
     InputTemplateCheckboxComponent,
     InputTemplateTileComponent,
     InputTemplateTextComponent,
-    ButtonPlusComponent
+    ButtonPlusComponent,
+    FocusActiveDirective,
+    FormFieldComponent,
+    LabelComponent
   ],
   templateUrl: './examinee-identification.component.html',
   styleUrl: './examinee-identification.component.css'

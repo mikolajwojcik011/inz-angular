@@ -17,9 +17,9 @@ import {NgClass} from "@angular/common";
     SelectTemplateComponent,
     NgClass
   ],
-  templateUrl: './oce-card-header-complex.component.html',
-  styleUrl: './oce-card-header-complex.component.css'
+  templateUrl: './card-header-complex.component.html',
+  styleUrl: './card-header-complex.component.css'
 })
-export class OceCardHeaderComplexComponent {
+export class CardHeaderComplexComponent {
   @Input() size: string = 'lg'
 }

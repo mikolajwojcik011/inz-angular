@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OceCardContentComponent } from './oce-card-content.component';
+import { FormFieldComponent } from './form-field.component';
 
-describe('OceCardContentComponent', () => {
-  let component: OceCardContentComponent;
-  let fixture: ComponentFixture<OceCardContentComponent>;
+describe('OceFormFieldComponent', () => {
+  let component: FormFieldComponent;
+  let fixture: ComponentFixture<FormFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OceCardContentComponent]
+      imports: [FormFieldComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OceCardContentComponent);
+    fixture = TestBed.createComponent(FormFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

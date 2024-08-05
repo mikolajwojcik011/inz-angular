@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OceCardHeaderComplexComponent } from './oce-card-header-complex.component';
+import { CardHeaderComplexComponent } from './card-header-complex.component';
 
 describe('OceCardHeaderComplexComponent', () => {
-  let component: OceCardHeaderComplexComponent;
-  let fixture: ComponentFixture<OceCardHeaderComplexComponent>;
+  let component: CardHeaderComplexComponent;
+  let fixture: ComponentFixture<CardHeaderComplexComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OceCardHeaderComplexComponent]
+      imports: [CardHeaderComplexComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OceCardHeaderComplexComponent);
+    fixture = TestBed.createComponent(CardHeaderComplexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

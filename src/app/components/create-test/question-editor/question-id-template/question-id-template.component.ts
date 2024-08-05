@@ -16,10 +16,13 @@ import {
   CreateTrueOrFalseTemplateComponent
 } from "./questions/create-true-or-false-template/create-true-or-false-template.component";
 import {
-  OceCardHeaderComplexComponent
-} from "../../../shared/cards/oce-card-header-complex/oce-card-header-complex.component";
-import {OceCardComponent} from "../../../shared/cards/oce-card/oce-card.component";
-import {OceCardContentComponent} from "../../../shared/cards/oce-card-content/oce-card-content.component";
+  CardHeaderComplexComponent
+} from "../../../shared/cards/card-header-complex/card-header-complex.component";
+import {CardComponent} from "../../../shared/cards/card/card.component";
+import {CardContentComponent} from "../../../shared/cards/card-content/card-content.component";
+import {FormFieldComponent} from "../../../shared/form-fields/form-field/form-field.component";
+import {FocusActiveDirective} from "../../../../directives/form-field-input.directive";
+import {LabelComponent} from "../../../shared/form-fields/label/label.component";
 
 @Component({
   selector: 'app-question-id-template',
@@ -37,9 +40,12 @@ import {OceCardContentComponent} from "../../../shared/cards/oce-card-content/oc
     ButtonDownComponent,
     CreateFillTheGapsComponent,
     CreateTrueOrFalseTemplateComponent,
-    OceCardHeaderComplexComponent,
-    OceCardComponent,
-    OceCardContentComponent
+    CardHeaderComplexComponent,
+    CardComponent,
+    CardContentComponent,
+    FormFieldComponent,
+    FocusActiveDirective,
+    LabelComponent
   ],
   templateUrl: './question-id-template.component.html',
   styleUrl: './question-id-template.component.css'

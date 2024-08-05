@@ -1,13 +1,24 @@
 <oce-card>
   <oce-card-content>
-    <div class="w-3/4 flex flex-col gap-6 text-gray-700">
+    <div class="w-full flex flex-col gap-6 text-gray-700">
       <div class="flex gap-4 w-full">
-        <app-input-template-text class="w-full">Public Key</app-input-template-text>
-        <app-input-template-text class="w-full">Private Key</app-input-template-text>
+        <oce-form-field class="w-full">
+          <oce-label>Public Key</oce-label>
+          <input type="text" class="h-10" placeholder="Type here..." input>
+        </oce-form-field>
+        <oce-form-field class="w-full">
+          <oce-label>Public Key</oce-label>
+          <input type="text" class="h-10" placeholder="Type here..." input>
+        </oce-form-field>
       </div>
-      <app-input-template-text class="w-full">Title</app-input-template-text>
-      <app-text-area-template class="w-full flex flex-col h-20">Description <i class="text-gray-500 font-medium">&#160;(optional)</i>
-      </app-text-area-template>
+      <oce-form-field class="w-full">
+        <oce-label>Title</oce-label>
+        <input type="text" class="h-10" placeholder="Type here..." input>
+      </oce-form-field>
+      <oce-form-field class="w-full">
+        <oce-label>Description <i class="text-gray-500 font-medium">&#160;(optional)</i></oce-label>
+        <textarea input class="h-20"></textarea>
+      </oce-form-field>
       <div class="flex gap-8 w-full">
         <div class="py-4">
           <app-input-template-time>Duration <i class="text-gray-500 font-medium">&#160;(optional)</i>

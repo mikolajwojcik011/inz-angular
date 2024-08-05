@@ -7,9 +7,9 @@ import {NgClass} from "@angular/common";
   imports: [
     NgClass
   ],
-  templateUrl: './oce-card-content.component.html',
-  styleUrl: './oce-card-content.component.css'
+  templateUrl: './card-content.component.html',
+  styleUrl: './card-content.component.css'
 })
-export class OceCardContentComponent {
+export class CardContentComponent {
   @Input() size: string = 'lg'
 }

@@ -6,7 +6,9 @@
     "Inz-na-angular": {
       "projectType": "application",
       "schematics": {
-        "prefix": "oce"
+        "@schematics/angular:component": {
+          "prefix": "oce"
+        }
       },
       "root": "",
       "sourceRoot": "src",

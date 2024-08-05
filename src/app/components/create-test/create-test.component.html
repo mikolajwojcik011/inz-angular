@@ -1,15 +1,32 @@
 <ng-container>
   <div class="flex w-full flex-col items-center">
-    <app-top-bar (showChange)="handleShowChange($event)" [compact]="compact"
-                 class="fixed top-0 w-full z-50"></app-top-bar>
+    <app-top-bar
+      (showChange)="handleShowChange($event)"
+      [compact]="compact"
+      class="fixed top-0 w-full z-50">
+    </app-top-bar>
     <div
       class="flex w-[1200px] pb-6 mr-[300px]"
       [ngClass]="{'pt-[184px]': !compact, 'pt-[88px]': compact}"
     >
-      <app-conspect [showConspect]="showConspect"
-                    class="w-[300px] gap-0.5 max-h-[600px] flex flex-col pr-4 fixed"></app-conspect>
+      <app-conspect
+        [showConspect]="showConspect"
+        class="w-[300px] gap-0.5 max-h-[600px] flex flex-col pr-4 fixed">
+      </app-conspect>
       <oce-card class="ml-[300px] w-full">
-        <oce-card-header-simple [compact]="compact" [description]="description">TEST</oce-card-header-simple>
+        <oce-card-header-simple
+          [compact]="compact"
+          [description]="description">
+            @if (show === 'bp'){
+              basic properties
+            }
+            @if (show === 'ei'){
+              examinee identification
+            }
+            @if (show === 'qe'){
+              question editor
+            }
+        </oce-card-header-simple>
         <oce-card-content>
           @if (show === 'bp') {
             <app-basic-properties></app-basic-properties>
@@ -18,7 +35,7 @@
             <app-examinee-identification class="w-3/4 flex flex-col gap-4 "></app-examinee-identification>
           }
           @if (show === 'qe') {
-            <app-question-id-template class="block mb-6"></app-question-id-template>
+            <app-question-id-template class="block mb-12"></app-question-id-template>
             <app-question-id-template class="block mb-6"></app-question-id-template>
             <app-question-id-template class="block mb-6"></app-question-id-template>
           }

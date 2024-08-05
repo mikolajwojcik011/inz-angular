@@ -3,8 +3,11 @@ import {InputTemplateTextComponent} from "../../shared/inputs/input-template-tex
 import {TextAreaTemplateComponent} from "../../shared/inputs/text-area-template/text-area-template.component";
 import {InputTemplateTimeComponent} from "../../shared/inputs/input-template-time/input-template-time.component";
 import {InputTemplateDateComponent} from "../../shared/inputs/input-template-date/input-template-date.component";
-import {OceCardComponent} from "../../shared/cards/oce-card/oce-card.component";
-import {OceCardContentComponent} from "../../shared/cards/oce-card-content/oce-card-content.component";
+import {CardComponent} from "../../shared/cards/card/card.component";
+import {CardContentComponent} from "../../shared/cards/card-content/card-content.component";
+import {FormFieldComponent} from "../../shared/form-fields/form-field/form-field.component";
+import {LabelComponent} from "../../shared/form-fields/label/label.component";
+import {FocusActiveDirective} from "../../../directives/form-field-input.directive";
 
 @Component({
   selector: 'app-basic-properties',
@@ -14,8 +17,12 @@ import {OceCardContentComponent} from "../../shared/cards/oce-card-content/oce-c
     TextAreaTemplateComponent,
     InputTemplateTimeComponent,
     InputTemplateDateComponent,
-    OceCardComponent,
-    OceCardContentComponent
+    CardComponent,
+    CardContentComponent,
+    FormFieldComponent,
+    LabelComponent,
+    FocusActiveDirective,
+
   ],
   templateUrl: './basic-properties.component.html',
   styleUrl: './basic-properties.component.css'
