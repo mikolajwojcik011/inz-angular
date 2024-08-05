@@ -1,59 +1,66 @@
-<div class="border-l border-r border-t border-gray-300 px-4 py-2 text-sm rounded-t-md text-gray-800 flex items-center justify-between">
-  @if (show === 0){
-    <p class="pr-10"><b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps. <b class="font-semibold">Make sure that the paragraph is correct, if you try to edit it later, You will need to create gaps again.</b></p>
-  }
-  @if (show === 1){
-    <p class="pr-10"><b class="font-semibold"> 2.</b> <b class="font-semibold">Press a word</b> to reveal the gap creation interface. <b class="font-semibold">Press the letters</b> to mark them as blank  or <b class="font-semibold"> press the square button</b> to mark whole word as blank.</p>
-  }
-  @if (show === 2){
-    <p class="pr-10"><b class="font-semibold"> 3.</b> Here you can see how te paragraph will look like with blanks.<br><b class="text-white">a</b></p>
-  }
-  <app-progression [done]="1" [total]="3" [showText]="false"></app-progression>
-</div>
-<div class="border rounded-b-md px-4 pt-3 pb-4 border-gray-300">
-  <div class="flex justify-end gap-2 font-semibold">
-    <button
-      (click)="prev()"
-      class="text-xs h-full flex items-center gap-2 ring-inset ring-1 ring-gray-300 px-2 hover:ring-2 hover:ring-sky-500 hover:bg-gray-50 rounded-md"
-    >
-      <i class="bi bi-box-arrow-left text-lg"></i>
-      prev
-    </button>
-    <button
-      (click)="next()"
-      class="text-xs h-full flex items-center gap-2 ring-inset ring-1 ring-gray-300 px-2 hover:ring-2 hover:ring-sky-500 hover:bg-gray-50 rounded-md"
-    >
-      next
-      <i class="bi bi-box-arrow-right text-lg"></i>
-    </button>
-  </div>
-  @if (show == 0){
-    <app-text-area-template [value]="textareaValue" #textarea class="flex flex-col h-40">Paragraph</app-text-area-template>
-  }
-
-  @if(show === 1){
-    <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">Edit paragraph</h5>
-    <p class=" w-full min-h-10 relative pl-1 py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md flex flex-wrap z-10 text-sm">
-    @for (word of words; track i; let i = $index){
-      <app-word (wordUpdated)="updateWord($event)" class="relative" [word]="word"></app-word>
+<oce-card>
+  <oce-card-header-guide [done]="1" [total]="3" [showText]="false">
+    @if (show === 0) {
+      <b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps. <b
+        class="font-semibold">Make sure that the paragraph is correct, if you try to edit it later, You will need to
+        create gaps again.</b>
     }
-    </p>
-  }
-  @if(show === 2){
-    <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">preview</h5>
-    <p class=" w-full min-h-10 relative py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md z-10 text-sm">
-      @for (part of finalWords; track $index){
-        @if (part.gaps === 'whole'){
-          <span>
-            <input type="text" class="bg-gray-100 ring-1 ring-gray-300 ring-inset rounded-md px-1">
-          </span>
-        }
-        @if(!part.word){
-          <span>
-            {{part}}
-          </span>
-        }
+    @if (show === 1) {
+      <b class="font-semibold"> 2.</b> <b class="font-semibold">Press a word</b> to reveal the gap
+        creation interface. <b class="font-semibold">Press the letters</b> to mark them as blank or <b
+          class="font-semibold"> press the square button</b> to mark whole word as blank.
+    }
+    @if (show === 2) {
+      <b class="font-semibold"> 3.</b> Here you can see how te paragraph will look like with
+        blanks.<br><b class="text-white">a</b>
+    }
+  </oce-card-header-guide>
+  <oce-card-content size="md">
+      <div class="flex justify-end gap-2 font-semibold">
+        <button
+          (click)="prev()"
+          class="text-xs h-full flex items-center gap-2 ring-inset ring-1 ring-gray-300 px-2 hover:ring-2 hover:ring-sky-500 hover:bg-gray-50 rounded-md"
+        >
+          <i class="bi bi-box-arrow-left text-lg"></i>
+          prev
+        </button>
+        <button
+          (click)="next()"
+          class="text-xs h-full flex items-center gap-2 ring-inset ring-1 ring-gray-300 px-2 hover:ring-2 hover:ring-sky-500 hover:bg-gray-50 rounded-md"
+        >
+          next
+          <i class="bi bi-box-arrow-right text-lg"></i>
+        </button>
+      </div>
+      @if (show == 0) {
+        <app-text-area-template [value]="textareaValue" #textarea class="flex flex-col h-40">Paragraph
+        </app-text-area-template>
       }
-    </p>
-  }
-</div>
+      @if (show === 1) {
+        <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">Edit paragraph</h5>
+        <p
+          class=" w-full min-h-10 relative pl-1 py-2 pr-1 bg-white ring-1 ring-gray-300 ring-inset rounded-md flex flex-wrap z-10 text-sm">
+          @for (word of words; track i; let i = $index) {
+            <app-word (wordUpdated)="updateWord($event)" class="relative" [word]="word"></app-word>
+          }
+        </p>
+      }
+      @if (show === 2) {
+        <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">preview</h5>
+        <p class=" w-full min-h-10 relative py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md z-10 text-sm bg-white">
+          @for (part of finalWords; track $index) {
+            @if (part.gaps === 'whole') {
+              <span>
+                <input type="text" class="bg-gray-100 ring-1 ring-gray-300 ring-inset rounded-md px-1">
+              </span>
+            }
+            @if (!part.word) {
+              <span>
+                {{ part }}
+              </span>
+            }
+          }
+        </p>
+      }
+  </oce-card-content>
+</oce-card>

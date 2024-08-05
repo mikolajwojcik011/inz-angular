@@ -15,6 +15,11 @@ import {CreateFillTheGapsComponent} from "./questions/create-fill-the-gaps-templ
 import {
   CreateTrueOrFalseTemplateComponent
 } from "./questions/create-true-or-false-template/create-true-or-false-template.component";
+import {
+  OceCardHeaderComplexComponent
+} from "../../../shared/cards/oce-card-header-complex/oce-card-header-complex.component";
+import {OceCardComponent} from "../../../shared/cards/oce-card/oce-card.component";
+import {OceCardContentComponent} from "../../../shared/cards/oce-card-content/oce-card-content.component";
 
 @Component({
   selector: 'app-question-id-template',
@@ -31,14 +36,17 @@ import {
     ButtonUpComponent,
     ButtonDownComponent,
     CreateFillTheGapsComponent,
-    CreateTrueOrFalseTemplateComponent
+    CreateTrueOrFalseTemplateComponent,
+    OceCardHeaderComplexComponent,
+    OceCardComponent,
+    OceCardContentComponent
   ],
   templateUrl: './question-id-template.component.html',
   styleUrl: './question-id-template.component.css'
 })
 export class QuestionIdTemplateComponent {
-  showUpload = false;
-  questionType: string = 'true-or-false';
+  showUpload: boolean = false;
+  questionType: string = 'fill-the-gaps';
 
   showUploadFile() {
     this.showUpload = !this.showUpload;

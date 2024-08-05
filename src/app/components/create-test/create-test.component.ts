@@ -13,6 +13,10 @@ import {BasicPropertiesComponent} from "./basic-properties/basic-properties.comp
 import {ExamineeIdentificationComponent} from "./examinee-identification/examinee-identification.component";
 import {ButtonAddQuestionComponent} from "../shared/buttons/button-add-question/button-add-question.component";
 import {NgClass} from "@angular/common";
+import {OceCardComponent} from "../shared/cards/oce-card/oce-card.component";
+import {OceCardContentComponent} from "../shared/cards/oce-card-content/oce-card-content.component";
+import {OceCardHeaderSimpleComponent} from "../shared/cards/oce-card-header-simple/oce-card-header-simple.component";
+import {QuestionIdTemplateComponent} from "./question-editor/question-id-template/question-id-template.component";
 
 @Component({
   selector: 'app-create-test',
@@ -24,7 +28,11 @@ import {NgClass} from "@angular/common";
     BasicPropertiesComponent,
     ExamineeIdentificationComponent,
     ButtonAddQuestionComponent,
-    NgClass
+    NgClass,
+    OceCardComponent,
+    OceCardContentComponent,
+    OceCardHeaderSimpleComponent,
+    QuestionIdTemplateComponent
   ],
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'

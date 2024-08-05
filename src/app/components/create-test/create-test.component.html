@@ -1,32 +1,29 @@
 <ng-container>
   <div class="flex w-full flex-col items-center">
-    <app-top-bar (showChange)="handleShowChange($event)" [compact]="compact" class="fixed top-0 w-full z-50"></app-top-bar>
-      <div
-        class="flex w-[1200px] pb-6 mr-[300px]"
-        [ngClass]="{'pt-[184px]': !compact, 'pt-[88px]': compact}"
-      >
-        <app-conspect [showConspect]="showConspect" class="w-[300px] gap-0.5 max-h-[600px] flex flex-col pr-4 fixed"></app-conspect>
-        <section class="w-full relative ml-[300px] ring-gray-300 ring-1 rounded-lg shadow-sm">
-          <div class=" bg-white border-b border-gray-300 px-6 py-3 rounded-t-lg w-full sticky top-0">
-            <h2 class="text-2xl font-bold tracking-wide mb-1 text-gray-700">{{header}}</h2>
-            @if (!compact){
-              <p class="text-sm font-medium text-gray-500">{{description}}</p>
-            }
-          </div>
-          <div
-            class="flex justify-center px-6 pb-6 pt-6 h-full"
-          >
-            @if (show === 'bp'){
-              <app-basic-properties class="w-3/4 flex flex-col gap-6 text-gray-700"></app-basic-properties>
-            }
-            @if (show === 'ei'){
-              <app-examinee-identification class="w-3/4 flex flex-col gap-4 "></app-examinee-identification>
-            }
-            @if (show === 'qe'){
-              <app-question-editor class="w-full flex flex-col gap-6 "></app-question-editor>
-            }
-          </div>
-        </section>
-      </div>
+    <app-top-bar (showChange)="handleShowChange($event)" [compact]="compact"
+                 class="fixed top-0 w-full z-50"></app-top-bar>
+    <div
+      class="flex w-[1200px] pb-6 mr-[300px]"
+      [ngClass]="{'pt-[184px]': !compact, 'pt-[88px]': compact}"
+    >
+      <app-conspect [showConspect]="showConspect"
+                    class="w-[300px] gap-0.5 max-h-[600px] flex flex-col pr-4 fixed"></app-conspect>
+      <oce-card class="ml-[300px] w-full">
+        <oce-card-header-simple [compact]="compact" [description]="description">TEST</oce-card-header-simple>
+        <oce-card-content>
+          @if (show === 'bp') {
+            <app-basic-properties></app-basic-properties>
+          }
+          @if (show === 'ei') {
+            <app-examinee-identification class="w-3/4 flex flex-col gap-4 "></app-examinee-identification>
+          }
+          @if (show === 'qe') {
+            <app-question-id-template class="block mb-6"></app-question-id-template>
+            <app-question-id-template class="block mb-6"></app-question-id-template>
+            <app-question-id-template class="block mb-6"></app-question-id-template>
+          }
+        </oce-card-content>
+      </oce-card>
     </div>
+  </div>
 </ng-container>

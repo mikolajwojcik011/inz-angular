@@ -9,6 +9,14 @@ import {WordComponent} from "./word/word.component";
 import {
   InputTemplateTextComponent
 } from "../../../../../shared/inputs/input-template-text/input-template-text.component";
+import {OceCardComponent} from "../../../../../shared/cards/oce-card/oce-card.component";
+import {
+  OceCardHeaderSimpleComponent
+} from "../../../../../shared/cards/oce-card-header-simple/oce-card-header-simple.component";
+import {
+  OceCardHeaderGuideComponent
+} from "../../../../../shared/cards/oce-card-header-guide/oce-card-header-guide.component";
+import {OceCardContentComponent} from "../../../../../shared/cards/oce-card-content/oce-card-content.component";
 
 @Component({
   selector: 'app-create-fill-the-gaps-template',
@@ -22,7 +30,11 @@ import {
     NgForOf,
     NgClass,
     WordComponent,
-    InputTemplateTextComponent
+    InputTemplateTextComponent,
+    OceCardComponent,
+    OceCardHeaderSimpleComponent,
+    OceCardHeaderGuideComponent,
+    OceCardContentComponent
   ],
   templateUrl: './create-fill-the-gaps-template.component.html',
   styleUrl: './create-fill-the-gaps.component.css'
