@@ -23,6 +23,7 @@ import {CardContentComponent} from "../../../shared/cards/card-content/card-cont
 import {FormFieldComponent} from "../../../shared/form-fields/form-field/form-field.component";
 import {FocusActiveDirective} from "../../../../directives/form-field-input.directive";
 import {LabelComponent} from "../../../shared/form-fields/label/label.component";
+import {CheckboxSimpleComponent} from "../../../shared/form-fields/checkbox-simple/checkbox-simple.component";
 
 @Component({
   selector: 'app-question-id-template',
@@ -45,14 +46,15 @@ import {LabelComponent} from "../../../shared/form-fields/label/label.component"
     CardContentComponent,
     FormFieldComponent,
     FocusActiveDirective,
-    LabelComponent
+    LabelComponent,
+    CheckboxSimpleComponent
   ],
   templateUrl: './question-id-template.component.html',
   styleUrl: './question-id-template.component.css'
 })
 export class QuestionIdTemplateComponent {
   showUpload: boolean = false;
-  questionType: string = 'fill-the-gaps';
+  questionType: string = 'multiple-choice';
 
   showUploadFile() {
     this.showUpload = !this.showUpload;

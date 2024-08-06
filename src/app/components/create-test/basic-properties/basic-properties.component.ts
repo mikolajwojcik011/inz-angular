@@ -8,6 +8,7 @@ import {CardContentComponent} from "../../shared/cards/card-content/card-content
 import {FormFieldComponent} from "../../shared/form-fields/form-field/form-field.component";
 import {LabelComponent} from "../../shared/form-fields/label/label.component";
 import {FocusActiveDirective} from "../../../directives/form-field-input.directive";
+import {CheckboxSimpleComponent} from "../../shared/form-fields/checkbox-simple/checkbox-simple.component";
 
 @Component({
   selector: 'app-basic-properties',
@@ -22,6 +23,7 @@ import {FocusActiveDirective} from "../../../directives/form-field-input.directi
     FormFieldComponent,
     LabelComponent,
     FocusActiveDirective,
+    CheckboxSimpleComponent,
 
   ],
   templateUrl: './basic-properties.component.html',

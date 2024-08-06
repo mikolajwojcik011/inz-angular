@@ -11,12 +11,7 @@
         <textarea input class="h-20"></textarea>
       </oce-form-field>
       <div>
-        <div class="flex gap-1 mb-2">
-          <input id="opens-on" name="opens-on" type="checkbox" class="cursor-pointer w-6 accent-sky-500">
-          <label for="opens-on"
-                 class="text-xs cursor-pointer text-gray-900 font-semibold tracking-wide hover:text-sky-500"
-                 (click)="showUploadFile()">Add image, video or sound</label>
-        </div>
+        <oce-checkbox-simple (click)="showUploadFile()" class="mb-2 block">Add image, video or sound</oce-checkbox-simple>
         @if (showUpload) {
           <app-input-template-file></app-input-template-file>
         }
@@ -25,12 +20,12 @@
         <app-create-multiple-choice-template class="flex flex-col gap-2 "></app-create-multiple-choice-template>
       }
       @if (questionType === 'fill-the-gaps') {
-        <app-create-fill-the-gaps-template class="bg-gray-50"></app-create-fill-the-gaps-template>
+        <app-create-fill-the-gaps-template class="bg-gray-50">
+          <input type="text" hidden="hidden">
+        </app-create-fill-the-gaps-template>
       }
       @if (questionType === 'true-or-false') {
-        <app-create-true-or-false-template
-          class="flex w-full justify-center gap-8">
-        </app-create-true-or-false-template>
+        <app-create-true-or-false-template class="flex w-full justify-center gap-8"></app-create-true-or-false-template>
       }
     </div>
   </oce-card-content>

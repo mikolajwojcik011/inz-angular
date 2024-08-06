@@ -12,4 +12,5 @@ import {NgClass} from "@angular/common";
 })
 export class CardContentComponent {
   @Input() size: string = 'lg'
+  @Input() gap: string = 'none'
 }
