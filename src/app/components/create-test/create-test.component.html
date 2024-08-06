@@ -17,6 +17,7 @@
         <oce-card-header-simple
           [compact]="compact"
           [description]="description">
+          <button (click)="logForm()">Log form</button>
             @if (show === 'bp'){
               basic properties
             }
@@ -29,7 +30,7 @@
         </oce-card-header-simple>
         <oce-card-content>
           @if (show === 'bp') {
-            <app-basic-properties></app-basic-properties>
+            <app-basic-properties [iFormGroup]="createTestForm.controls.basicProperties"></app-basic-properties>
           }
           @if (show === 'ei') {
             <app-examinee-identification class="w-3/4 flex flex-col gap-4 "></app-examinee-identification>

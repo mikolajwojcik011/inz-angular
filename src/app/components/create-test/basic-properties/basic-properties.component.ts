@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {AfterViewInit, Component, Input} from '@angular/core';
 import {InputTemplateTextComponent} from "../../shared/inputs/input-template-text/input-template-text.component";
 import {TextAreaTemplateComponent} from "../../shared/inputs/text-area-template/text-area-template.component";
 import {InputTemplateTimeComponent} from "../../shared/inputs/input-template-time/input-template-time.component";
@@ -9,6 +9,7 @@ import {FormFieldComponent} from "../../shared/form-fields/form-field/form-field
 import {LabelComponent} from "../../shared/form-fields/label/label.component";
 import {FocusActiveDirective} from "../../../directives/form-field-input.directive";
 import {CheckboxSimpleComponent} from "../../shared/form-fields/checkbox-simple/checkbox-simple.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-basic-properties',
@@ -24,11 +25,16 @@ import {CheckboxSimpleComponent} from "../../shared/form-fields/checkbox-simple/
     LabelComponent,
     FocusActiveDirective,
     CheckboxSimpleComponent,
+    ReactiveFormsModule,
 
   ],
   templateUrl: './basic-properties.component.html',
   styleUrl: './basic-properties.component.css'
 })
-export class BasicPropertiesComponent {
+export class BasicPropertiesComponent implements AfterViewInit{
+  @Input() iFormGroup: any = null;
 
+  ngAfterViewInit() {
+    console.log(this.iFormGroup)
+  }
 }

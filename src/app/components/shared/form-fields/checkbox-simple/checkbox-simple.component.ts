@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {FocusActiveDirective} from "../../../../directives/form-field-input.directive";
 
 @Component({
@@ -11,5 +11,5 @@ import {FocusActiveDirective} from "../../../../directives/form-field-input.dire
   styleUrl: './checkbox-simple.component.css'
 })
 export class CheckboxSimpleComponent {
-
+  @Input() formControl: any = null;
 }
