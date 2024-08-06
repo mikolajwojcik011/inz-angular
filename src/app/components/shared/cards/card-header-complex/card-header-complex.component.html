@@ -1,0 +1,25 @@
+<div
+  class="w-full flex bg-gray-50 border-b border-gray-300 items-center justify-between rounded-t-lg py-1"
+  [ngClass]="{'px-6': size === 'lg', 'px-4': size === 'md', 'px-2': size === 'sm'}"
+>
+  <div class="flex gap-4">
+    <div class="flex gap-2 items-center ">
+      <i class="bi bi-patch-question-fill text-gray-700"></i>
+      <h3 class="font-bold tracking-wide text-gray-700 align-middle h-full">Question 1</h3>
+    </div>
+    <div class="flex gap-2">
+      <app-select-template [options]="['complex-true-or-false', 'match']" class="relative w-44">Question Type</app-select-template>
+      <app-select-template [options]="['roman', 'number']" class="relative w-24">Index Style</app-select-template>
+    </div>
+  </div>
+  <div class="flex text-gray-600 items-center">
+    <div class="flex gap-4 border-r border-gray-300 mr-4 pr-4">
+      <app-button-down class="w-10 h-10"></app-button-down>
+      <app-button-up class="w-10 h-10"></app-button-up>
+    </div>
+    <div class="flex gap-4">
+      <app-button-copy class="w-10 h-10"></app-button-copy>
+      <app-button-remove class="w-10 h-10"></app-button-remove>
+    </div>
+  </div>
+</div>

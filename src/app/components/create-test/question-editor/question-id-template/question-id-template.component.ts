@@ -15,6 +15,15 @@ import {CreateFillTheGapsComponent} from "./questions/create-fill-the-gaps-templ
 import {
   CreateTrueOrFalseTemplateComponent
 } from "./questions/create-true-or-false-template/create-true-or-false-template.component";
+import {
+  CardHeaderComplexComponent
+} from "../../../shared/cards/card-header-complex/card-header-complex.component";
+import {CardComponent} from "../../../shared/cards/card/card.component";
+import {CardContentComponent} from "../../../shared/cards/card-content/card-content.component";
+import {FormFieldComponent} from "../../../shared/form-fields/form-field/form-field.component";
+import {FocusActiveDirective} from "../../../../directives/form-field-input.directive";
+import {LabelComponent} from "../../../shared/form-fields/label/label.component";
+import {CheckboxSimpleComponent} from "../../../shared/form-fields/checkbox-simple/checkbox-simple.component";
 
 @Component({
   selector: 'app-question-id-template',
@@ -31,14 +40,21 @@ import {
     ButtonUpComponent,
     ButtonDownComponent,
     CreateFillTheGapsComponent,
-    CreateTrueOrFalseTemplateComponent
+    CreateTrueOrFalseTemplateComponent,
+    CardHeaderComplexComponent,
+    CardComponent,
+    CardContentComponent,
+    FormFieldComponent,
+    FocusActiveDirective,
+    LabelComponent,
+    CheckboxSimpleComponent
   ],
   templateUrl: './question-id-template.component.html',
   styleUrl: './question-id-template.component.css'
 })
 export class QuestionIdTemplateComponent {
-  showUpload = false;
-  questionType: string = 'true-or-false';
+  showUpload: boolean = false;
+  questionType: string = 'multiple-choice';
 
   showUploadFile() {
     this.showUpload = !this.showUpload;

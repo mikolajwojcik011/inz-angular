@@ -9,6 +9,14 @@ import {WordComponent} from "./word/word.component";
 import {
   InputTemplateTextComponent
 } from "../../../../../shared/inputs/input-template-text/input-template-text.component";
+import {CardComponent} from "../../../../../shared/cards/card/card.component";
+import {
+  CardHeaderSimpleComponent
+} from "../../../../../shared/cards/card-header-simple/card-header-simple.component";
+import {
+  CardHeaderGuideComponent
+} from "../../../../../shared/cards/card-header-guide/card-header-guide.component";
+import {CardContentComponent} from "../../../../../shared/cards/card-content/card-content.component";
 
 @Component({
   selector: 'app-create-fill-the-gaps-template',
@@ -22,7 +30,11 @@ import {
     NgForOf,
     NgClass,
     WordComponent,
-    InputTemplateTextComponent
+    InputTemplateTextComponent,
+    CardComponent,
+    CardHeaderSimpleComponent,
+    CardHeaderGuideComponent,
+    CardContentComponent
   ],
   templateUrl: './create-fill-the-gaps-template.component.html',
   styleUrl: './create-fill-the-gaps.component.css'
