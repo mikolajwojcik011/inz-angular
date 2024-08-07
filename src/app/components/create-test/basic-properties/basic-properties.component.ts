@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {InputTemplateTextComponent} from "../../shared/inputs/input-template-text/input-template-text.component";
 import {TextAreaTemplateComponent} from "../../shared/inputs/text-area-template/text-area-template.component";
 import {InputTemplateTimeComponent} from "../../shared/inputs/input-template-time/input-template-time.component";
@@ -31,10 +31,11 @@ import {ReactiveFormsModule} from "@angular/forms";
   templateUrl: './basic-properties.component.html',
   styleUrl: './basic-properties.component.css'
 })
-export class BasicPropertiesComponent implements AfterViewInit{
+export class BasicPropertiesComponent implements OnInit{
   @Input() iFormGroup: any = null;
+  group: any = null;
 
-  ngAfterViewInit() {
-    console.log(this.iFormGroup)
+  ngOnInit() {
+    this.group = this.iFormGroup;
   }
 }

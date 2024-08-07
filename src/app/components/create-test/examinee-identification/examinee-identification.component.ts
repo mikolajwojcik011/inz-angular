@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ConspectElementComponent} from "../conspect/conspect-element/conspect-element.component";
 import {ButtonWhiteComponent} from "../../shared/buttons/button-white/button-white.component";
 import {ButtonAddQuestionComponent} from "../../shared/buttons/button-add-question/button-add-question.component";
-import {QuestionIdTemplateComponent} from "../question-editor/question-id-template/question-id-template.component";
+import {QuestionTemplateComponent} from "../question-editor/question-id-template/question-template.component";
 import {
   InputTemplateCheckboxComponent
 } from "../../shared/inputs/input-template-checkbox/input-template-checkbox.component";
@@ -20,7 +20,7 @@ import {LabelComponent} from "../../shared/form-fields/label/label.component";
     ConspectElementComponent,
     ButtonWhiteComponent,
     ButtonAddQuestionComponent,
-    QuestionIdTemplateComponent,
+    QuestionTemplateComponent,
     InputTemplateCheckboxComponent,
     InputTemplateTileComponent,
     InputTemplateTextComponent,

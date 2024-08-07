@@ -1,4 +1,7 @@
 <ng-content></ng-content>
-<div class="tracking-wide flex items-center w-full text-sm text-gray-700 font-semibold bg-gray-50 rounded-md shadow-inner ring-1 ring-gray-300 ring-inset">
+<div
+  class="racking-wide relative flex items-center w-full text-sm text-gray-700 font-semibold bg-gray-50 rounded-md shadow-inner ring-1 ring-gray-300 ring-inset"
+  [ngClass]="{'after:w-full after:h-full after:bg-yellow-50 after:absolute after:rounded-md after:blur-sm pointer-events-none after:pointer-events-none': blur}"
+>
   <ng-content select="[input]"></ng-content>
 </div>

@@ -10,8 +10,12 @@
       [ngClass]="{'pt-[184px]': !compact, 'pt-[88px]': compact}"
     >
       <app-conspect
-        [showConspect]="showConspect"
+        (addQuestion)="handleAddQuestion()"
+        [showConspect]="(createTestForm.controls.questions.controls | keyvalue).length > 0"
         class="w-[300px] gap-0.5 max-h-[600px] flex flex-col pr-4 fixed">
+        @for (question of createTestForm.controls.questions.controls | keyvalue; track $index){
+          <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+        }
       </app-conspect>
       <oce-card class="ml-[300px] w-full">
         <oce-card-header-simple
@@ -36,9 +40,16 @@
             <app-examinee-identification class="w-3/4 flex flex-col gap-4 "></app-examinee-identification>
           }
           @if (show === 'qe') {
-            <app-question-id-template class="block mb-12"></app-question-id-template>
-            <app-question-id-template class="block mb-6"></app-question-id-template>
-            <app-question-id-template class="block mb-6"></app-question-id-template>
+            @for (question of createTestForm.controls.questions.controls | keyvalue; track question.value.controls.uuid.value){
+              <oce-question-template
+                [iFormGroup]="question.value"
+                [uuid]="question.value.controls.uuid.value"
+              >
+              </oce-question-template>
+            }
+            @if((createTestForm.controls.questions.controls | keyvalue).length <= 0){
+              <p class="text-gray-500 tracking-wide text-sm">Once you start adding questions, they will be visible here.</p>
+            }
           }
         </oce-card-content>
       </oce-card>

@@ -12,13 +12,19 @@ import {QuestionEditorComponent} from "./question-editor/question-editor.compone
 import {BasicPropertiesComponent} from "./basic-properties/basic-properties.component";
 import {ExamineeIdentificationComponent} from "./examinee-identification/examinee-identification.component";
 import {ButtonAddQuestionComponent} from "../shared/buttons/button-add-question/button-add-question.component";
-import {NgClass, NgIf} from "@angular/common";
-import {QuestionIdTemplateComponent} from "./question-editor/question-id-template/question-id-template.component";
+import {JsonPipe, KeyValuePipe, NgClass, NgIf} from "@angular/common";
+import {QuestionTemplateComponent} from "./question-editor/question-id-template/question-template.component";
 import {CardComponent} from "../shared/cards/card/card.component";
 import {CardContentComponent} from "../shared/cards/card-content/card-content.component";
 import {CardHeaderSimpleComponent} from "../shared/cards/card-header-simple/card-header-simple.component";
-import {CreateTestForm, CreateTestFormControlService} from "../../services/create-test-form-control.service";
-import {FormGroup} from "@angular/forms";
+import {
+  CreateTestForm,
+  CreateTestFormControlService,
+  QuestionInterface
+} from "../../services/create-test-form-control.service";
+import {FormControl, FormGroup} from "@angular/forms";
+import {ConspectElementComponent} from "./conspect/conspect-element/conspect-element.component";
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'app-create-test',
@@ -34,8 +40,11 @@ import {FormGroup} from "@angular/forms";
     CardComponent,
     CardContentComponent,
     CardHeaderSimpleComponent,
-    QuestionIdTemplateComponent,
-    NgIf
+    QuestionTemplateComponent,
+    NgIf,
+    KeyValuePipe,
+    ConspectElementComponent,
+    JsonPipe
   ],
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'
@@ -46,7 +55,21 @@ export class CreateTestComponent implements OnInit{
   compact: boolean = true;
   header: string = 'Basic Properties';
   description: string = 'Set the basic properties of the test, such as: public key, private key and title.';
-  createTestForm: FormGroup<CreateTestForm> | FormGroup = new FormGroup({});
+  createTestForm: FormGroup<CreateTestForm> = new FormGroup({
+    basicProperties: new FormGroup({
+      publicKey: new FormControl(''),
+      privateKey: new FormControl(''),
+      title: new FormControl(''),
+      description: new FormControl(''),
+      duration: new FormControl(''),
+      noDuration: new FormControl(false),
+      openDate: new FormControl(''),
+      closeDate: new FormControl(''),
+      noDate: new FormControl(false),
+    }),
+    examineeIdentification: new FormGroup({}),
+    questions: new FormGroup({})
+  });
 
   constructor(
    private ctfcs: CreateTestFormControlService,
@@ -78,6 +101,10 @@ export class CreateTestComponent implements OnInit{
   }
 
   logForm() {
-    console.log(this.createTestForm.value);
+    console.log(this.createTestForm.controls.questions.value);
+  }
+
+  handleAddQuestion() {
+    this.ctfcs.addQuestion(this.createTestForm, uuid.v4());
   }
 }

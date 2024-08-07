@@ -1,6 +1,4 @@
 <div class="flex gap-1">
-  <input id="opens-on" name="opens-on" type="checkbox" class="cursor-pointer accent-sky-500">
-  <label for="opens-on" class="text-xs cursor-pointer text-gray-700 font-bold tracking-wide underline underline-offset-2 hover:text-sky-500">
-    <ng-content></ng-content>
-  </label>
+  <ng-content select="[input]"></ng-content>
+  <ng-content></ng-content>
 </div>

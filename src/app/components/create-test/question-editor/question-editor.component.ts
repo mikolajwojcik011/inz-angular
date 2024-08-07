@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {QuestionIdTemplateComponent} from "./question-id-template/question-id-template.component";
+import {QuestionTemplateComponent} from "./question-id-template/question-template.component";
 
 @Component({
   selector: 'app-question-editor',
   standalone: true,
   imports: [
-    QuestionIdTemplateComponent
+    QuestionTemplateComponent
   ],
   templateUrl: './question-editor.component.html',
   styleUrl: './question-editor.component.css'

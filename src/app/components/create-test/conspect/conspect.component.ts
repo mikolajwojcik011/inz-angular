@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ConspectElementComponent} from "./conspect-element/conspect-element.component";
 import {ButtonAddQuestionComponent} from "../../shared/buttons/button-add-question/button-add-question.component";
 
@@ -14,5 +14,9 @@ import {ButtonAddQuestionComponent} from "../../shared/buttons/button-add-questi
 })
 export class ConspectComponent {
   @Input() showConspect: boolean = true;
+  @Output() addQuestion:EventEmitter<string> = new EventEmitter();
 
+  addQuestionHandler() {
+    this.addQuestion.emit();
+  }
 }

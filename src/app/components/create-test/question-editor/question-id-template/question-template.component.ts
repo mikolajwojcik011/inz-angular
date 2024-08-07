@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ButtonAddQuestionComponent} from "../../../shared/buttons/button-add-question/button-add-question.component";
 import {InputTemplateTextComponent} from "../../../shared/inputs/input-template-text/input-template-text.component";
 import {SelectTemplateComponent} from "../../../shared/inputs/select-template/select-template.component";
@@ -24,9 +24,10 @@ import {FormFieldComponent} from "../../../shared/form-fields/form-field/form-fi
 import {FocusActiveDirective} from "../../../../directives/form-field-input.directive";
 import {LabelComponent} from "../../../shared/form-fields/label/label.component";
 import {CheckboxSimpleComponent} from "../../../shared/form-fields/checkbox-simple/checkbox-simple.component";
+import {FormGroup, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-question-id-template',
+  selector: 'oce-question-template',
   standalone: true,
   imports: [
     ButtonAddQuestionComponent,
@@ -47,14 +48,18 @@ import {CheckboxSimpleComponent} from "../../../shared/form-fields/checkbox-simp
     FormFieldComponent,
     FocusActiveDirective,
     LabelComponent,
-    CheckboxSimpleComponent
+    CheckboxSimpleComponent,
+    ReactiveFormsModule
   ],
-  templateUrl: './question-id-template.component.html',
-  styleUrl: './question-id-template.component.css'
+  templateUrl: './question-template.component.html',
+  styleUrl: './question-template.component.css'
 })
-export class QuestionIdTemplateComponent {
+export class QuestionTemplateComponent {
   showUpload: boolean = false;
   questionType: string = 'multiple-choice';
+  @Input() iFormGroup: FormGroup = new FormGroup({});
+  @Input() iIndex: number = 0;
+  @Input() uuid: string = '';
 
   showUploadFile() {
     this.showUpload = !this.showUpload;

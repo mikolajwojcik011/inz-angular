@@ -21,24 +21,30 @@
       </oce-form-field>
       <div class="flex gap-8 w-full">
         <div class="py-4">
-          <oce-form-field>
+          <oce-form-field [blur]="iFormGroup.controls['noDuration'].value">
             <oce-label [for]="'duration'">Duration <i class="text-gray-500 font-medium">&#160;(optional)</i></oce-label>
             <input formControlName="duration" id="duration" name="duration" input type="time" class="h-10">
           </oce-form-field>
-          <oce-checkbox-simple class="mt-4 block">The test duration is unlimited</oce-checkbox-simple>
+          <oce-checkbox-simple class="mt-4 block">
+            <oce-label [for]="'noDuration'">The test duration is unlimited</oce-label>
+            <input input formControlName="noDuration" id="noDuration" name="noDuration" type="checkbox" class="cursor-pointer accent-sky-500">
+          </oce-checkbox-simple>
         </div>
         <div class="ring-1 ring-gray-300 p-4 rounded-lg">
           <div class="flex gap-8">
-            <oce-form-field>
+            <oce-form-field [blur]="iFormGroup.controls['noDate'].value">
               <oce-label [for]="'open_on'">Opens on <i class="text-gray-500 font-medium">&#160;(optional)</i></oce-label>
               <input formControlName="openDate" id="open_on" name="open_on" input type="date" class="h-10">
             </oce-form-field>
-            <oce-form-field>
+            <oce-form-field [blur]="iFormGroup.controls['noDate'].value">
               <oce-label [for]="'close_on'">Closes on <i class="text-gray-500 font-medium">&#160;(optional)</i></oce-label>
               <input formControlName="closeDate" id="close_on" name="close_on" input type="date" class="h-10">
             </oce-form-field>
           </div>
-          <oce-checkbox-simple class="mt-4 block">The test can be taken at any</oce-checkbox-simple>
+          <oce-checkbox-simple class="mt-4 block">
+            <oce-label [for]="'noDate'">The test can be taken at any</oce-label>
+            <input input formControlName="noDate" id="noDate" name="noDate" type="checkbox" class="cursor-pointer accent-sky-500">
+          </oce-checkbox-simple>
         </div>
       </div>
     </div>
