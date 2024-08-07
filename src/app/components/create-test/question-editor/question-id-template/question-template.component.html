@@ -7,16 +7,19 @@
         <input formControlName="question" [id]="'question' + uuid" [name]="'question' + uuid" type="text" class="h-10" input placeholder="Type here..">
       </oce-form-field>
       <oce-form-field>
-        <oce-label>Description<i class="text-gray-500 font-medium">&#160;(optional)</i></oce-label>
-        <textarea input class="h-20"></textarea>
+        <oce-label [for]="'description' + uuid">Description<i class="text-gray-500 font-medium">&#160;(optional)</i></oce-label>
+        <textarea formControlName="description" [id]="'description' + uuid" [name]="'description' + uuid" input class="h-20"></textarea>
       </oce-form-field>
       <div>
-        <oce-checkbox-simple (click)="showUploadFile()" class="block">
-          <oce-label>Add image, video or sound</oce-label>
-          <input input type="checkbox">
+        <oce-checkbox-simple class="block">
+          <oce-label [for]="'multimedia' + uuid">Add image, video or sound</oce-label>
+          <input formControlName="multimedia" [id]="'multimedia' + uuid" [name]="'multimedia' + uuid" input type="checkbox">
         </oce-checkbox-simple>
-        @if (showUpload) {
-          <app-input-template-file class="mt-2"></app-input-template-file>
+        @if (iFormGroup.controls['multimedia'].value) {
+          <div class="flex flex-col gap-1 mt-2">
+            <app-select-template [options]="['image', 'sound', 'video']" class="relative w-40">Multimedia format</app-select-template>
+            <app-input-template-file class="block mt-2"></app-input-template-file>
+          </div>
         }
       </div>
       @if (questionType === 'multiple-choice') {

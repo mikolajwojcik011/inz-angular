@@ -32,7 +32,7 @@
               question editor
             }
         </oce-card-header-simple>
-        <oce-card-content>
+        <oce-card-content [gap]="'lg'">
           @if (show === 'bp') {
             <app-basic-properties [iFormGroup]="createTestForm.controls.basicProperties"></app-basic-properties>
           }
