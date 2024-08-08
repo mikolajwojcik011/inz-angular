@@ -19,8 +19,7 @@ import {CardContentComponent} from "../shared/cards/card-content/card-content.co
 import {CardHeaderSimpleComponent} from "../shared/cards/card-header-simple/card-header-simple.component";
 import {
   CreateTestForm,
-  CreateTestFormControlService,
-  QuestionInterface
+  CreateTestFormControlService, QuestionInterface,
 } from "../../services/create-test-form-control.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ConspectElementComponent} from "./conspect/conspect-element/conspect-element.component";
@@ -68,7 +67,7 @@ export class CreateTestComponent implements OnInit{
       noDate: new FormControl(false),
     }),
     examineeIdentification: new FormGroup({}),
-    questions: new FormGroup({})
+    questions: new FormGroup<{ [key: string]: FormGroup<QuestionInterface> }>({})
   });
 
   constructor(

@@ -10,25 +10,9 @@ import {NgClass} from "@angular/common";
   templateUrl: './select-element.component.html',
   styleUrl: './select-element.component.css'
 })
-export class SelectElementComponent implements OnInit{
+export class SelectElementComponent{
   @Input() option: string = '';
+  @Input() for: string = '';
   iconString:string = '';
 
-  ngOnInit() {
-    if(this.option === 'complex-true-or-false'){
-      this.iconString = 'bi bi-circle-half';
-    }
-
-    if(this.option === 'match'){
-      this.iconString = 'bi bi-shuffle';
-    }
-
-    if(this.option === 'multiple-choice'){
-      this.iconString = 'bi bi-list-check';
-    }
-
-    if(this.option === 'number'){
-      this.iconString = 'bi bi-1-circle';
-    }
-  }
 }

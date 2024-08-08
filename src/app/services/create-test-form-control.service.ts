@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
 
 export interface CreateTestForm {
   basicProperties: FormGroup<{
@@ -26,7 +26,7 @@ export interface QuestionInterface {
   multimedia: FormControl<boolean>;
   multimediaType: FormControl<string | null>;
   multimediaURL: FormControl<string | null>;
-  answer: FormGroup;
+  answer: FormGroup<{ [key: string]: FormControl<any> }>;
 }
 
 @Injectable({
@@ -69,7 +69,9 @@ export class CreateTestFormControlService {
       multimedia: new FormControl(false),
       multimediaType: new FormControl(''),
       multimediaURL: new FormControl(''),
-      answer: new FormGroup({})
+      answer: new FormGroup({
+        0: new FormControl('sdf'),
+      })
     });
 
     (form.controls.questions as FormGroup).addControl(questionUUID, questionGroup);

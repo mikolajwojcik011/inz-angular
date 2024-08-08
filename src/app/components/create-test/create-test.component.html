@@ -40,10 +40,10 @@
             <app-examinee-identification class="w-3/4 flex flex-col gap-4 "></app-examinee-identification>
           }
           @if (show === 'qe') {
-            @for (question of createTestForm.controls.questions.controls | keyvalue; track question.value.controls.uuid.value){
+            @for (question of createTestForm.controls.questions.controls | keyvalue; track question.value.controls['uuid'].value){
               <oce-question-template
                 [iFormGroup]="question.value"
-                [uuid]="question.value.controls.uuid.value"
+                [uuid]="question.value.controls['uuid'].value"
               >
               </oce-question-template>
             }

@@ -1,9 +1,22 @@
 <oce-card [formGroup]="iFormGroup">
-  <oce-card-header-complex size="md"></oce-card-header-complex>
+  <oce-card-header-complex size="md">
+    <app-select-template select [selected]="iFormGroup.controls['type'].value" [header]="'Question types'"  class="relative w-44 z-50">
+      @for (option of ['complex-true-or-false', 'match']; track $index){
+        <app-select-element option [for]="uuid + option" [option]="option">
+          <input input formControlName="type" [id]="uuid + option" name="type" type="radio" [value]="option" hidden="hidden">
+        </app-select-element>
+      }
+    </app-select-template>
+    <app-select-template select [header]="'List styles'" class="relative w-24 z-50">
+      @for (option of ['roman', 'number']; track $index){
+        <app-select-element option [option]="option"></app-select-element>
+      }
+    </app-select-template>
+  </oce-card-header-complex>
   <oce-card-content size="md">
     <div class="gap-6 flex-col flex">
       <oce-form-field>
-        <oce-label [for]="'question' + uuid">Question</oce-label>
+        <oce-label (click)="showUploadFile()" [for]="'question' + uuid">Question</oce-label>
         <input formControlName="question" [id]="'question' + uuid" [name]="'question' + uuid" type="text" class="h-10" input placeholder="Type here..">
       </oce-form-field>
       <oce-form-field>
@@ -17,13 +30,19 @@
         </oce-checkbox-simple>
         @if (iFormGroup.controls['multimedia'].value) {
           <div class="flex flex-col gap-1 mt-2">
-            <app-select-template [options]="['image', 'sound', 'video']" class="relative w-40">Multimedia format</app-select-template>
+            <app-select-template class="relative w-40">
+              @for (option of ['image', 'sound', 'video']; track $index){
+                <app-select-element option [option]="option">
+                  <input formControlName="type" [id]="option" name="type" type="radio" [value]="option">
+                </app-select-element>
+              }
+            </app-select-template>
             <app-input-template-file class="block mt-2"></app-input-template-file>
           </div>
         }
       </div>
       @if (questionType === 'multiple-choice') {
-        <app-create-multiple-choice-template class="flex flex-col gap-2 "></app-create-multiple-choice-template>
+        <app-create-multiple-choice-template [iFormGroup]="iFormGroup.controls['answer']" class="flex flex-col gap-2 "></app-create-multiple-choice-template>
       }
       @if (questionType === 'fill-the-gaps') {
         <app-create-fill-the-gaps-template class="bg-gray-50">

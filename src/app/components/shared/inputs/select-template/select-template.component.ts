@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input} from '@angular/core';
 import {NgClass} from "@angular/common";
 import {SelectElementComponent} from "./select-element/select-element.component";
 
@@ -12,8 +12,9 @@ import {SelectElementComponent} from "./select-element/select-element.component"
   templateUrl: './select-template.component.html',
   styleUrl: './select-template.component.css'
 })
-export class SelectTemplateComponent implements OnInit{
-  @Input() options: string[] = [];
+export class SelectTemplateComponent{
+  @Input() selected: string = '';
+  @Input() header: string = 'Test';
 
   isShown = false;
   selectedValue: string = '';
@@ -27,12 +28,4 @@ export class SelectTemplateComponent implements OnInit{
   onMouseLeave() {
       this.isShown = false;
     }
-
-  onSelect(value: string) {
-    this.selectedValue = value.replace(/-/g, ' ');
-  }
-
-  ngOnInit() {
-    this.onSelect(this.options[0])
-  }
 }

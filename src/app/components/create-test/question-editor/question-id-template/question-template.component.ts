@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ButtonAddQuestionComponent} from "../../../shared/buttons/button-add-question/button-add-question.component";
 import {InputTemplateTextComponent} from "../../../shared/inputs/input-template-text/input-template-text.component";
 import {SelectTemplateComponent} from "../../../shared/inputs/select-template/select-template.component";
@@ -25,6 +25,8 @@ import {FocusActiveDirective} from "../../../../directives/form-field-input.dire
 import {LabelComponent} from "../../../shared/form-fields/label/label.component";
 import {CheckboxSimpleComponent} from "../../../shared/form-fields/checkbox-simple/checkbox-simple.component";
 import {FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {SelectElementComponent} from "../../../shared/inputs/select-template/select-element/select-element.component";
+import {QuestionInterface} from "../../../../services/create-test-form-control.service";
 
 @Component({
   selector: 'oce-question-template',
@@ -49,19 +51,25 @@ import {FormGroup, ReactiveFormsModule} from "@angular/forms";
     FocusActiveDirective,
     LabelComponent,
     CheckboxSimpleComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SelectElementComponent
   ],
   templateUrl: './question-template.component.html',
   styleUrl: './question-template.component.css'
 })
-export class QuestionTemplateComponent {
-  showUpload: boolean = false;
+export class QuestionTemplateComponent implements OnInit{
   questionType: string = 'multiple-choice';
-  @Input() iFormGroup: FormGroup = new FormGroup({});
+  @Input() iFormGroup: FormGroup = new FormGroup<{ [key: string]: FormGroup<QuestionInterface> }>({})
   @Input() iIndex: number = 0;
   @Input() uuid: string = '';
 
   showUploadFile() {
-    this.showUpload = !this.showUpload;
+    console.log(this.iFormGroup.controls['answer'].value);
+  }
+
+  ngOnInit() {
+    if (!this.iFormGroup) {
+      this.iFormGroup = new FormGroup({});
+    }
   }
 }

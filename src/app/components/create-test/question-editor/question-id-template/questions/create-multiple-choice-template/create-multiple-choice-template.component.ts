@@ -2,7 +2,7 @@
 //Todo: Add feedback for user
 //Todo: Improve guiding by adding conditions to progress
 
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {InputTemplateTextComponent} from "../../../../../shared/inputs/input-template-text/input-template-text.component";
 import {CreateAnswerCheckboxComponent} from "../../inputs/create-answer-checkbox/create-answer-checkbox.component";
 import {ButtonPlusComponent} from "../../../../../shared/buttons/button-plus/button-plus.component";
@@ -16,6 +16,8 @@ import {LabelComponent} from "../../../../../shared/form-fields/label/label.comp
 import {CardComponent} from "../../../../../shared/cards/card/card.component";
 import {CardContentComponent} from "../../../../../shared/cards/card-content/card-content.component";
 import {CardHeaderGuideComponent} from "../../../../../shared/cards/card-header-guide/card-header-guide.component";
+import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {JsonPipe, KeyValuePipe} from "@angular/common";
 
 @Component({
   selector: 'app-create-multiple-choice-template',
@@ -31,11 +33,19 @@ import {CardHeaderGuideComponent} from "../../../../../shared/cards/card-header-
     LabelComponent,
     CardComponent,
     CardContentComponent,
-    CardHeaderGuideComponent
+    CardHeaderGuideComponent,
+    ReactiveFormsModule,
+    KeyValuePipe,
+    JsonPipe
   ],
   templateUrl: './create-multiple-choice-template.component.html',
   styleUrl: './create-multiple-choice-template.component.css'
 })
 export class CreateMultipleChoiceTemplateComponent {
 
+  @Input() iFormGroup: any;
+
+  click(){
+    console.log(this.iFormGroup.controls[0].value);
+  }
 }
