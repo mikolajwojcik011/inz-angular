@@ -1,13 +1,13 @@
 <oce-card [formGroup]="iFormGroup">
   <oce-card-header-complex size="md">
-    <app-select-template select [selected]="iFormGroup.controls['type'].value" [header]="'Question types'"  class="relative w-44 z-50">
+    <app-select-template select [selected]="iFormGroup.controls['type'].value" [header]="'Question types'"  class="relative w-44 z-10">
       @for (option of ['complex-true-or-false', 'match']; track $index){
         <app-select-element option [for]="uuid + option" [option]="option">
           <input input formControlName="type" [id]="uuid + option" name="type" type="radio" [value]="option" hidden="hidden">
         </app-select-element>
       }
     </app-select-template>
-    <app-select-template select [header]="'List styles'" class="relative w-24 z-50">
+    <app-select-template select [header]="'List styles'" class="relative w-24 z-10">
       @for (option of ['roman', 'number']; track $index){
         <app-select-element option [option]="option"></app-select-element>
       }
@@ -42,7 +42,14 @@
         }
       </div>
       @if (questionType === 'multiple-choice') {
-        <app-create-multiple-choice-template (addAnswer)="handleAddAnswer($event)" [iFormGroup]="iFormGroup.controls['answer']" class="flex flex-col gap-2 "></app-create-multiple-choice-template>
+        <app-create-multiple-choice-template
+          (setCorrect)="handleSetCorrect($event)"
+          (addAnswer)="handleAddAnswer($event)"
+          (removeAnswer)="handleRemoveAnswer($event)"
+          [iFormGroup]="iFormGroup.controls['answer']"
+          [listStyle]="iFormGroup.controls['listStyle'].value"
+          class="flex flex-col gap-2 ">
+        </app-create-multiple-choice-template>
       }
       @if (questionType === 'fill-the-gaps') {
         <app-create-fill-the-gaps-template class="bg-gray-50">

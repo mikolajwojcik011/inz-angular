@@ -110,4 +110,12 @@ export class CreateTestComponent implements OnInit{
   handleAddAnswer($event: {uuid: string, value: string}) {
     this.ctfcs.addAnswer(this.createTestForm, $event.uuid, $event.value);
   }
+
+  handleSetCorrect($event: { value: boolean; answerIndex: number; uuid: string }) {
+    this.ctfcs.setCorrect(this.createTestForm, $event.uuid, $event.answerIndex, $event.value);
+  }
+
+  handleRemoveAnswer($event: { uuid: string; answerIndex: number }) {
+    this.ctfcs.removeAnswer(this.createTestForm, $event.uuid, $event.answerIndex);
+  }
 }

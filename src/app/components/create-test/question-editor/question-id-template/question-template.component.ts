@@ -63,6 +63,8 @@ export class QuestionTemplateComponent implements OnInit{
   @Input() iIndex: number = 0;
   @Input() uuid: string = '';
   @Output() addAnswer: EventEmitter<{uuid: string, value: string}> = new EventEmitter()
+  @Output() setCorrect: EventEmitter<{value: boolean, answerIndex: number, uuid: string}> = new EventEmitter()
+  @Output() removeAnswer: EventEmitter<{uuid: string, answerIndex: number}> = new EventEmitter()
 
   showUploadFile() {
     console.log(this.iFormGroup.controls['answer'].value);
@@ -76,5 +78,13 @@ export class QuestionTemplateComponent implements OnInit{
 
   handleAddAnswer($event: string) {
     this.addAnswer.emit({uuid: this.uuid, value: $event});
+  }
+
+  handleSetCorrect($event: {value: boolean, answerIndex: number}) {
+    this.setCorrect.emit({value: $event.value, answerIndex: $event.answerIndex, uuid: this.uuid});
+  }
+
+  handleRemoveAnswer($event: number) {
+    this.removeAnswer.emit({uuid: this.uuid, answerIndex: $event});
   }
 }

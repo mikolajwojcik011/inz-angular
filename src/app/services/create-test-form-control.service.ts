@@ -63,7 +63,7 @@ export class CreateTestFormControlService {
     const questionGroup = new FormGroup({
       uuid: new FormControl(questionUUID),
       type: new FormControl('multiple-choice'),
-      listStyle: new FormControl('capital-letters'),
+      listStyle: new FormControl('capital'),
       question: new FormControl(''),
       description: new FormControl(''),
       multimedia: new FormControl(false),
@@ -75,7 +75,19 @@ export class CreateTestFormControlService {
   }
 
   addAnswer(form: FormGroup<CreateTestForm>, questionUUID: string, value:string) {
-    (form.controls.questions.controls[questionUUID] as FormGroup<QuestionInterface>).controls.answer.push(new FormControl(value));
-    console.log(form.controls.questions.controls[questionUUID].controls.answer.value);
+    (form.controls.questions.controls[questionUUID] as FormGroup<QuestionInterface>).controls.answer
+      .push(new FormGroup({
+        answer: new FormControl(value),
+        correct: new FormControl(false)
+      }
+    ));
+  }
+
+  setCorrect(form: FormGroup<CreateTestForm>, questionUUID: string, answerIndex: number, value: boolean) {
+    (form.controls.questions.controls[questionUUID] as FormGroup<QuestionInterface>).controls.answer.controls[answerIndex].value['correct'] = value;
+  }
+
+  removeAnswer(form: FormGroup<CreateTestForm>, questionUUID: string, answerIndex: number) {
+    (form.controls.questions.controls[questionUUID] as FormGroup<QuestionInterface>).controls.answer.removeAt(answerIndex);
   }
 }

@@ -32,7 +32,7 @@
               question editor
             }
         </oce-card-header-simple>
-        <oce-card-content [gap]="'lg'">
+        <oce-card-content [gap]="'lg'" [pb]="true">
           @if (show === 'bp') {
             <app-basic-properties [iFormGroup]="createTestForm.controls.basicProperties"></app-basic-properties>
           }
@@ -45,6 +45,8 @@
                 [iFormGroup]="question.value"
                 [uuid]="question.value.controls['uuid'].value"
                 (addAnswer)="handleAddAnswer($event)"
+                (setCorrect)="handleSetCorrect($event)"
+                (removeAnswer)="handleRemoveAnswer($event)"
               >
               </oce-question-template>
             }

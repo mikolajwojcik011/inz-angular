@@ -1,22 +1,35 @@
 <oce-card class="">
   <oce-card-header-guide>
-    <b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps. <b
-    class="font-semibold">Make sure that the paragraph is correct, if you try to edit it later, You will need to
-    create gaps again.</b>
+    Insert a paragraph to and press the <b class="font-semibold"> add button </b> to create new answer. Use menu, attached to each answer to mark it as<b class="font-semibold"> correct</b> or<b class="font-semibold"> incorrect</b>.
   </oce-card-header-guide>
   <oce-card-content gap="sm" size="md">
-    @for (answer of iFormGroup.controls | keyvalue; let index = $index; track index){
-      <div class="flex  items-center">
-        <app-create-answer-checkbox class="w-full flex items-center">{{iFormGroup.controls[index].value}}</app-create-answer-checkbox>
-        <app-button-remove class="mx-3 text-gray-700"></app-button-remove>
-      </div>
-    }
-    <div class="flex gap-2 items-end">
-      <app-button-plus class="mb-2" (click)="addAnswerHandler()"></app-button-plus>
-      <oce-form-field class="w-full block">
+    <div class="flex gap-2 mb-2">
+      <app-button-plus class=" mt-8" (click)="addAnswerHandler()"></app-button-plus>
+      <oce-form-field class="w-full">
         <oce-label [for]="'answer-content'">Answer content</oce-label>
-        <textarea class="w-full" [(ngModel)]="textareaValue" input></textarea>
+        <textarea class="h-12" [(ngModel)]="textareaValue" (ngModelChange)="onTextareaChange()" input></textarea>
+        @if(error){
+          <oce-filed-error error></oce-filed-error>
+        }
       </oce-form-field>
     </div>
+    @if(iFormGroup.controls.length > 0){
+      @for (answer of iFormGroup.controls | keyvalue; let index = $index; track index){
+        <div>
+          <div class="w-20 border-t border-x border-gray-300 bg-gray-50 h-8 ml-10 rounded-t-md flex items-center justify-around">
+            <oce-button-mark-true (click)="setCorrectHandler(true, index)" [isCorrect]="iFormGroup.controls[index].value.correct"></oce-button-mark-true>
+            <oce-button-mark-false (click)="setCorrectHandler(false, index)" [isFalse]="iFormGroup.controls[index].value.correct"></oce-button-mark-false>
+            <app-button-remove (click)="removeAnswerHandler(index)" [label]="false"></app-button-remove>
+          </div>
+          <div class="flex items-end gap-2">
+            <oce-tile [index]="index" [style]="listStyle"></oce-tile>
+            <p  class="w-full text-sm min-h-12 p-2 flex flex-wrap items-center rounded-b-md rounded-r-md ring-inset ring-gray-300 ring-1 text-gray-700">
+              {{iFormGroup.controls[index].value.answer}}
+            </p>
+          </div>
+        </div>
+      }
+    }
+
   </oce-card-content>
 </oce-card>

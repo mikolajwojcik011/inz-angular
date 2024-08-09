@@ -16,8 +16,13 @@ import {LabelComponent} from "../../../../../shared/form-fields/label/label.comp
 import {CardComponent} from "../../../../../shared/cards/card/card.component";
 import {CardContentComponent} from "../../../../../shared/cards/card-content/card-content.component";
 import {CardHeaderGuideComponent} from "../../../../../shared/cards/card-header-guide/card-header-guide.component";
-import {FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {JsonPipe, KeyValuePipe} from "@angular/common";
+import {TileComponent} from "../../../../../shared/form-fields/tile/tile.component";
+import {FocusActiveDirective} from "../../../../../../directives/form-field-input.directive";
+import {ButtonMarkTrueComponent} from "../../../../../shared/buttons/button-mark-true/button-mark-true.component";
+import {ButtonMarkFalseComponent} from "../../../../../shared/buttons/button-mark-false/button-mark-false.component";
+import {FiledErrorComponent} from "../../../../../shared/form-fields/filed-error/filed-error.component";
 
 @Component({
   selector: 'app-create-multiple-choice-template',
@@ -37,21 +42,45 @@ import {JsonPipe, KeyValuePipe} from "@angular/common";
     ReactiveFormsModule,
     KeyValuePipe,
     JsonPipe,
-    FormsModule
+    FormsModule,
+    TileComponent,
+    FocusActiveDirective,
+    ButtonMarkTrueComponent,
+    ButtonMarkFalseComponent,
+    FiledErrorComponent
   ],
   templateUrl: './create-multiple-choice-template.component.html',
   styleUrl: './create-multiple-choice-template.component.css'
 })
 export class CreateMultipleChoiceTemplateComponent {
   @Input() iFormGroup: any;
+  @Input() listStyle: string = 'number';
   @Output() addAnswer: EventEmitter<string> = new EventEmitter()
+  @Output() setCorrect: EventEmitter<{value: boolean, answerIndex: number}> = new EventEmitter()
+  @Output() removeAnswer: EventEmitter<number> = new EventEmitter()
   textareaValue: string = '';
+  error: boolean = false;
+
+  onTextareaChange() {
+    if (this.textareaValue !== '') {
+      this.error = false;
+    }
+  }
 
   addAnswerHandler(){
+    if (this.textareaValue === '') {
+      this.error = true;
+      return;
+    }
     this.addAnswer.emit(this.textareaValue);
   }
 
-  click(){
-    // console.log(this.iFormGroup.controls[0].value);
+  setCorrectHandler(value: boolean, answerIndex: number){
+    this.setCorrect.emit({value: value, answerIndex: answerIndex});
   }
+
+  removeAnswerHandler(answerIndex: number){
+    this.removeAnswer.emit(answerIndex);
+  }
+
 }

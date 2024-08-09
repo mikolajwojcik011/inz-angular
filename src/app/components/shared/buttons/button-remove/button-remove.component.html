@@ -1,4 +1,6 @@
-<div class="flex flex-col items-center justify-center gap-1 hover:text-rose-500 p-1 hover:ring-1 hover:ring-gray-300 hover:rounded-md hover:bg-white cursor-pointer w-full h-full">
-  <i class="bi bi-trash"></i>
-  <p class="text-[0.5rem] font-bold tracking-wide">Remove</p>
-</div>
+  <button class="flex flex-col items-center p-0.5 justify-center hover:text-rose-500 cursor-pointer">
+    <i class="bi bi-trash"></i>
+    @if(label){
+      <p class="text-[0.5rem] font-bold tracking-wide">Remove</p>
+    }
+  </button>
