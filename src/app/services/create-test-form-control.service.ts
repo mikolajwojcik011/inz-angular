@@ -26,7 +26,7 @@ export interface QuestionInterface {
   multimedia: FormControl<boolean>;
   multimediaType: FormControl<string | null>;
   multimediaURL: FormControl<string | null>;
-  answer: FormGroup<{ [key: string]: FormControl<any> }>;
+  answer: FormArray;
 }
 
 @Injectable({
@@ -69,11 +69,13 @@ export class CreateTestFormControlService {
       multimedia: new FormControl(false),
       multimediaType: new FormControl(''),
       multimediaURL: new FormControl(''),
-      answer: new FormGroup({
-        0: new FormControl('sdf'),
-      })
+      answer: new FormArray([])
     });
-
     (form.controls.questions as FormGroup).addControl(questionUUID, questionGroup);
+  }
+
+  addAnswer(form: FormGroup<CreateTestForm>, questionUUID: string, value:string) {
+    (form.controls.questions.controls[questionUUID] as FormGroup<QuestionInterface>).controls.answer.push(new FormControl(value));
+    console.log(form.controls.questions.controls[questionUUID].controls.answer.value);
   }
 }

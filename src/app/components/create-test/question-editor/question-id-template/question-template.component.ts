@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ButtonAddQuestionComponent} from "../../../shared/buttons/button-add-question/button-add-question.component";
 import {InputTemplateTextComponent} from "../../../shared/inputs/input-template-text/input-template-text.component";
 import {SelectTemplateComponent} from "../../../shared/inputs/select-template/select-template.component";
@@ -62,6 +62,7 @@ export class QuestionTemplateComponent implements OnInit{
   @Input() iFormGroup: FormGroup = new FormGroup<{ [key: string]: FormGroup<QuestionInterface> }>({})
   @Input() iIndex: number = 0;
   @Input() uuid: string = '';
+  @Output() addAnswer: EventEmitter<{uuid: string, value: string}> = new EventEmitter()
 
   showUploadFile() {
     console.log(this.iFormGroup.controls['answer'].value);
@@ -71,5 +72,9 @@ export class QuestionTemplateComponent implements OnInit{
     if (!this.iFormGroup) {
       this.iFormGroup = new FormGroup({});
     }
+  }
+
+  handleAddAnswer($event: string) {
+    this.addAnswer.emit({uuid: this.uuid, value: $event});
   }
 }

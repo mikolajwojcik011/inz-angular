@@ -1,20 +1,21 @@
-<oce-card [formGroup]="iFormGroup" class="bg-gray-50">
+<oce-card class="">
   <oce-card-header-guide>
     <b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps. <b
     class="font-semibold">Make sure that the paragraph is correct, if you try to edit it later, You will need to
     create gaps again.</b>
   </oce-card-header-guide>
   <oce-card-content gap="sm" size="md">
-    <div class="flex items-center">
-      @for (answer of iFormGroup.controls | keyvalue; let index = $index; track index){
+    @for (answer of iFormGroup.controls | keyvalue; let index = $index; track index){
+      <div class="flex  items-center">
         <app-create-answer-checkbox class="w-full flex items-center">{{iFormGroup.controls[index].value}}</app-create-answer-checkbox>
         <app-button-remove class="mx-3 text-gray-700"></app-button-remove>
-      }
-    </div>
-    <div class="flex items-end mr-16">
-      <app-button-plus (click)="click()" class="mx-2 mb-2"></app-button-plus>
+      </div>
+    }
+    <div class="flex gap-2 items-end">
+      <app-button-plus class="mb-2" (click)="addAnswerHandler()"></app-button-plus>
       <oce-form-field class="w-full block">
-        <textarea formControlName="0" input></textarea>
+        <oce-label [for]="'answer-content'">Answer content</oce-label>
+        <textarea class="w-full" [(ngModel)]="textareaValue" input></textarea>
       </oce-form-field>
     </div>
   </oce-card-content>

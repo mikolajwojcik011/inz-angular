@@ -1,8 +1,10 @@
-<li class="cursor-pointer p-1 flex items-center gap-1 hover:bg-gray-100 rounded-lg font-semibold">
-  <ng-content></ng-content>
-  <i
-    class="text-sky-500"
-    [ngClass]="iconString"
-  ></i>
-  <label [for]="for" class="flex gap-1 capitalize text-gray-700 h-full align-middle">{{option}}</label>
-</li>
+<label [for]="for" class="flex gap-1 capitalize text-gray-700 h-full align-middle hover:bg-gray-100 rounded-lg cursor-pointer">
+  <li class="p-1 flex items-center gap-1 font-semibold">
+    <ng-content></ng-content>
+    <i
+      class="text-sky-500"
+      [ngClass]="iconString"
+    ></i>
+   {{option}}
+  </li>
+</label>

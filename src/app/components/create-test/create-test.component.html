@@ -44,6 +44,7 @@
               <oce-question-template
                 [iFormGroup]="question.value"
                 [uuid]="question.value.controls['uuid'].value"
+                (addAnswer)="handleAddAnswer($event)"
               >
               </oce-question-template>
             }

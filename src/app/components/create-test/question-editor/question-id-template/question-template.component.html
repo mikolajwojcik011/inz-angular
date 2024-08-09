@@ -42,7 +42,7 @@
         }
       </div>
       @if (questionType === 'multiple-choice') {
-        <app-create-multiple-choice-template [iFormGroup]="iFormGroup.controls['answer']" class="flex flex-col gap-2 "></app-create-multiple-choice-template>
+        <app-create-multiple-choice-template (addAnswer)="handleAddAnswer($event)" [iFormGroup]="iFormGroup.controls['answer']" class="flex flex-col gap-2 "></app-create-multiple-choice-template>
       }
       @if (questionType === 'fill-the-gaps') {
         <app-create-fill-the-gaps-template class="bg-gray-50">

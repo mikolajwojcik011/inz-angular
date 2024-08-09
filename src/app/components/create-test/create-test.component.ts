@@ -106,4 +106,8 @@ export class CreateTestComponent implements OnInit{
   handleAddQuestion() {
     this.ctfcs.addQuestion(this.createTestForm, uuid.v4());
   }
+
+  handleAddAnswer($event: {uuid: string, value: string}) {
+    this.ctfcs.addAnswer(this.createTestForm, $event.uuid, $event.value);
+  }
 }

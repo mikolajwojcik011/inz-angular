@@ -2,7 +2,7 @@
 //Todo: Add feedback for user
 //Todo: Improve guiding by adding conditions to progress
 
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {InputTemplateTextComponent} from "../../../../../shared/inputs/input-template-text/input-template-text.component";
 import {CreateAnswerCheckboxComponent} from "../../inputs/create-answer-checkbox/create-answer-checkbox.component";
 import {ButtonPlusComponent} from "../../../../../shared/buttons/button-plus/button-plus.component";
@@ -16,7 +16,7 @@ import {LabelComponent} from "../../../../../shared/form-fields/label/label.comp
 import {CardComponent} from "../../../../../shared/cards/card/card.component";
 import {CardContentComponent} from "../../../../../shared/cards/card-content/card-content.component";
 import {CardHeaderGuideComponent} from "../../../../../shared/cards/card-header-guide/card-header-guide.component";
-import {FormArray, FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {JsonPipe, KeyValuePipe} from "@angular/common";
 
 @Component({
@@ -36,16 +36,22 @@ import {JsonPipe, KeyValuePipe} from "@angular/common";
     CardHeaderGuideComponent,
     ReactiveFormsModule,
     KeyValuePipe,
-    JsonPipe
+    JsonPipe,
+    FormsModule
   ],
   templateUrl: './create-multiple-choice-template.component.html',
   styleUrl: './create-multiple-choice-template.component.css'
 })
 export class CreateMultipleChoiceTemplateComponent {
-
   @Input() iFormGroup: any;
+  @Output() addAnswer: EventEmitter<string> = new EventEmitter()
+  textareaValue: string = '';
+
+  addAnswerHandler(){
+    this.addAnswer.emit(this.textareaValue);
+  }
 
   click(){
-    console.log(this.iFormGroup.controls[0].value);
+    // console.log(this.iFormGroup.controls[0].value);
   }
 }
