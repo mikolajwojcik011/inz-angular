@@ -12,7 +12,7 @@ import {QuestionEditorComponent} from "./question-editor/question-editor.compone
 import {BasicPropertiesComponent} from "./basic-properties/basic-properties.component";
 import {ExamineeIdentificationComponent} from "./examinee-identification/examinee-identification.component";
 import {ButtonAddQuestionComponent} from "../shared/buttons/button-add-question/button-add-question.component";
-import {JsonPipe, KeyValuePipe, NgClass, NgIf} from "@angular/common";
+import {JsonPipe, KeyValue, KeyValuePipe, NgClass, NgIf} from "@angular/common";
 import {QuestionTemplateComponent} from "./question-editor/question-id-template/question-template.component";
 import {CardComponent} from "../shared/cards/card/card.component";
 import {CardContentComponent} from "../shared/cards/card-content/card-content.component";
@@ -76,7 +76,9 @@ export class CreateTestComponent implements OnInit, AfterViewChecked{
   constructor(
    private ctfcs: CreateTestFormControlService,
    private cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    this.createTestForm = this.ctfcs.createTestForm();
+  }
 
   handleShowChange(newShowValue: string) {
     this.show = newShowValue;
@@ -139,13 +141,19 @@ export class CreateTestComponent implements OnInit, AfterViewChecked{
       }
     }
   }
+  scrollToQuestion(uuid: string) {
+    const escapedUUID = CSS.escape(uuid);
+    const questionElement = this.questionContainer.nativeElement.querySelector(`#${escapedUUID}`);
+    if (questionElement) {
+      questionElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   ngAfterViewChecked() {
     this.scrollToNewQuestion();
   }
 
   ngOnInit() {
-    this.createTestForm = this.ctfcs.createTestForm();
   }
 
 }
