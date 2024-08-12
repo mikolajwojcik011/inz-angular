@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-button-copy',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './button-copy.component.css'
 })
 export class ButtonCopyComponent {
-
+  @Input() label: boolean = true;
 }

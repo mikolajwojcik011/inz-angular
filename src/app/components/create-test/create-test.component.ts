@@ -5,7 +5,7 @@
 // todo: Add true or false question type
 // todo: Add complex true or false question type
 
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {TopBarComponent} from "./top-bar/top-bar.component";
 import {ConspectComponent} from "./conspect/conspect.component";
 import {QuestionEditorComponent} from "./question-editor/question-editor.component";
@@ -48,7 +48,10 @@ import * as uuid from 'uuid';
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'
 })
-export class CreateTestComponent implements OnInit{
+export class CreateTestComponent implements OnInit, AfterViewChecked{
+  @ViewChild('questionContainer') questionContainer!: ElementRef;
+  private newQuestionUUID: string | null = null;
+
   showConspect: boolean = true;
   show: string = 'qe';
   compact: boolean = true;
@@ -72,6 +75,7 @@ export class CreateTestComponent implements OnInit{
 
   constructor(
    private ctfcs: CreateTestFormControlService,
+   private cdr: ChangeDetectorRef
   ) {}
 
   handleShowChange(newShowValue: string) {
@@ -95,16 +99,16 @@ export class CreateTestComponent implements OnInit{
     }
   }
 
-  ngOnInit() {
-    this.createTestForm = this.ctfcs.createTestForm();
-  }
-
   logForm() {
     console.log(this.createTestForm.controls.questions.value);
   }
 
   handleAddQuestion() {
-    this.ctfcs.addQuestion(this.createTestForm, uuid.v4());
+    this.newQuestionUUID = uuid.v4();
+    this.ctfcs.addQuestion(this.createTestForm, this.newQuestionUUID).subscribe(() => {
+      this.cdr.detectChanges();
+      this.scrollToNewQuestion();
+    });
   }
 
   handleAddAnswer($event: {uuid: string, value: string}) {
@@ -118,4 +122,30 @@ export class CreateTestComponent implements OnInit{
   handleRemoveAnswer($event: { uuid: string; answerIndex: number }) {
     this.ctfcs.removeAnswer(this.createTestForm, $event.uuid, $event.answerIndex);
   }
+
+  handleRemoveQuestion($event: string) {
+    this.ctfcs.removeQuestion(this.createTestForm, $event);
+  }
+
+  private scrollToNewQuestion() {
+    if (this.newQuestionUUID) {
+      console.log('Attempting to scroll to new question:', this.newQuestionUUID);
+      const escapedUUID = CSS.escape(this.newQuestionUUID);
+      const questionElement = this.questionContainer.nativeElement.querySelector(`#${escapedUUID}`);
+      console.log('Question element:', questionElement);
+      if (questionElement) {
+        questionElement.scrollIntoView({ behavior: 'smooth' });
+        this.newQuestionUUID = null;
+      }
+    }
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToNewQuestion();
+  }
+
+  ngOnInit() {
+    this.createTestForm = this.ctfcs.createTestForm();
+  }
+
 }

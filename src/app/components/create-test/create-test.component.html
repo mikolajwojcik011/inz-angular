@@ -13,8 +13,13 @@
         (addQuestion)="handleAddQuestion()"
         [showConspect]="(createTestForm.controls.questions.controls | keyvalue).length > 0"
         class="w-[300px] gap-0.5 max-h-[600px] flex flex-col pr-4 fixed">
-        @for (question of createTestForm.controls.questions.controls | keyvalue; track $index){
-          <app-conspect-element class="snap-start" [question_header]="'Quisque tempor placerat erat, id maximus elit ultricies in'" [question_index]="2" [amount_of_answers]="2" [isActive]="false"></app-conspect-element>
+        @for (question of createTestForm.controls.questions.controls | keyvalue; track index; let index = $index){
+          <app-conspect-element
+            class="snap-start"
+            [question_header]="question.value.controls['question'].value || 'No question provided'"
+            [question_index]="index + 1"
+            [amount_of_answers]="question.value.controls['answer'].length"
+            [isActive]="false"></app-conspect-element>
         }
       </app-conspect>
       <oce-card class="ml-[300px] w-full">
@@ -32,7 +37,7 @@
               question editor
             }
         </oce-card-header-simple>
-        <oce-card-content [gap]="'lg'" [pb]="true">
+        <oce-card-content  [gap]="'lg'" [pb]="true">
           @if (show === 'bp') {
             <app-basic-properties [iFormGroup]="createTestForm.controls.basicProperties"></app-basic-properties>
           }
@@ -40,19 +45,23 @@
             <app-examinee-identification class="w-3/4 flex flex-col gap-4 "></app-examinee-identification>
           }
           @if (show === 'qe') {
-            @for (question of createTestForm.controls.questions.controls | keyvalue; track question.value.controls['uuid'].value){
-              <oce-question-template
-                [iFormGroup]="question.value"
-                [uuid]="question.value.controls['uuid'].value"
-                (addAnswer)="handleAddAnswer($event)"
-                (setCorrect)="handleSetCorrect($event)"
-                (removeAnswer)="handleRemoveAnswer($event)"
-              >
-              </oce-question-template>
-            }
-            @if((createTestForm.controls.questions.controls | keyvalue).length <= 0){
-              <p class="text-gray-500 tracking-wide text-sm">Once you start adding questions, they will be visible here.</p>
-            }
+            <div class="flex flex-col gap-6" #questionContainer>
+              @for (question of createTestForm.controls.questions.controls | keyvalue; track question.value.controls['uuid'].value){
+                <oce-question-template
+                  [id]="question.value.controls['uuid'].value"
+                  [iFormGroup]="question.value"
+                  [uuid]="question.value.controls['uuid'].value"
+                  (addAnswer)="handleAddAnswer($event)"
+                  (setCorrect)="handleSetCorrect($event)"
+                  (removeAnswer)="handleRemoveAnswer($event)"
+                  (removeQuestion)="handleRemoveQuestion($event)"
+                >
+                </oce-question-template>
+              }
+              @if((createTestForm.controls.questions.controls | keyvalue).length <= 0){
+                <p class="text-gray-500 tracking-wide text-sm">Once you start adding questions, they will be visible here.</p>
+              }
+            </div>
           }
         </oce-card-content>
       </oce-card>

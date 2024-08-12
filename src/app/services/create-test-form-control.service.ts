@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import { generate } from "random-words";
+import {Observable, of} from "rxjs";
 
 export interface CreateTestForm {
   basicProperties: FormGroup<{
@@ -34,14 +36,14 @@ export interface QuestionInterface {
 })
 export class CreateTestFormControlService {
 
-  constructor() {
-  }
-
   createTestForm(): FormGroup<CreateTestForm> {
+
+    const publicKey = generate({exactly: 2, minLength: 4, maxLength: 8, join: '-'});
+    const privateKey = generate({exactly: 2, minLength: 4, maxLength: 8, join: '-'});
     return new FormGroup({
       basicProperties: new FormGroup({
-        publicKey: new FormControl(''),
-        privateKey: new FormControl(''),
+        publicKey: new FormControl(publicKey),
+        privateKey: new FormControl(privateKey),
         title: new FormControl(''),
         description: new FormControl(''),
         duration: new FormControl(''),
@@ -59,7 +61,7 @@ export class CreateTestFormControlService {
     (form.controls.examineeIdentification as FormGroup).addControl('name', new FormControl(name));
   }
 
-  addQuestion(form: FormGroup<CreateTestForm>, questionUUID: string) {
+  addQuestion(form: FormGroup<CreateTestForm>, questionUUID: string): Observable<void> {
     const questionGroup = new FormGroup({
       uuid: new FormControl(questionUUID),
       type: new FormControl('multiple-choice'),
@@ -67,11 +69,17 @@ export class CreateTestFormControlService {
       question: new FormControl(''),
       description: new FormControl(''),
       multimedia: new FormControl(false),
-      multimediaType: new FormControl(''),
+      multimediaType: new FormControl('image'),
       multimediaURL: new FormControl(''),
       answer: new FormArray([])
     });
     (form.controls.questions as FormGroup).addControl(questionUUID, questionGroup);
+    return of();
+  }
+
+  removeQuestion(form: FormGroup<CreateTestForm>, questionUUID: string) {
+    (form.controls.questions as FormGroup).removeControl(questionUUID);
+    console.log('test')
   }
 
   addAnswer(form: FormGroup<CreateTestForm>, questionUUID: string, value:string) {

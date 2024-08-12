@@ -1,5 +1,6 @@
 <oce-card [formGroup]="iFormGroup">
   <oce-card-header-complex size="md">
+    <app-button-remove (click)="handleRemoveQuestion()" button class="w-10 h-10"></app-button-remove>
     <app-select-template select [selected]="iFormGroup.controls['type'].value" [header]="'Question types'"  class="relative w-44 z-10">
       @for (option of ['complex-true-or-false', 'match']; track $index){
         <app-select-element option [for]="uuid + option" [option]="option">
@@ -7,9 +8,11 @@
         </app-select-element>
       }
     </app-select-template>
-    <app-select-template select [header]="'List styles'" class="relative w-24 z-10">
-      @for (option of ['roman', 'number']; track $index){
-        <app-select-element option [option]="option"></app-select-element>
+    <app-select-template select [selected]="iFormGroup.controls['listStyle'].value"  [header]="'List styles'" class="relative w-24 z-10">
+      @for (option of ['roman', 'number', 'letter', 'capital']; track $index){
+        <app-select-element option [for]="uuid + option" [option]="option">
+          <input input formControlName="listStyle" [id]="uuid + option" name="listStyle" type="radio" [value]="option" hidden="hidden">
+        </app-select-element>
       }
     </app-select-template>
   </oce-card-header-complex>
@@ -30,10 +33,10 @@
         </oce-checkbox-simple>
         @if (iFormGroup.controls['multimedia'].value) {
           <div class="flex flex-col gap-1 mt-2">
-            <app-select-template class="relative w-40">
+            <app-select-template [selected]="iFormGroup.controls['multimediaType'].value" [header]="'Multimedia type'" class="relative w-24">
               @for (option of ['image', 'sound', 'video']; track $index){
-                <app-select-element option [option]="option">
-                  <input formControlName="type" [id]="option" name="type" type="radio" [value]="option">
+                <app-select-element [for]="uuid + option" option [option]="option">
+                  <input formControlName="multimediaType" [id]="uuid + option" name="multimediaType" type="radio" [value]="option" hidden="hidden">
                 </app-select-element>
               }
             </app-select-template>

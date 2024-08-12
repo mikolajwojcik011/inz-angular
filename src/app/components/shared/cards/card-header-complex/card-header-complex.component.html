@@ -11,14 +11,7 @@
       <ng-content select="[select]"></ng-content>
     </div>
   </div>
-  <div class="flex text-gray-600 items-center">
-    <div class="flex gap-4 border-r border-gray-300 mr-4 pr-4">
-      <app-button-down class="w-10 h-10"></app-button-down>
-      <app-button-up class="w-10 h-10"></app-button-up>
-    </div>
     <div class="flex gap-4">
-      <app-button-copy class="w-10 h-10"></app-button-copy>
-      <app-button-remove class="w-10 h-10"></app-button-remove>
+      <ng-content select="[button]"></ng-content>
     </div>
-  </div>
 </div>
