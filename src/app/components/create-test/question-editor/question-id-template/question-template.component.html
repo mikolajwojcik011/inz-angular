@@ -1,5 +1,5 @@
 <oce-card [formGroup]="iFormGroup">
-  <oce-card-header-complex size="md">
+  <oce-card-header-complex [index]="index" size="md">
     <app-button-remove (click)="handleRemoveQuestion()" button class="w-10 h-10"></app-button-remove>
     <app-select-template select [selected]="iFormGroup.controls['type'].value" [header]="'Question types'"  class="relative w-44 z-10">
       @for (option of ['complex-true-or-false', 'match']; track $index){

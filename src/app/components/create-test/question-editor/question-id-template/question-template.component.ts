@@ -60,7 +60,7 @@ import {QuestionInterface} from "../../../../services/create-test-form-control.s
 export class QuestionTemplateComponent implements OnInit{
   questionType: string = 'multiple-choice';
   @Input() iFormGroup: FormGroup = new FormGroup<{ [key: string]: FormGroup<QuestionInterface> }>({})
-  @Input() iIndex: number = 0;
+  @Input() index: number = 0;
   @Input() uuid: string = '';
   @Output() addAnswer: EventEmitter<{uuid: string, value: string}> = new EventEmitter()
   @Output() setCorrect: EventEmitter<{value: boolean, answerIndex: number, uuid: string}> = new EventEmitter()

@@ -48,30 +48,16 @@ import * as uuid from 'uuid';
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'
 })
-export class CreateTestComponent implements OnInit, AfterViewChecked{
+export class CreateTestComponent implements OnInit{
   @ViewChild('questionContainer') questionContainer!: ElementRef;
   private newQuestionUUID: string | null = null;
 
   showConspect: boolean = true;
   show: string = 'qe';
-  compact: boolean = true;
+  compact: boolean = false;
   header: string = 'Basic Properties';
   description: string = 'Set the basic properties of the test, such as: public key, private key and title.';
-  createTestForm: FormGroup<CreateTestForm> = new FormGroup({
-    basicProperties: new FormGroup({
-      publicKey: new FormControl(''),
-      privateKey: new FormControl(''),
-      title: new FormControl(''),
-      description: new FormControl(''),
-      duration: new FormControl(''),
-      noDuration: new FormControl(false),
-      openDate: new FormControl(''),
-      closeDate: new FormControl(''),
-      noDate: new FormControl(false),
-    }),
-    examineeIdentification: new FormGroup({}),
-    questions: new FormGroup<{ [key: string]: FormGroup<QuestionInterface> }>({})
-  });
+  createTestForm: FormGroup<CreateTestForm>;
 
   constructor(
    private ctfcs: CreateTestFormControlService,
@@ -108,8 +94,6 @@ export class CreateTestComponent implements OnInit, AfterViewChecked{
   handleAddQuestion() {
     this.newQuestionUUID = uuid.v4();
     this.ctfcs.addQuestion(this.createTestForm, this.newQuestionUUID).subscribe(() => {
-      this.cdr.detectChanges();
-      this.scrollToNewQuestion();
     });
   }
 
@@ -129,28 +113,12 @@ export class CreateTestComponent implements OnInit, AfterViewChecked{
     this.ctfcs.removeQuestion(this.createTestForm, $event);
   }
 
-  private scrollToNewQuestion() {
-    if (this.newQuestionUUID) {
-      console.log('Attempting to scroll to new question:', this.newQuestionUUID);
-      const escapedUUID = CSS.escape(this.newQuestionUUID);
-      const questionElement = this.questionContainer.nativeElement.querySelector(`#${escapedUUID}`);
-      console.log('Question element:', questionElement);
-      if (questionElement) {
-        questionElement.scrollIntoView({ behavior: 'smooth' });
-        this.newQuestionUUID = null;
-      }
-    }
-  }
   scrollToQuestion(uuid: string) {
     const escapedUUID = CSS.escape(uuid);
     const questionElement = this.questionContainer.nativeElement.querySelector(`#${escapedUUID}`);
     if (questionElement) {
       questionElement.scrollIntoView({ behavior: 'smooth' });
     }
-  }
-
-  ngAfterViewChecked() {
-    this.scrollToNewQuestion();
   }
 
   ngOnInit() {

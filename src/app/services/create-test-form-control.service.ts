@@ -35,7 +35,7 @@ export interface QuestionInterface {
   providedIn: 'root'
 })
 export class CreateTestFormControlService {
-
+  prevUid: string = '';
   createTestForm(): FormGroup<CreateTestForm> {
 
     const publicKey = generate({exactly: 2, minLength: 4, maxLength: 8, join: '-'});
@@ -62,6 +62,11 @@ export class CreateTestFormControlService {
   }
 
   addQuestion(form: FormGroup<CreateTestForm>, questionUUID: string): Observable<void> {
+    if (this.prevUid) {
+      const firstChar = this.prevUid.charCodeAt(0);
+      questionUUID = String.fromCharCode(firstChar + 1) + questionUUID.slice(1);
+    }
+    this.prevUid = questionUUID;
     const questionGroup = new FormGroup({
       uuid: new FormControl(questionUUID),
       type: new FormControl('multiple-choice'),
@@ -98,4 +103,5 @@ export class CreateTestFormControlService {
   removeAnswer(form: FormGroup<CreateTestForm>, questionUUID: string, answerIndex: number) {
     (form.controls.questions.controls[questionUUID] as FormGroup<QuestionInterface>).controls.answer.removeAt(answerIndex);
   }
+
 }

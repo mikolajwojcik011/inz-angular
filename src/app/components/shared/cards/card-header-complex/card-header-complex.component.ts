@@ -21,5 +21,6 @@ import {NgClass} from "@angular/common";
   styleUrl: './card-header-complex.component.css'
 })
 export class CardHeaderComplexComponent {
+  @Input() index: number = 0
   @Input() size: string = 'lg'
 }
