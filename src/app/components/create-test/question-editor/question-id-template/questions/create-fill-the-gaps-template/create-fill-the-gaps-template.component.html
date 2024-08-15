@@ -1,5 +1,5 @@
-<ng-content></ng-content>
 <oce-card>
+  <ng-content></ng-content>
   <oce-card-header-guide [done]="1" [total]="3" [showText]="false">
     @if (show === 0) {
       <b class="font-semibold"> 1.</b> Insert paragraph in which you want to create gaps. <b
@@ -34,13 +34,13 @@
         </button>
       </div>
       @if (show == 0) {
-        <app-text-area-template [value]="textareaValue" #textarea class="flex flex-col h-40">Paragraph
+        <app-text-area-template [value]="textareaValue" #textarea class="flex flex-col">Paragraph
         </app-text-area-template>
       }
       @if (show === 1) {
         <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">Edit paragraph</h5>
         <p
-          class=" w-full min-h-10 relative pl-1 py-2 pr-1 bg-white ring-1 ring-gray-300 ring-inset rounded-md flex flex-wrap z-10 text-sm">
+          class=" w-full min-h-14 relative pl-1 py-2 pr-1 bg-white ring-1 ring-gray-300 ring-inset rounded-md flex flex-wrap z-10 text-sm">
           @for (word of words; track i; let i = $index) {
             <app-word (wordUpdated)="updateWord($event)" class="relative" [word]="word"></app-word>
           }
@@ -48,7 +48,7 @@
       }
       @if (show === 2) {
         <h5 class="flex text-gray-700 pb-2 text-xs font-bold tracking-wide capitalize">preview</h5>
-        <p class=" w-full min-h-10 relative py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md z-10 text-sm bg-white">
+        <p class=" w-full min-h-14 relative py-2 pr-1 ring-1 ring-gray-300 ring-inset rounded-md z-10 text-sm bg-white">
           @for (part of finalWords; track $index) {
             @if (part.gaps === 'whole') {
               <span>

@@ -1,13 +1,15 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ConspectElementComponent} from "./conspect-element/conspect-element.component";
 import {ButtonAddQuestionComponent} from "../../shared/buttons/button-add-question/button-add-question.component";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-conspect',
   standalone: true,
   imports: [
     ConspectElementComponent,
-    ButtonAddQuestionComponent
+    ButtonAddQuestionComponent,
+    NgClass
   ],
   templateUrl: './conspect.component.html',
   styleUrl: './conspect.component.css'

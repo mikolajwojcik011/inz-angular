@@ -1,9 +1,15 @@
-<label [for]="for" class="flex gap-1 capitalize text-gray-700 h-full align-middle hover:bg-gray-100 rounded-lg cursor-pointer">
-  <li class="p-1 flex items-center gap-1 font-semibold">
+<label [for]="for" class="flex gap-1 items-center capitalize text-gray-700 h-full align-middle hover:bg-gray-100 rounded-lg cursor-pointer">
+  <li class="p-1 flex justify-center gap-1 font-semibold">
     <ng-content></ng-content>
     <i
-      class="text-sky-500"
-      [ngClass]="iconString"
+      class="text-sky-500 text-md"
+      [ngClass]="{
+        'bi-shuffle': option === 'match',
+        'bi-circle-half': option === 'complex-true-or-false',
+        'bi bi-123': option === 'number',
+        'bi bi-alphabet': option === 'letter',
+        'bi bi-alphabet-uppercase': option === 'capital',
+      }"
     ></i>
    {{option}}
   </li>

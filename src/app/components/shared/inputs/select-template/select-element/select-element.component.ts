@@ -13,6 +13,4 @@ import {NgClass} from "@angular/common";
 export class SelectElementComponent{
   @Input() option: string = '';
   @Input() for: string = '';
-  iconString:string = '';
-
 }

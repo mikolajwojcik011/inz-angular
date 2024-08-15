@@ -5,7 +5,15 @@
 // todo: Add true or false question type
 // todo: Add complex true or false question type
 
-import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {TopBarComponent} from "./top-bar/top-bar.component";
 import {ConspectComponent} from "./conspect/conspect.component";
 import {QuestionEditorComponent} from "./question-editor/question-editor.component";
@@ -48,7 +56,7 @@ import * as uuid from 'uuid';
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'
 })
-export class CreateTestComponent implements OnInit{
+export class CreateTestComponent implements OnInit, AfterViewInit{
   @ViewChild('questionContainer') questionContainer!: ElementRef;
   private newQuestionUUID: string | null = null;
 
@@ -94,6 +102,8 @@ export class CreateTestComponent implements OnInit{
   handleAddQuestion() {
     this.newQuestionUUID = uuid.v4();
     this.ctfcs.addQuestion(this.createTestForm, this.newQuestionUUID).subscribe(() => {
+      this.cdr.detectChanges();
+      this.scrollToBottom();
     });
   }
 
@@ -121,7 +131,14 @@ export class CreateTestComponent implements OnInit{
     }
   }
 
+  private scrollToBottom() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+
   ngOnInit() {
   }
 
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
 }

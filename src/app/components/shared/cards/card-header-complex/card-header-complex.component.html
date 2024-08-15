@@ -2,7 +2,7 @@
   class="w-full flex bg-gray-50 border-b border-gray-300 items-center justify-between rounded-t-lg py-1"
   [ngClass]="{'px-6': size === 'lg', 'px-4': size === 'md', 'px-2': size === 'sm'}"
 >
-  <div class="flex gap-4">
+  <div class="flex items-center gap-4">
     <div class="flex gap-2 items-center ">
       <i class="bi bi-patch-question-fill text-gray-700"></i>
       <h3 class="font-bold tracking-wide text-gray-700 align-middle h-full">Question {{index}}</h3>
@@ -11,7 +11,7 @@
       <ng-content select="[select]"></ng-content>
     </div>
   </div>
-    <div class="flex gap-4">
-      <ng-content select="[button]"></ng-content>
-    </div>
+  <div class="flex gap-4">
+    <ng-content select="[button]"></ng-content>
+  </div>
 </div>

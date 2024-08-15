@@ -62,24 +62,27 @@ export class CreateTestFormControlService {
   }
 
   addQuestion(form: FormGroup<CreateTestForm>, questionUUID: string): Observable<void> {
-    if (this.prevUid) {
-      const firstChar = this.prevUid.charCodeAt(0);
-      questionUUID = String.fromCharCode(firstChar + 1) + questionUUID.slice(1);
-    }
-    this.prevUid = questionUUID;
-    const questionGroup = new FormGroup({
-      uuid: new FormControl(questionUUID),
-      type: new FormControl('multiple-choice'),
-      listStyle: new FormControl('capital'),
-      question: new FormControl(''),
-      description: new FormControl(''),
-      multimedia: new FormControl(false),
-      multimediaType: new FormControl('image'),
-      multimediaURL: new FormControl(''),
-      answer: new FormArray([])
+    return new Observable<void>((observer) => {
+      if (this.prevUid) {
+        const firstChar = this.prevUid.charCodeAt(0);
+        questionUUID = String.fromCharCode(firstChar + 1) + questionUUID.slice(1);
+      }
+      this.prevUid = questionUUID;
+      const questionGroup = new FormGroup({
+        uuid: new FormControl(questionUUID),
+        type: new FormControl('multiple-choice'),
+        listStyle: new FormControl('capital'),
+        question: new FormControl(''),
+        description: new FormControl(''),
+        multimedia: new FormControl(false),
+        multimediaType: new FormControl('image'),
+        multimediaURL: new FormControl(''),
+        answer: new FormArray([])
+      });
+      (form.controls.questions as FormGroup).addControl(questionUUID, questionGroup);
+      observer.next();
+      observer.complete();
     });
-    (form.controls.questions as FormGroup).addControl(questionUUID, questionGroup);
-    return of();
   }
 
   removeQuestion(form: FormGroup<CreateTestForm>, questionUUID: string) {
